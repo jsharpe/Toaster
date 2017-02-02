@@ -16,7 +16,7 @@
   <property name="styleSheet">
    <string notr="true">QWidget#WahWahWidget {color: transparent;}</string>
   </property>
-  <widget class="QToasterStompEditLCD" name="lcdDisplay">
+  <widget class="QToasterStompEditLCD" name="lcdDisplay" native="true">
    <property name="geometry">
     <rect>
      <x>70</x>
@@ -25,101 +25,89 @@
      <height>115</height>
     </rect>
    </property>
-   <property name="color">
-    <enum>QToasterLCD::Standard</enum>
-   </property>
-   <property name="currentPage">
-    <enum>QToasterLCD::Page1</enum>
-   </property>
-   <property name="maxPage">
-    <enum>QToasterLCD::Page1</enum>
-   </property>
-   <property name="stompInstance">
+   <property name="stompInstance" stdset="0">
     <string>Amplifier</string>
    </property>
-   <property name="stompName">
+   <property name="stompName" stdset="0">
     <string>Author:</string>
    </property>
-   <property name="value1Title">
+   <property name="value1Title" stdset="0">
     <string>Definition</string>
    </property>
-   <property name="value2Title">
+   <property name="value2Title" stdset="0">
     <string>Power Sagging</string>
    </property>
-   <property name="value3Title">
+   <property name="value3Title" stdset="0">
     <string>Pick</string>
    </property>
-   <property name="value4Title">
+   <property name="value4Title" stdset="0">
     <string>Compressor</string>
    </property>
-   <property name="value5Title">
+   <property name="value5Title" stdset="0">
     <string>Clarity</string>
    </property>
-   <property name="value6Title">
+   <property name="value6Title" stdset="0">
     <string>Tube Shape</string>
    </property>
-   <property name="value7Title">
+   <property name="value7Title" stdset="0">
     <string>Tube Bias</string>
    </property>
-   <property name="value8Title">
+   <property name="value8Title" stdset="0">
     <string>Direct Mix</string>
    </property>
-   <property name="value9Title">
+   <property name="value9Title" stdset="0">
     <string/>
    </property>
-   <property name="value10Title">
+   <property name="value10Title" stdset="0">
     <string/>
    </property>
-   <property name="value11Title">
+   <property name="value11Title" stdset="0">
     <string/>
    </property>
-   <property name="value12Title">
+   <property name="value12Title" stdset="0">
     <string/>
    </property>
-   <property name="value13Title">
+   <property name="value13Title" stdset="0">
     <string/>
    </property>
-   <property name="value14Title">
+   <property name="value14Title" stdset="0">
     <string/>
    </property>
-   <property name="value15Title">
+   <property name="value15Title" stdset="0">
     <string/>
    </property>
-   <property name="value16Title">
+   <property name="value16Title" stdset="0">
     <string/>
    </property>
-   <property name="value17Title">
+   <property name="value17Title" stdset="0">
     <string/>
    </property>
-   <property name="value18Title">
+   <property name="value18Title" stdset="0">
     <string/>
    </property>
-   <property name="value19Title">
+   <property name="value19Title" stdset="0">
     <string/>
    </property>
-   <property name="value20Title">
+   <property name="value20Title" stdset="0">
     <string/>
    </property>
-   <property name="value21Title">
+   <property name="value21Title" stdset="0">
     <string/>
    </property>
-   <property name="value22Title">
+   <property name="value22Title" stdset="0">
     <string/>
    </property>
-   <property name="value23Title">
+   <property name="value23Title" stdset="0">
     <string/>
    </property>
-   <property name="value24Title">
+   <property name="value24Title" stdset="0">
     <string/>
    </property>
-   <property name="eqBand1Value">
+   <property name="eqBand1Value" stdset="0">
     <double>0.000000000000000</double>
    </property>
-   <property name="scaleView">
-    <enum>QToasterStompEditLCD::Empty</enum>
-   </property>
   </widget>
-  <widget class="QToasterDial" name="tubeBiasDial">
+  <widget class="QToasterDial" name="tubeBiasDial" native="true">
    <property name="geometry">
     <rect>
      <x>300</x>
@@ -128,23 +116,17 @@
      <height>70</height>
     </rect>
    </property>
-   <property name="knobSize">
-    <enum>QToasterDial::Small</enum>
-   </property>
-   <property name="ledRingType" stdset="0">
-    <enum>QToasterDial::None</enum>
-   </property>
-   <property name="minValue">
+   <property name="minValue" stdset="0">
     <double>0.000000000000000</double>
    </property>
-   <property name="maxValue">
+   <property name="maxValue" stdset="0">
     <double>10.000000000000000</double>
    </property>
-   <property name="stepWidth">
+   <property name="stepWidth" stdset="0">
     <double>0.100000000000000</double>
    </property>
   </widget>
-  <widget class="QToasterDial" name="tubeShapeDial">
+  <widget class="QToasterDial" name="tubeShapeDial" native="true">
    <property name="geometry">
     <rect>
      <x>190</x>
@@ -153,23 +135,17 @@
      <height>70</height>
     </rect>
    </property>
-   <property name="knobSize">
-    <enum>QToasterDial::Small</enum>
-   </property>
-   <property name="ledRingType" stdset="0">
-    <enum>QToasterDial::None</enum>
-   </property>
-   <property name="maxValue">
+   <property name="maxValue" stdset="0">
     <double>10.000000000000000</double>
    </property>
-   <property name="stepWidth">
+   <property name="stepWidth" stdset="0">
     <double>0.100000000000000</double>
    </property>
-   <property name="unit">
+   <property name="unit" stdset="0">
     <string/>
    </property>
   </widget>
-  <widget class="QToasterDial" name="clarityDial">
+  <widget class="QToasterDial" name="clarityDial" native="true">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -178,23 +154,17 @@
      <height>70</height>
     </rect>
    </property>
-   <property name="knobSize">
-    <enum>QToasterDial::Small</enum>
-   </property>
-   <property name="ledRingType" stdset="0">
-    <enum>QToasterDial::None</enum>
-   </property>
-   <property name="maxValue">
+   <property name="maxValue" stdset="0">
     <double>10.000000000000000</double>
    </property>
-   <property name="stepWidth">
+   <property name="stepWidth" stdset="0">
     <double>0.100000000000000</double>
    </property>
-   <property name="unit">
+   <property name="unit" stdset="0">
     <string/>
    </property>
   </widget>
-  <widget class="QToasterDial" name="directMixDial">
+  <widget class="QToasterDial" name="directMixDial" native="true">
    <property name="geometry">
     <rect>
      <x>410</x>
@@ -221,23 +191,17 @@
      <height>70</height>
     </size>
    </property>
-   <property name="knobSize">
-    <enum>QToasterDial::Small</enum>
-   </property>
-   <property name="ledRingType" stdset="0">
-    <enum>QToasterDial::None</enum>
-   </property>
-   <property name="minValue">
+   <property name="minValue" stdset="0">
     <double>0.000000000000000</double>
    </property>
-   <property name="maxValue">
+   <property name="maxValue" stdset="0">
     <double>10.000000000000000</double>
    </property>
-   <property name="stepWidth">
+   <property name="stepWidth" stdset="0">
     <double>0.100000000000000</double>
    </property>
   </widget>
-  <widget class="QToasterDial" name="definitionDial">
+  <widget class="QToasterDial" name="definitionDial" native="true">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -264,20 +228,17 @@
      <height>100</height>
     </size>
    </property>
-   <property name="ledRingType" stdset="0">
-    <enum>QToasterDial::Uni</enum>
-   </property>
-   <property name="minValue">
+   <property name="minValue" stdset="0">
     <double>0.000000000000000</double>
    </property>
-   <property name="maxValue">
+   <property name="maxValue" stdset="0">
     <double>10.000000000000000</double>
    </property>
-   <property name="stepWidth">
+   <property name="stepWidth" stdset="0">
     <double>0.100000000000000</double>
    </property>
   </widget>
-  <widget class="QToasterDial" name="powerSaggingDial">
+  <widget class="QToasterDial" name="powerSaggingDial" native="true">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -304,20 +265,17 @@
      <height>100</height>
     </size>
    </property>
-   <property name="ledRingType" stdset="0">
-    <enum>QToasterDial::Uni</enum>
-   </property>
-   <property name="minValue">
+   <property name="minValue" stdset="0">
     <double>0.000000000000000</double>
    </property>
-   <property name="maxValue">
+   <property name="maxValue" stdset="0">
     <double>10.000000000000000</double>
    </property>
-   <property name="stepWidth">
+   <property name="stepWidth" stdset="0">
     <double>0.100000000000000</double>
    </property>
   </widget>
-  <widget class="QToasterDial" name="pickDial">
+  <widget class="QToasterDial" name="pickDial" native="true">
    <property name="geometry">
     <rect>
      <x>290</x>
@@ -344,23 +302,20 @@
      <height>100</height>
     </size>
    </property>
-   <property name="ledRingType" stdset="0">
-    <enum>QToasterDial::Bi</enum>
-   </property>
-   <property name="minValue">
+   <property name="minValue" stdset="0">
     <double>-5.000000000000000</double>
    </property>
-   <property name="maxValue">
+   <property name="maxValue" stdset="0">
     <double>5.000000000000000</double>
    </property>
-   <property name="stepWidth">
+   <property name="stepWidth" stdset="0">
     <double>0.100000000000000</double>
    </property>
-   <property name="unit">
+   <property name="unit" stdset="0">
     <string/>
    </property>
   </widget>
-  <widget class="QToasterDial" name="compressorDial">
+  <widget class="QToasterDial" name="compressorDial" native="true">
    <property name="geometry">
     <rect>
      <x>410</x>
@@ -387,22 +342,19 @@
      <height>100</height>
     </size>
    </property>
-   <property name="ledRingType" stdset="0">
-    <enum>QToasterDial::Uni</enum>
-   </property>
-   <property name="minValue">
+   <property name="minValue" stdset="0">
     <double>0.000000000000000</double>
    </property>
-   <property name="maxValue">
+   <property name="maxValue" stdset="0">
     <double>10.000000000000000</double>
    </property>
-   <property name="stepWidth">
+   <property name="stepWidth" stdset="0">
     <double>0.100000000000000</double>
    </property>
-   <property name="precision">
+   <property name="precision" stdset="0">
     <UInt>1</UInt>
    </property>
-   <property name="unit">
+   <property name="unit" stdset="0">
     <string/>
    </property>
   </widget>

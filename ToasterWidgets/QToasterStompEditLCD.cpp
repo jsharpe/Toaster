@@ -421,6 +421,7 @@ void QToasterStompEditLCD::setValue1Title(QString title)
   ui->val01Title->setText(title);
   if(title.isEmpty())
     ui->val01->setText("");
+  update();
 }
 
 void QToasterStompEditLCD::setValue2Title(QString title)
@@ -428,6 +429,7 @@ void QToasterStompEditLCD::setValue2Title(QString title)
   ui->val02Title->setText(title);
   if(title.isEmpty())
     ui->val02->setText("");
+  update();
 }
 
 void QToasterStompEditLCD::setValue3Title(QString title)
@@ -435,6 +437,7 @@ void QToasterStompEditLCD::setValue3Title(QString title)
   ui->val03Title->setText(title);
   if(title.isEmpty())
     ui->val03->setText("");
+  update();
 }
 
 void QToasterStompEditLCD::setValue4Title(QString title)
@@ -442,6 +445,7 @@ void QToasterStompEditLCD::setValue4Title(QString title)
   ui->val04Title->setText(title);
   if(title.isEmpty())
     ui->val04->setText("");
+  update();
 }
 
 void QToasterStompEditLCD::setValue5Title(QString title)

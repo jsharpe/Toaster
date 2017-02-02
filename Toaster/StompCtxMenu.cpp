@@ -18,6 +18,8 @@
 #include "StompCtxMenu.h"
 #include "Settings.h"
 
+void createDelayMenu(QMenu & menu);
+
 StompCtxMenu::StompCtxMenu(Stomp& stomp)
   : mStomp(stomp)
 {
@@ -270,8 +272,7 @@ void StompCtxMenu::createDelayReverbMenu()
 
   if(Settings::get().getKPAOSVersion() >= 0x04000000)
   {
-    action = mDelayReverbMenu.addAction("Legacy Delay");
-    action->setData(QVariant((unsigned int)LegacyDelay));
+     createDelayMenu(mDelayReverbMenu);
   }
 }
 

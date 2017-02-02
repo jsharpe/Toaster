@@ -42,10 +42,10 @@ public:
   void requestOnOffKeepsTail() { midiRequestOnOffKeepsTail(); }
   void requestDucking() { midiRequestDucking(); }
 
-  ::DelayType getDelayType() const { return mDelayType; }
+  ::FXType getDelayType() const { return mDelayType; }
   
 signals:
-  void typeReceived(::DelayType type);
+  void typeReceived(::FXType type);
   void onOffCutsTailReceived(bool onOffCutsTail);
   void mixReceived(int mix);
   void volumeReceived(double volume);
@@ -61,7 +61,7 @@ signals:
   void duckingReceived(double ducking);
 
 public slots:
-  void applyType(::DelayType type);
+  void applyType(::FXType type);
   void applyOnOffCutsTail(bool onOffCutsTail);
   void applyMix(int mix);
   void applyVolume(double volume);
@@ -93,7 +93,7 @@ protected:
   virtual void midiOnOffKeepsTailReceived(unsigned short rawVal);
   virtual void midiDuckingReceived(unsigned short rawVal);
 
-  ::DelayType mDelayType;
+  ::FXType mDelayType;
 
 private:
   Delay();

@@ -16,7 +16,7 @@
 #include "Delay.h"
 
 Delay::Delay()
-  : mDelayType(TapDelay)
+  : mDelayType(LegacyDelay)
 {
 }
 
@@ -49,7 +49,7 @@ void Delay::requestAllValues()
 }
 
 // slots
-void Delay::applyType(::DelayType type)
+void Delay::applyType(::FXType type)
 {
   midiApplyType((unsigned short) type);
   midiRequestType();
@@ -124,7 +124,7 @@ void Delay::applyDucking(double ducking)
 // DelayMidi
 void Delay::midiTypeReceived(unsigned short rawVal)
 {
-  mDelayType = (DelayType) rawVal;
+  mDelayType = (FXType) rawVal;
   emit typeReceived(mDelayType);
 }
 

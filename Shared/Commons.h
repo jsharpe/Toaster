@@ -91,6 +91,17 @@ enum FXType
   SerialTwoTapDelay,      // DLY2     0x95
   RhythmDelay,            // DLY4     0xA1
   QuadDelay,              // DLY4     0xA4
+//----- light green----------------------
+  CrystalDelay,
+  LoopPitchDelay,
+  FrequencyShifterDelay,
+  DualChromaticDelay,
+  DualHarmonicDelay,
+  DualCrystalDelay,
+  DualLoopPitchDelay,
+  MelodyDelay,
+  QuadChromaticDelay,
+  QuadHarmonicDelay,
   DualCrystal,            // D2CR     0x8B
 //-----white----------------------
   Transpose,              // TRP      0x81
@@ -108,7 +119,7 @@ enum DelayType
 {
   TapDelay = 1,
   FreeDelay = 2,
-  AnalogDelay = 3
+  AnalogDelay = 3,
 };
 
 enum ReverbType

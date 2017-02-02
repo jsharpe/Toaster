@@ -48,7 +48,7 @@ void DelayFrame::activate(QObject& stomp)
     mpDelay->requestVolume();
 
     ui.lcdDisplay->setStompInstance("Delay Effect");
-    ui.lcdDisplay->setStompName(LookUpTables::delayTypeName(mpDelay->getDelayType()));
+    ui.lcdDisplay->setStompName(LookUpTables::stompFXName(mpDelay->getDelayType()));
   }
 }
 

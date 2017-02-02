@@ -139,11 +139,6 @@ QString LookUpTables::stompFXName(FXType fxType)
   return sStompFXNames[fxType];
 }
 
-QString LookUpTables::delayTypeName(DelayType delayType)
-{
-  return sDelayTypeNames[delayType];
-}
-
 QString LookUpTables::reverbTypeName(ReverbType reverbType)
 {
   return sReverbTypeNames[reverbType];
