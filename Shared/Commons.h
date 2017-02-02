@@ -115,12 +115,6 @@ enum FXType {
   LoopDistortion  // LOOP     0x7B
 };
 
-enum DelayType {
-  TapDelay = 1,
-  FreeDelay = 2,
-  AnalogDelay = 3,
-};
-
 enum ReverbType {
   Hall = 1,
   LargeRoom = 2,
@@ -176,7 +170,6 @@ struct FXDefinition {
 };
 
 Q_DECLARE_METATYPE(::FXType)
-Q_DECLARE_METATYPE(::DelayType)
 Q_DECLARE_METATYPE(::ReverbType)
 Q_DECLARE_METATYPE(::DelayRatio)
 Q_DECLARE_METATYPE(::WahPedalMode)

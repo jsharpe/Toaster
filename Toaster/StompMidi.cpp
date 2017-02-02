@@ -113,9 +113,7 @@ StompMidi::StompMidi(StompInstance instance) : mInstance(instance) {
   SysExMsgDispatcher::get().addConsumer(this);
 }
 
-StompMidi::~StompMidi() {
-  SysExMsgDispatcher::get().removeConsumer(this);
-}
+StompMidi::~StompMidi() { SysExMsgDispatcher::get().removeConsumer(this); }
 
 void StompMidi::consumeSysExMsg(const ByteArray &msg) {
   if (msg.size() >= 12) {

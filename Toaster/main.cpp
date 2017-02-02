@@ -17,11 +17,13 @@
  */
 #include "KPAOS4Checker.h"
 #include "ToasterWindow.h"
+#include "Midi.h"
 #include <QApplication>
-
 
 int main(int argc, char *argv[]) {
   QApplication a(argc, argv);
+
+  Midi::get(); //Force construction of Midi singleton
 
   KPAOS4Checker osChecker;
   osChecker.check();

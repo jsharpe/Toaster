@@ -23,11 +23,6 @@ QMap<StompInstance, QString> LookUpTables::sStompInstanceNames = {
     {StompX, "Effect x module"}, {StompMod, "Modulation module"},
     {StompDelay, "Delay module"}};
 
-QMap<DelayType, QString> LookUpTables::sDelayTypeNames = {
-    {TapDelay, "Tap Delay"},
-    {FreeDelay, "Free Delay"},
-    {AnalogDelay, "Analog Delay"}};
-
 QMap<ReverbType, QString> LookUpTables::sReverbTypeNames = {
     {Hall, "Hall"},
     {LargeRoom, "Large Room"},

@@ -42,7 +42,6 @@ signals:
 
 private slots:
   void onActiveStompType(::FXType fxType);
-  void onDelayType(::DelayType delayType);
   void onReverbType(::ReverbType reverbType);
 
   // stomps

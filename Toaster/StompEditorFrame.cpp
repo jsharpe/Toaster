@@ -141,8 +141,6 @@ void StompEditorFrame::activate(QObject &stomp) {
               SLOT(onActiveStompType(::FXType)));
       pActiveStomp->requestType();
     } else if (pDelay != nullptr) {
-      connect(pDelay, SIGNAL(typeReceived(::DelayType)), this,
-              SLOT(onDelayType(::DelayType)));
       pDelay->requestType();
     } else if (pReverb != nullptr) {
       connect(pReverb, SIGNAL(typeReceived(::ReverbType)), this,
@@ -171,9 +169,6 @@ void StompEditorFrame::deactivate() {
     if (pActiveStomp != nullptr)
       disconnect(mpActiveStomp, SIGNAL(typeReceived(::FXType)), this,
                  SLOT(onActiveStompType(::FXType)));
-    else if (pDelay != nullptr)
-      disconnect(pDelay, SIGNAL(typeReceived(::DelayType)), this,
-                 SLOT(onDelayType(::DelayType)));
     else if (pReverb != nullptr)
       connect(pReverb, SIGNAL(typeReceived(::ReverbType)), this,
               SLOT(onReverbType(::ReverbType)));
@@ -348,44 +343,6 @@ void StompEditorFrame::onActiveStompType(FXType fxType) {
       mActiveStompType = fxType;
       ui.dummyStompFrame->hide();
       mpActivePage->activate(*pActiveStomp);
-      setUpdatesEnabled(true);
-      emit editorPageChanged(mpActivePage.get());
-      requestValues();
-    }
-  }
-}
-
-void StompEditorFrame::onDelayType(::DelayType delayType) {
-  Delay *pActiveDelay = nullptr;
-  if (mpActivePage != nullptr) {
-    if (delayType != mActiveStompType) {
-      mpActivePage->deactivate();
-      mpActivePage.reset();
-      emit editorPageChanged(mpActivePage.get());
-    }
-  }
-
-  pActiveDelay = qobject_cast<Delay *>(mpActiveStomp);
-
-  if (mpActivePage == nullptr && pActiveDelay != nullptr) {
-    switch (delayType) {
-    case FreeDelay:
-    case AnalogDelay:
-      mpActivePage.reset(new DelayFrame(this));
-      break;
-    case TapDelay:
-      mpActivePage.reset(new TapDelayFrame(this));
-      break;
-    default:
-      ui.dummyStompFrame->show();
-      break;
-    }
-
-    if (mpActivePage != nullptr && !mpActivePage->isActive()) {
-      setUpdatesEnabled(false);
-      mActiveStompType = delayType;
-      ui.dummyStompFrame->hide();
-      mpActivePage->activate(*pActiveDelay);
       setUpdatesEnabled(true);
       emit editorPageChanged(mpActivePage.get());
       requestValues();

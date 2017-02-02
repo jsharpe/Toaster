@@ -22,8 +22,6 @@
 
 #include <vector>
 
-DelayCtxMenu::DelayCtxMenu(Delay &delay) : mDelay(delay) {}
-
 void createDelayMenu(QMenu &menu) {
   struct DelayNames {
     QString name;
@@ -57,6 +55,8 @@ void createDelayMenu(QMenu &menu) {
   }
 }
 
+DelayCtxMenu::DelayCtxMenu(Delay &delay) : mDelay(delay) {}
+
 void DelayCtxMenu::createMenu(QMenu &menu) {
   connect(&menu, SIGNAL(triggered(QAction *)), this, SLOT(setType(QAction *)));
 
@@ -66,6 +66,6 @@ void DelayCtxMenu::createMenu(QMenu &menu) {
 }
 
 void DelayCtxMenu::setType(QAction *action) {
-  FXType delayType = (FXType)action->data().toUInt();
+  auto delayType = (FXType)action->data().toUInt();
   mDelay.applyType(delayType);
 }

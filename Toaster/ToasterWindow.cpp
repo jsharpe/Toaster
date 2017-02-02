@@ -84,7 +84,6 @@ ToasterWindow::ToasterWindow(QWidget *parent)
   qRegisterMetaType<::FXType>("::FXType");
   qRegisterMetaType<::WahPedalMode>("::WahPedalMode");
   qRegisterMetaType<::RotarySpeed>("::RotarySpeed");
-  qRegisterMetaType<::DelayType>("::DelayType");
   qRegisterMetaType<::ReverbType>("::ReverbType");
   qRegisterMetaType<::DelayRatio>("::DelayRatio");
   qRegisterMetaType<::DelayClock>("::DelayClock");
