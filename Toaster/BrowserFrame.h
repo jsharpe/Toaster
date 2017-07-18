@@ -17,6 +17,7 @@
 #define BROWSERFRAME_H
 #include <QFrame>
 #include "Commons.h"
+#include "Stomp.h"
 #include "ui_BrowserFrame.h"
 
 class BrowserFrame : public QFrame
@@ -25,8 +26,8 @@ class BrowserFrame : public QFrame
 
 public:
   explicit BrowserFrame(QWidget *parent = 0);
-  ~BrowserFrame();
 
+  void init(KemperStompState & stompState);
   void requestValues();
 
 private slots:
@@ -86,6 +87,7 @@ private slots:
 
 private:
   Ui::BrowserFrame ui;
+  KemperStompState * stompState;
 };
 
 #endif // BROWSERFRAME_H

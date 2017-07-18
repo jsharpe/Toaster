@@ -20,26 +20,12 @@
 #include "StompMidi.h"
 #include "Commons.h"
 
-#define stompAObj Stomp::getA()
-#define stompBObj Stomp::getB()
-#define stompCObj Stomp::getC()
-#define stompDObj Stomp::getD()
-#define stompXObj Stomp::getX()
-#define stompModObj Stomp::getMod()
-#define stompDelayObj Stomp::getDelay()
 
-class Stomp : public QObject, public StompMidi
+class Stomp : public QObject, private StompMidi
 {
   Q_OBJECT
 public:
-
-  static Stomp& getA();
-  static Stomp& getB();
-  static Stomp& getC();
-  static Stomp& getD();
-  static Stomp& getX();
-  static Stomp& getMod();
-  static Stomp& getDelay();
+  using StompMidi::getInstance;
 
   void requestAllValues();
   void requestType() { midiRequestType(); }
@@ -188,7 +174,7 @@ signals:
   void delayFeedbackReceived(double feedback);
   void delayToTempoReceived(int toTempo);
   void delayModulationReceived(double modulation);
-  
+
 public slots:
   void applyOnOff(bool onOff);
   void applyType(::FXType type);
@@ -262,10 +248,10 @@ public slots:
   void applyDelayFeedback(double feedback);
   void applyDelayToTempo(int toTempo);
   void applyDelayModulation(double modulation);
-  
+
 protected:
   // StompMidi
-  virtual void midiOnOffReceived(unsigned short rawVal); 
+  virtual void midiOnOffReceived(unsigned short rawVal);
   virtual void midiTypeReceived(unsigned short rawVal);
   virtual void midiMixReceived(unsigned short rawVal);
   virtual void midiVolumeReceived(unsigned short rawVal);
@@ -338,11 +324,39 @@ protected:
 
   FXType mFXType;
 
-  static FXDefinition sFXDefinitions[];
-
-private:
+public:
   Stomp(StompInstance instance);
   ~Stomp();
+};
+
+class KemperStompState {
+public:
+    KemperStompState() :
+       stompA(StompA),
+       stompB(StompB),
+       stompC(StompC),
+       stompD(StompD),
+       stompX(StompX),
+       stompMod(StompMod),
+       stompDelay(StompDelay)
+    { }
+
+    void requestAllValues() {
+        stompA.requestAllValues();
+        stompB.requestAllValues();
+        stompC.requestAllValues();
+        stompD.requestAllValues();
+        stompX.requestAllValues();
+        stompMod.requestAllValues();
+        stompDelay.requestAllValues();
+    }
+    Stomp stompA;
+    Stomp stompB;
+    Stomp stompC;
+    Stomp stompD;
+    Stomp stompX;
+    Stomp stompMod;
+    Stomp stompDelay;
 };
 
 #endif // STOMP_H

@@ -28,29 +28,6 @@ BrowserFrame::BrowserFrame(QWidget *parent)
 {
   ui.setupUi(this);
   ui.browseModeDial->setValues(ui.lcdDisplay->getBrowserModeViews());
-  // stomps
-  connect(&stompAObj, &Stomp::onOffReceived, this, &BrowserFrame::onStompAOnOff);
-  connect(&stompBObj, &Stomp::onOffReceived, this, &BrowserFrame::onStompBOnOff);
-  connect(&stompCObj, &Stomp::onOffReceived, this, &BrowserFrame::onStompCOnOff);
-  connect(&stompDObj, &Stomp::onOffReceived, this, &BrowserFrame::onStompDOnOff);
-  connect(&stompXObj, &Stomp::onOffReceived, this, &BrowserFrame::onStompXOnOff);
-  connect(&stompModObj, &Stomp::onOffReceived, this, &BrowserFrame::onStompModOnOff);
-  connect(&stompAObj, &Stomp::typeReceived, this, &BrowserFrame::onStompAType);
-  connect(&stompBObj, &Stomp::typeReceived, this, &BrowserFrame::onStompBType);
-  connect(&stompCObj, &Stomp::typeReceived, this, &BrowserFrame::onStompCType);
-  connect(&stompDObj, &Stomp::typeReceived, this, &BrowserFrame::onStompDType);
-  connect(&stompXObj, &Stomp::typeReceived, this, &BrowserFrame::onStompXType);
-  connect(&stompModObj, &Stomp::typeReceived, this, &BrowserFrame::onStompModType);
-  // delay
-  if(Settings::get().getKPAOSVersion() >= 0x04000000)
-  {
-    connect(&stompDelayObj, &Stomp::onOffReceived, this, &BrowserFrame::onDelayOnOff);
-    connect(&stompDelayObj, &Stomp::typeReceived, this, &BrowserFrame::onStompDelayType);
-  }
-  else
-  {
-    connect(&delayObj, &Delay::onOffCutsTailReceived, this, &BrowserFrame::onDelayOnOff);
-  }
   // reverb
   connect(&reverbObj, &Reverb::onOffCutsTailReceived, this, &BrowserFrame::onReverbOnOff);
   // eq
@@ -66,14 +43,37 @@ BrowserFrame::BrowserFrame(QWidget *parent)
   connect(&extParamObj, &ExtParam::browserViewReceived, this, &BrowserFrame::onBrowserView);
 }
 
-BrowserFrame::~BrowserFrame()
+void BrowserFrame::init(KemperStompState & stompState)
 {
-
-
+  this->stompState = &stompState;
+  // stomps
+  connect(&stompState.stompA, &Stomp::onOffReceived, this, &BrowserFrame::onStompAOnOff);
+  connect(&stompState.stompB, &Stomp::onOffReceived, this, &BrowserFrame::onStompBOnOff);
+  connect(&stompState.stompC, &Stomp::onOffReceived, this, &BrowserFrame::onStompCOnOff);
+  connect(&stompState.stompD, &Stomp::onOffReceived, this, &BrowserFrame::onStompDOnOff);
+  connect(&stompState.stompX, &Stomp::onOffReceived, this, &BrowserFrame::onStompXOnOff);
+  connect(&stompState.stompMod, &Stomp::onOffReceived, this, &BrowserFrame::onStompModOnOff);
+  connect(&stompState.stompA, &Stomp::typeReceived, this, &BrowserFrame::onStompAType);
+  connect(&stompState.stompB, &Stomp::typeReceived, this, &BrowserFrame::onStompBType);
+  connect(&stompState.stompC, &Stomp::typeReceived, this, &BrowserFrame::onStompCType);
+  connect(&stompState.stompD, &Stomp::typeReceived, this, &BrowserFrame::onStompDType);
+  connect(&stompState.stompX, &Stomp::typeReceived, this, &BrowserFrame::onStompXType);
+  connect(&stompState.stompMod, &Stomp::typeReceived, this, &BrowserFrame::onStompModType);
+  // delay
+  if(Settings::get().getKPAOSVersion() >= 0x04000000)
+  {
+    connect(&stompState.stompDelay, &Stomp::onOffReceived, this, &BrowserFrame::onDelayOnOff);
+    connect(&stompState.stompDelay, &Stomp::typeReceived, this, &BrowserFrame::onStompDelayType);
+  }
+  else
+  {
+    connect(&delayObj, &Delay::onOffCutsTailReceived, this, &BrowserFrame::onDelayOnOff);
+  }
 }
 
 void BrowserFrame::requestValues()
 {
+  stompState->requestAllValues();
   extParamObj.requestAllValues();
 }
 

@@ -36,13 +36,13 @@
 MainFrame::MainFrame(QWidget *parent)
   : QFrame(parent)
   , ui(new Ui::MainFrame)
-  , mStompACtxMenu(stompAObj)
-  , mStompBCtxMenu(stompBObj)
-  , mStompCCtxMenu(stompCObj)
-  , mStompDCtxMenu(stompDObj)
-  , mStompXCtxMenu(stompXObj)
-  , mStompModCtxMenu(stompModObj)
-  , mStompDelayCtxMenu(stompDelayObj)
+  , mStompACtxMenu(stompState.stompA)
+  , mStompBCtxMenu(stompState.stompB)
+  , mStompCCtxMenu(stompState.stompC)
+  , mStompDCtxMenu(stompState.stompD)
+  , mStompXCtxMenu(stompState.stompX)
+  , mStompModCtxMenu(stompState.stompMod)
+  , mStompDelayCtxMenu(stompState.stompDelay)
   , mDelayCtxMenu(delayObj)
   , mReverbCtxMenu(reverbObj)
   , mOperationMode(Browser)
@@ -74,25 +74,25 @@ MainFrame::MainFrame(QWidget *parent)
   // notifications
   // stomps
   //qRegisterMetaType<::FXType>("::FXType");
-  connect(&stompAObj, &Stomp::onOffReceived, this, &MainFrame::onStompAOnOff);
-  connect(&stompBObj, &Stomp::onOffReceived, this, &MainFrame::onStompBOnOff);
-  connect(&stompCObj, &Stomp::onOffReceived, this, &MainFrame::onStompCOnOff);
-  connect(&stompDObj, &Stomp::onOffReceived, this, &MainFrame::onStompDOnOff);
-  connect(&stompXObj, &Stomp::onOffReceived, this, &MainFrame::onStompXOnOff);
-  connect(&stompModObj, &Stomp::onOffReceived, this, &MainFrame::onStompModOnOff);
-  connect(&stompAObj, &Stomp::typeReceived, this, &MainFrame::onStompAType);
-  connect(&stompBObj, &Stomp::typeReceived, this, &MainFrame::onStompBType);
-  connect(&stompCObj, &Stomp::typeReceived, this, &MainFrame::onStompCType);
-  connect(&stompDObj, &Stomp::typeReceived, this, &MainFrame::onStompDType);
-  connect(&stompXObj, &Stomp::typeReceived, this, &MainFrame::onStompXType);
-  connect(&stompModObj, &Stomp::typeReceived, this, &MainFrame::onStompModType);
-  connect(&stompModObj, static_cast<void (Stomp::*)(int)>(&Stomp::modulationRateReceived), this, &MainFrame::onModRate);
-  connect(&stompModObj, &Stomp::modulationDepthReceived, this, &MainFrame::onModIntensity);
+  connect(&stompState.stompA, &Stomp::onOffReceived, this, &MainFrame::onStompAOnOff);
+  connect(&stompState.stompB, &Stomp::onOffReceived, this, &MainFrame::onStompBOnOff);
+  connect(&stompState.stompC, &Stomp::onOffReceived, this, &MainFrame::onStompCOnOff);
+  connect(&stompState.stompD, &Stomp::onOffReceived, this, &MainFrame::onStompDOnOff);
+  connect(&stompState.stompX, &Stomp::onOffReceived, this, &MainFrame::onStompXOnOff);
+  connect(&stompState.stompMod, &Stomp::onOffReceived, this, &MainFrame::onStompModOnOff);
+  connect(&stompState.stompA, &Stomp::typeReceived, this, &MainFrame::onStompAType);
+  connect(&stompState.stompB, &Stomp::typeReceived, this, &MainFrame::onStompBType);
+  connect(&stompState.stompC, &Stomp::typeReceived, this, &MainFrame::onStompCType);
+  connect(&stompState.stompD, &Stomp::typeReceived, this, &MainFrame::onStompDType);
+  connect(&stompState.stompX, &Stomp::typeReceived, this, &MainFrame::onStompXType);
+  connect(&stompState.stompMod, &Stomp::typeReceived, this, &MainFrame::onStompModType);
+  connect(&stompState.stompMod, static_cast<void (Stomp::*)(int)>(&Stomp::modulationRateReceived), this, &MainFrame::onModRate);
+  connect(&stompState.stompMod, &Stomp::modulationDepthReceived, this, &MainFrame::onModIntensity);
   // delay
   if(Settings::get().getKPAOSVersion() >= 0x04000000)
   {
-    connect(&stompDelayObj, &Stomp::onOffReceived, this, &MainFrame::onDelayOnOff);
-    connect(&stompDelayObj, &Stomp::typeReceived, this, &MainFrame::onStompDelayType);
+    connect(&stompState.stompDelay, &Stomp::onOffReceived, this, &MainFrame::onDelayOnOff);
+    connect(&stompState.stompDelay, &Stomp::typeReceived, this, &MainFrame::onStompDelayType);
   }
   else
   {
@@ -149,7 +149,8 @@ MainFrame::MainFrame(QWidget *parent)
 
   ui->reverbButton->setCtxMenuProvider(&mReverbCtxMenu);
 
-  ui->stompEditor->init();
+  ui->stompEditor->init(stompState);
+  ui->browser->init(stompState);
 
   MasterVolume& mv = MasterVolume::get();
   mv.init();
@@ -190,14 +191,9 @@ void MainFrame::disconnectFromKPA()
 
 void MainFrame::requestValues()
 {
-  stompAObj.requestAllValues();
-  stompBObj.requestAllValues();
-  stompCObj.requestAllValues();
-  stompDObj.requestAllValues();
-  stompXObj.requestAllValues();
-  stompModObj.requestAllValues();
+  stompState.requestAllValues();
   if(Settings::get().getKPAOSVersion() >= 0x04000000)
-    stompDelayObj.requestAllValues();
+    stompState.stompDelay.requestAllValues();
   else
     delayObj.requestAllValues();
   reverbObj.requestAllValues();
@@ -221,42 +217,42 @@ void MainFrame::requestValues()
 // ui => kpa
 void MainFrame::on_stompAButton_clicked(QToasterButton& bt, bool longClick)
 {
-  handleStompButtonClick(stompAObj, bt, longClick);
+  handleStompButtonClick(stompState.stompA, bt, longClick);
 }
 
 void MainFrame::on_stompBButton_clicked(QToasterButton& bt, bool longClick)
 {
-  handleStompButtonClick(stompBObj, bt, longClick);
+  handleStompButtonClick(stompState.stompB, bt, longClick);
 }
 
 void MainFrame::on_stompCButton_clicked(QToasterButton& bt, bool longClick)
 {
-  handleStompButtonClick(stompCObj, bt, longClick);
+  handleStompButtonClick(stompState.stompC, bt, longClick);
 }
 
 void MainFrame::on_stompDButton_clicked(QToasterButton& bt, bool longClick)
 {
-  handleStompButtonClick(stompDObj, bt, longClick);
+  handleStompButtonClick(stompState.stompD, bt, longClick);
 }
 
 void MainFrame::on_stompXButton_clicked(QToasterButton& bt, bool longClick)
 {
-  handleStompButtonClick(stompXObj, bt, longClick);
+  handleStompButtonClick(stompState.stompX, bt, longClick);
 }
 
 void MainFrame::on_stompModButton_clicked(QToasterButton& bt, bool longClick)
 {
-  handleStompButtonClick(stompModObj, bt, longClick);
+  handleStompButtonClick(stompState.stompMod, bt, longClick);
 }
 
 void MainFrame::on_modRateDial_valueChanged(double value)
 {
-  stompModObj.applyModulationRate((int) value);
+  stompState.stompMod.applyModulationRate((int) value);
 }
 
 void MainFrame::on_modIntensityDial_valueChanged(double value)
 {
-  stompModObj.applyModulationDepth(value);
+  stompState.stompMod.applyModulationDepth(value);
 }
 
 // kpa => ui
@@ -413,7 +409,7 @@ void MainFrame::on_delayButton_clicked(QToasterButton& bt, bool longClick)
 {
   if(Settings::get().getKPAOSVersion() >= 0x04000000)
   {
-    handleStompButtonClick(stompDelayObj, bt, longClick);
+    handleStompButtonClick(stompState.stompDelay, bt, longClick);
   }
   else
   {
@@ -904,7 +900,7 @@ void MainFrame::on_masterVolumeDBDial_valueChanged(int value)
 
 void MainFrame::on_masterVolumeDial_valueChanged(double value)
 {
-  unsigned short newValue = phys2Raw(value, 10.0, 0);
+  unsigned short newValue = Utils::phys2Raw(value, 10.0, 0);
   MasterVolume::get().onMasterVolume(newValue);
   ui->masterVolumeDBDial->setValue(newValue);
 }

@@ -23,6 +23,7 @@
 #include "StompCtxMenu.h"
 #include "DelayCtxMenu.h"
 #include "ReverbCtxMenu.h"
+#include "Stomp.h"
 
 namespace Ui {
 class MainFrame;
@@ -197,6 +198,7 @@ private:
 private:
   Ui::MainFrame *ui;
 
+  KemperStompState stompState;
   StompCtxMenu  mStompACtxMenu;
   StompCtxMenu  mStompBCtxMenu;
   StompCtxMenu  mStompCCtxMenu;
@@ -213,19 +215,6 @@ private:
   QObject*      mEditModeModule;
 
   QString       mCurrRigName;
-
-  // TODO: put this methods in a separate header
-  unsigned short phys2Raw(double physVal, double deltaMinMax, double min, unsigned short maxRawVal = 0x3FFF)
-  {
-    unsigned short rawVal = ((physVal - min) * maxRawVal) / deltaMinMax;
-    return rawVal;
-  }
-
-  double raw2Phys(unsigned short rawVal, double deltaMinMax, double min)
-  {
-    double physVal = ((rawVal * deltaMinMax) / 0x3FFF) + min;
-    return physVal;
-  }
 };
 
 #endif // MAINFRAME_H

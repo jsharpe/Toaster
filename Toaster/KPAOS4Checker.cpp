@@ -4,6 +4,8 @@
 #include "Midi.h"
 #include "Stomp.h"
 
+#include <memory>
+
 KPAOS4Checker::KPAOS4Checker(QObject *parent) : QObject(parent)
 {
   mTimer = new QTimer(this);
@@ -35,14 +37,15 @@ void KPAOS4Checker::check()
   if(Midi::get().openPorts(inPort, outPort))
   {
     QEventLoop el;
+    auto stompDelayObj = std::unique_ptr<Stomp>(new Stomp(StompDelay));
     el.connect(this, &KPAOS4Checker::stopLoop, &el, &QEventLoop::quit);
-    el.connect(&stompDelayObj, &Stomp::onOffReceived, this, &KPAOS4Checker::onOfReceived);
+    el.connect(stompDelayObj.get(), &Stomp::onOffReceived, this, &KPAOS4Checker::onOfReceived);
     el.connect(mTimer, &QTimer::timeout, this, &KPAOS4Checker::timerTimeout);
     mTimer->start(500);
-    stompDelayObj.requestOnOff();
+    stompDelayObj->requestOnOff();
     el.exec();
     el.disconnect(this, &KPAOS4Checker::stopLoop, &el, &QEventLoop::quit);
-    el.disconnect(&stompDelayObj, &Stomp::onOffReceived, this, &KPAOS4Checker::onOfReceived);
+    el.disconnect(stompDelayObj.get(), &Stomp::onOffReceived, this, &KPAOS4Checker::onOfReceived);
     el.disconnect(mTimer, &QTimer::timeout, this, &KPAOS4Checker::timerTimeout);
   }
 }

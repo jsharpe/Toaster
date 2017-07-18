@@ -21,6 +21,7 @@
 #include <memory>
 
 struct IStompEditorPage;
+class KemperStompState;
 
 class StompEditorFrame : public QWidget
 {
@@ -30,7 +31,7 @@ public:
   explicit StompEditorFrame(QWidget *parent = 0);
   ~StompEditorFrame();
 
-  void init();
+  void init(KemperStompState &);
 
   void activate(QObject& stomp);
   void deactivate();
@@ -82,6 +83,7 @@ private:
   QObject*          mpActiveStomp;
   int               mActiveStompType;
   std::unique_ptr<IStompEditorPage> mpActivePage;
+  KemperStompState * stompState;
 };
 
 #endif // STOMPEDITORFRAME_H

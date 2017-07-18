@@ -81,26 +81,27 @@ StompEditorFrame::~StompEditorFrame()
 {
 }
 
-void StompEditorFrame::init()
+void StompEditorFrame::init(KemperStompState & stompState)
 {
+  this->stompState = &stompState;
   // stomps
-  connect(&stompAObj, &Stomp::onOffReceived, this, &StompEditorFrame::onStompAOnOff);
-  connect(&stompBObj, &Stomp::onOffReceived, this, &StompEditorFrame::onStompBOnOff);
-  connect(&stompCObj, &Stomp::onOffReceived, this, &StompEditorFrame::onStompCOnOff);
-  connect(&stompDObj, &Stomp::onOffReceived, this, &StompEditorFrame::onStompDOnOff);
-  connect(&stompXObj, &Stomp::onOffReceived, this, &StompEditorFrame::onStompXOnOff);
-  connect(&stompModObj, &Stomp::onOffReceived, this, &StompEditorFrame::onStompModOnOff);
-  connect(&stompAObj, &Stomp::typeReceived, this, &StompEditorFrame::onStompAType);
-  connect(&stompBObj, &Stomp::typeReceived, this, &StompEditorFrame::onStompBType);
-  connect(&stompCObj, &Stomp::typeReceived, this, &StompEditorFrame::onStompCType);
-  connect(&stompDObj, &Stomp::typeReceived, this, &StompEditorFrame::onStompDType);
-  connect(&stompXObj, &Stomp::typeReceived, this, &StompEditorFrame::onStompXType);
-  connect(&stompModObj, &Stomp::typeReceived, this, &StompEditorFrame::onStompModType);
+  connect(&stompState.stompA, &Stomp::onOffReceived, this, &StompEditorFrame::onStompAOnOff);
+  connect(&stompState.stompB, &Stomp::onOffReceived, this, &StompEditorFrame::onStompBOnOff);
+  connect(&stompState.stompC, &Stomp::onOffReceived, this, &StompEditorFrame::onStompCOnOff);
+  connect(&stompState.stompD, &Stomp::onOffReceived, this, &StompEditorFrame::onStompDOnOff);
+  connect(&stompState.stompX, &Stomp::onOffReceived, this, &StompEditorFrame::onStompXOnOff);
+  connect(&stompState.stompMod, &Stomp::onOffReceived, this, &StompEditorFrame::onStompModOnOff);
+  connect(&stompState.stompA, &Stomp::typeReceived, this, &StompEditorFrame::onStompAType);
+  connect(&stompState.stompB, &Stomp::typeReceived, this, &StompEditorFrame::onStompBType);
+  connect(&stompState.stompC, &Stomp::typeReceived, this, &StompEditorFrame::onStompCType);
+  connect(&stompState.stompD, &Stomp::typeReceived, this, &StompEditorFrame::onStompDType);
+  connect(&stompState.stompX, &Stomp::typeReceived, this, &StompEditorFrame::onStompXType);
+  connect(&stompState.stompMod, &Stomp::typeReceived, this, &StompEditorFrame::onStompModType);
   // delay
   if(Settings::get().getKPAOSVersion() >= 0x04000000)
   {
-    connect(&stompDelayObj, &Stomp::onOffReceived, this, &StompEditorFrame::onDelayOnOff);
-    connect(&stompDelayObj, &Stomp::typeReceived, this, &StompEditorFrame::onStompDelayType);
+    connect(&stompState.stompDelay, &Stomp::onOffReceived, this, &StompEditorFrame::onDelayOnOff);
+    connect(&stompState.stompDelay, &Stomp::typeReceived, this, &StompEditorFrame::onStompDelayType);
   }
   else
   {
@@ -441,7 +442,7 @@ void StompEditorFrame::onReverbType(::ReverbType reverbType)
     if(mpActivePage != nullptr && !mpActivePage->isActive())
     {
       setUpdatesEnabled(false);
-      mActiveStompType = reverbType;      
+      mActiveStompType = reverbType;
       mpActivePage->activate(*pActiveReverb);
       ui.dummyStompFrame->hide();
       setUpdatesEnabled(true);
@@ -594,25 +595,7 @@ void StompEditorFrame::prevDisplayPage()
 
 void StompEditorFrame::requestValues()
 {
-  stompAObj.requestOnOff();
-  stompBObj.requestOnOff();
-  stompCObj.requestOnOff();
-  stompDObj.requestOnOff();
-  stompXObj.requestOnOff();
-  stompModObj.requestOnOff();
-
-  if(Settings::get().getKPAOSVersion() >= 0x04000000)
-    stompDelayObj.requestOnOff();
-
-  stompAObj.requestType();
-  stompBObj.requestType();
-  stompCObj.requestType();
-  stompDObj.requestType();
-  stompXObj.requestType();
-  stompModObj.requestType();
-
-  if(Settings::get().getKPAOSVersion() >= 0x04000000)
-    stompDelayObj.requestType();
+  stompState->requestAllValues();
 
   if(Settings::get().getKPAOSVersion() < 0x04000000)
     delayObj.requestOnOffCutsTail();
