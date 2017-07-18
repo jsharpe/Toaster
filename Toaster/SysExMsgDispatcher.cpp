@@ -41,13 +41,15 @@ void SysExMsgDispatcher::consume(const ByteArray& msg)
     const ByteArray& header = Header();
     if(header[0] == (msg)[0]  && header[1] == (msg)[1] && header[2] == (msg)[2] && header[3] == (msg)[3])
     {
-      for(ISysExConsumer* consumer : mConsumer)
+      std::lock_guard<std::mutex> l(this->lock);
+      for(auto * consumer : mConsumer)
       {
-        if((ExtParamChange()[0] == (msg)[6] && consumer->getId() == (msg)[6]))   // special handling for extended parameter function
+        auto consumerId = consumer->getId();
+        if((ExtParamChange()[0] == (msg)[6] && consumerId == (msg)[6]))   // special handling for extended parameter function
           consumer->consumeSysExMsg(msg);
-        else if((ExtParamChange()[0] == (msg)[7] && consumer->getId() == (msg)[6]))   // special handling for extended parameter function
+        else if((ExtParamChange()[0] == (msg)[7] && consumerId == (msg)[6]))   // special handling for extended parameter function
           consumer->consumeSysExMsg(msg);
-        else if(consumer && (consumer->getId() == (msg)[8] || consumer->getId() == 0xFF))
+        else if((consumerId == (msg)[8] || consumerId == 0xFF))
           consumer->consumeSysExMsg(msg);
       }
     }
@@ -56,13 +58,18 @@ void SysExMsgDispatcher::consume(const ByteArray& msg)
 
 void SysExMsgDispatcher::addConsumer(ISysExConsumer* consumer)
 {
-  if(consumer)
-    mConsumer.push_back(consumer);
+  if(consumer) {
+      std::lock_guard<std::mutex> l(this->lock);
+      mConsumer.push_back(consumer);
+  }
 }
 
 void SysExMsgDispatcher::removeConsumer(ISysExConsumer* consumer)
 {
-  if(consumer)
-    mConsumer.removeOne(consumer);
+  if(consumer) {
+    std::lock_guard<std::mutex> l(this->lock);
+    auto entry = std::find(mConsumer.begin(), mConsumer.end(), consumer);
+    mConsumer.erase(entry);
+  }
 }
 

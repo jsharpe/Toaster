@@ -15,7 +15,8 @@
 */
 #ifndef SYSEXMSGDISPATCHER_H
 #define SYSEXMSGDISPATCHER_H
-#include <list>
+#include <vector>
+#include <mutex>
 #include "Midi.h"
 #include "SysExBase.h"
 
@@ -42,7 +43,8 @@ public:
   void removeConsumer(ISysExConsumer* consumer);
 
 private:
-  QList<ISysExConsumer*> mConsumer;
+  std::mutex lock;
+  std::vector<ISysExConsumer*> mConsumer;
 };
 
 #endif // SYSEXMSGDISPATSCHER_H
