@@ -16,7 +16,7 @@
 #ifndef QSMALLDIALPLUGIN_H
 #define QSMALLDIALPLUGIN_H
 
-#include <QDesignerCustomWidgetInterface>
+#include <QtUiPlugin/QDesignerCustomWidgetInterface>
 
 class QSmallDialPlugin : public QObject, public QDesignerCustomWidgetInterface
 {

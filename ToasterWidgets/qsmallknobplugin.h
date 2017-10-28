@@ -16,7 +16,7 @@
 #ifndef QSMALLKNOBPLUGIN_H
 #define QSMALLKNOBPLUGIN_H
 
-#include <QDesignerCustomWidgetInterface>
+#include <QtUiPlugin/QDesignerCustomWidgetInterface>
 
 class QSmallKnobPlugin : public QObject, public QDesignerCustomWidgetInterface
 {

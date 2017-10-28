@@ -16,7 +16,7 @@
 #ifndef QTOASTERWIDGETS_H
 #define QTOASTERWIDGETS_H
 
-#include <QtDesigner>
+#include <QtUiPlugin/QDesignerCustomWidgetCollectionInterface>
 #include <qplugin.h>
 
 class QToasterWidgets : public QObject, public QDesignerCustomWidgetCollectionInterface

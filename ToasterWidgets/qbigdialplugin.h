@@ -16,7 +16,7 @@
 #ifndef QBIGDIALPLUGIN_H
 #define QBIGDIALPLUGIN_H
 
-#include <QDesignerCustomWidgetInterface>
+#include <QtUiPlugin/QDesignerCustomWidgetInterface>
 
 class QBigDialPlugin : public QObject, public QDesignerCustomWidgetInterface
 {

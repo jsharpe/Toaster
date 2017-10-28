@@ -16,7 +16,7 @@
 #ifndef QLCDDISPLAYPLUGIN_H
 #define QLCDDISPLAYPLUGIN_H
 
-#include <QDesignerCustomWidgetInterface>
+#include <QtUiPlugin/QDesignerCustomWidgetInterface>
 
 class QLCDDisplayPlugin : public QObject, public QDesignerCustomWidgetInterface
 {
