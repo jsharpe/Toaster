@@ -49,10 +49,10 @@ bool Midi::openPorts(const QString& inPort, const QString& outPort)
   int inPortNo = -1;
   int outPortNo = -1;
 
-  getInPorts();
-  for(int i = 0; i < mInPorts.size(); ++i)
+  auto inPorts = getInPorts();
+  for(int i = 0; i < inPorts.size(); ++i)
   {
-    if(mInPorts[i] == inPort)
+    if(inPorts[i] == inPort)
     {
       inPortNo = i;
       break;
@@ -69,10 +69,10 @@ bool Midi::openPorts(const QString& inPort, const QString& outPort)
     mMidiIn.setCallback(&cbProcessMidiInput);
     mMidiIn.ignoreTypes(false, false, false);
 
-    getOutPorts();
-    for(int i = 0; i < mOutPorts.size(); ++i)
+    auto outPorts = getOutPorts();
+    for(int i = 0; i < outPorts.size(); ++i)
     {
-      if(mOutPorts[i] == outPort)
+      if(outPorts[i] == outPort)
       {
         outPortNo = i;
         break;
@@ -113,24 +113,24 @@ void Midi::processMidiInput(std::vector<unsigned char> *msg)
   }
 }
 
-const QStringList Midi::getInPorts()
+QStringList Midi::getInPorts()
 {
-  mInPorts.clear();
+  QStringList inPorts;
 
   for(unsigned int i = 0; i < mMidiIn.getPortCount(); ++i)
-    mInPorts.append(QString(mMidiIn.getPortName(i).c_str()));
+    inPorts.push_back(QString(mMidiIn.getPortName(i).c_str()));
 
-  return mInPorts;
+  return inPorts;
 }
 
-const QStringList Midi::getOutPorts()
+QStringList Midi::getOutPorts()
 {
-  mOutPorts.clear();
+  QStringList outPorts;
 
   for(unsigned int i = 0; i < mMidiOut.getPortCount(); ++i)
-    mOutPorts.append(QString(mMidiOut.getPortName(i).c_str()));
+    outPorts.push_back(QString(mMidiOut.getPortName(i).c_str()));
 
-  return mOutPorts;
+  return outPorts;
 }
 
 void Midi::sendCmd(const ByteArray& cmd)
@@ -167,5 +167,5 @@ void Midi::addConsumer(IMidiConsumer* consumer)
 
 void Midi::removeConsumer(IMidiConsumer* consumer)
 {
-  mConsumer.removeOne(consumer);
+  mConsumer.erase(std::find(mConsumer.begin(), mConsumer.end(), consumer));
 }

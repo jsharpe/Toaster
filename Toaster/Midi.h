@@ -42,8 +42,8 @@ public:
 
   void processMidiInput(std::vector<unsigned char>* msg);
 
-  const QStringList getInPorts();
-  const QStringList getOutPorts();
+  QStringList getInPorts();
+  QStringList getOutPorts();
 
   void sendCmd(const ByteArray& cmd);
 
@@ -55,10 +55,7 @@ private:
   RtMidiIn        mMidiIn;
   RtMidiOut       mMidiOut;
 
-  QList<QString>  mInPorts;
-  QList<QString>  mOutPorts;
-
-  QList<IMidiConsumer*> mConsumer;
+  std::vector<IMidiConsumer*> mConsumer;
 };
 
 #endif // MIDICLIENT_H
