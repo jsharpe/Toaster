@@ -13,7 +13,6 @@
 *   You should have received a copy of the GNU General Public License along with Toaster.
 *   If not, see <http://www.gnu.org/licenses/>.
 */
-#include <QVector>
 #include "Utils.h"
 #include "VirtualMultiParam.h"
 #include "VirtualModule.h"

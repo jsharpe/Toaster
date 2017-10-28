@@ -17,6 +17,8 @@
 #define VIRTUALEXTENDEDPARAM_H
 #include "VirtualParam.h"
 
+#include <vector>
+
 class VirtualExtendedParam : public VirtualParam
 {
 public:
@@ -29,7 +31,7 @@ public:
   ByteArray createResponse(bool includeLen = true) override;
   ByteArray createResponse(const ByteArray& request, bool includeLen = false) override;
 private:
-  QVector<unsigned int> mValues;
+  std::vector<unsigned int> mValues;
 };
 
 #endif // VIRTUALEXTENDEDPARAM_H

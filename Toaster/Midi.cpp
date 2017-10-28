@@ -105,11 +105,10 @@ void Midi::processMidiInput(std::vector<unsigned char> *msg)
 {
   if(msg && msg->size() > 0)
   {
-    auto bytes = ByteArray::fromStdVector(*msg);
     for(IMidiConsumer* consumer : mConsumer)
     {
       if((*msg)[0] == consumer->getStatusByte())
-        consumer->consume(bytes);
+        consumer->consume(*msg);
     }
   }
 }
@@ -142,8 +141,7 @@ void Midi::sendCmd(const ByteArray& cmd)
     {
       if(cmd[0] != 0xB0)
       {
-        std::vector<unsigned char> msg = cmd.toStdVector();
-        mMidiOut.sendMessage(&msg);
+        mMidiOut.sendMessage(&cmd);
       }
       else if(cmd.size()%3 == 0)
       {

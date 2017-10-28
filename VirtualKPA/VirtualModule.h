@@ -38,7 +38,7 @@ public:
     AddressPage ap = -1;
 
     if(buf.size() >=12 && buf[5] == 6)
-      ap = Utils::extractRawVal(buf.mid(7, 5));
+      ap = Utils::extractRawVal(ByteArray(&buf[7], &buf[7]+6));
     else if(buf.size() >= 8)
       ap = (AddressPage)buf[7];
 

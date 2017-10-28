@@ -15,7 +15,6 @@
 */
 #ifndef VIRTUALMULTIPARAM_H
 #define VIRTUALMULTIPARAM_H
-#include <QVector>
 #include "VirtualParam.h"
 
 class VirtualMultiParam : public VirtualParam
@@ -37,7 +36,7 @@ public:
 private:
   ParamId mFirst;
   ParamId mLast;
-  QVector<unsigned short> mValues;
+  std::vector<unsigned short> mValues;
 };
 
 #endif // VIRTUALMULTIPARAM_H

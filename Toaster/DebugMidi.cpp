@@ -144,22 +144,22 @@ void DebugMidi::debugPrintValues(const ByteArray& msg)
 
   else if(fct == StringParam()[0])
   {
-    strVal = Utils::extractString(msg.mid(10));
+    strVal = Utils::extractString(ByteArray(msg.begin() + 10, msg.end()));
   }
   else if(fct == ExtParamChange()[0])
   {
-    rawVal = Utils::extractRawVal(msg.mid(8));
+    rawVal = Utils::extractRawVal(ByteArray(msg.begin() + 8, msg.end()));
     ap = (rawVal >> 16) & 0xFFFF;
     param = rawVal & 0xFFFF;
-    rawVal = Utils::extractRawVal(msg.mid(13));
+    rawVal = Utils::extractRawVal(ByteArray(msg.begin() + 13, msg.end()));
     strVal = QString::number(rawVal, 16);
   }
   else if(fct == ExtStringParamChange()[0])
   {
-    rawVal = Utils::extractRawVal(msg.mid(8));
+    rawVal = Utils::extractRawVal(ByteArray(msg.begin() + 8, msg.end()));
     ap = (rawVal >> 16) & 0xFFFF;
     param = rawVal & 0xFFFF;
-    strVal = Utils::extractString(msg.mid(13));
+    strVal = Utils::extractString(ByteArray(msg.begin() + 13, msg.end()));
   }
   else
   {

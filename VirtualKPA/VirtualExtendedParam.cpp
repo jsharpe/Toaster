@@ -33,7 +33,7 @@ bool VirtualExtendedParam::load(const ByteArray& buf)
     int valStartIdx = 12;
     while(noOfParams)
     {
-      unsigned int val = Utils::extractRawVal(buf.mid(valStartIdx, 5));
+      unsigned int val = Utils::extractRawVal(ByteArray(buf.begin() + valStartIdx, buf.begin() + valStartIdx + 5));
       valStartIdx += 5;
       mValues.push_back(val);
       noOfParams--;

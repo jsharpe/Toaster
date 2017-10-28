@@ -51,8 +51,8 @@ ByteArray VirtualUnknownParam::createResponse(bool includeLen)
   if(mModule != nullptr)
   {
     ByteArray func;
-    func.append((unsigned char) mType);
-    func.append(0x00);
+    func.push_back((unsigned char) mType);
+    func.push_back(0x00);
     ByteArray ap(1, mModule->getAddressPage());
     ByteArray param(1, (unsigned char) mId);
     response = createParamSetCmd(func, ap, param, mBlob, includeLen);

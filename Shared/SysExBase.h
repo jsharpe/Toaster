@@ -17,7 +17,6 @@
 #define SYSEXBASE_H
 #include "Utils.h"
 #include <QString>
-#include <QVector>
 
 class SysExBase
 {
@@ -39,23 +38,23 @@ protected:
 
     if(len < 128)
     {
-      res.push_back((char)len);
+      res.push_back((ByteArray::value_type)len);
     }
     else
     {
       ByteArray rawVal = Utils::packRawVal(len);
       rawVal[0] = rawVal[0] | 0x80;
-      res.append(rawVal);
+      res.push_back(rawVal[0]);
     }
-    res.append(id);
+    for (auto v: id)
+        res.push_back(v);
 
     return res;
   }
 
-  static const ByteArray& Eox()
+  static ByteArray::value_type Eox()
   {
-    static ByteArray eox = {0xF7};
-    return eox;
+    return 0xF7;
   }
 
   // function codes (with instance)
@@ -155,21 +154,28 @@ protected:
   ByteArray createSingleParamGetCmd(const ByteArray& addressPage, const ByteArray& param)
   {
     ByteArray res = Header();
-    res.append(ReqSingleParamVal());
-    res.append(addressPage);
-    res.append(param);
-    res.append(Eox());
+    for (auto v: ReqSingleParamVal())
+        res.push_back(v);
+    for (auto v: addressPage)
+        res.push_back(v);
+    for (auto v: param)
+        res.push_back(v);
+    res.push_back(Eox());
     return res;
   }
 
   ByteArray createSingleParamSetCmd(const ByteArray& addressPage, const ByteArray& param, const ByteArray& val, bool includeLen = false)
   {
     ByteArray res = includeLen ? Header(val.size() + 10) : Header();
-    res.append(SingleParamChange());
-    res.append(addressPage);
-    res.append(param);
-    res.append(val);
-    res.append(Eox());
+    for (auto v: SingleParamChange())
+        res.push_back(v);
+    for (auto v: addressPage)
+        res.push_back(v);
+    for (auto v: param)
+        res.push_back(v);
+    for (auto v: val)
+        res.push_back(v);
+    res.push_back(Eox());
     return res;
   }
 
@@ -183,34 +189,42 @@ protected:
   ByteArray createMultiParamGetCmd(const ByteArray& addressPage, const ByteArray& startParam)
   {
     ByteArray res = Header();
-    res.append(ReqMultiParamVals());
-    res.append(addressPage);
-    res.append(startParam);
-    res.append(Eox());
+    for (auto v: ReqMultiParamVals())
+        res.push_back(v);
+    for (auto v: addressPage)
+        res.push_back(v);
+    for (auto v: startParam)
+        res.push_back(v);
+    res.push_back(Eox());
     return res;
+  }
+
+  ByteArray createMultiParamSetCmd(const ByteArray& addressPage, const ByteArray& startParam, const std::vector<unsigned short>& vals, bool includeLen = false)
+  {
+      ByteArray rawVals;
+      for(unsigned short val: vals)
+      {
+          ByteArray rawVal = Utils::packRawVal(val);
+          for (auto v: rawVal)
+              rawVals.push_back(v);
+      }
+
+      return createMultiParamSetCmd(addressPage, startParam, rawVals, includeLen);
   }
 
   ByteArray createMultiParamSetCmd(const ByteArray& addressPage, const ByteArray& startParam, const ByteArray& vals, bool includeLen = false)
   {
     ByteArray res = includeLen ? Header(vals.size() + 10) : Header();
-    res.append(MultiParamChange());
-    res.append(addressPage);
-    res.append(startParam);
-    res.append(vals);
-    res.append(Eox());
+    for (auto v: MultiParamChange())
+        res.push_back(v);
+    for (auto v: addressPage)
+        res.push_back(v);
+    for (auto v: startParam)
+        res.push_back(v);
+    for (auto v: vals)
+        res.push_back(v);
+    res.push_back(Eox());
     return res;
-  }
-
-  ByteArray createMultiParamSetCmd(const ByteArray& addressPage, const ByteArray& startParam, const QVector<unsigned short>& vals, bool includeLen = false)
-  {
-    ByteArray rawVals;
-    for(unsigned short val: vals)
-    {
-      ByteArray rawVal = Utils::packRawVal(val);
-      rawVals.append(rawVal);
-    }
-
-    return createMultiParamSetCmd(addressPage, startParam, rawVals, includeLen);
   }
 
   //===========================================================================================================================
@@ -218,21 +232,28 @@ protected:
   ByteArray createStringParamGetCmd(const ByteArray& addressPage, const ByteArray& param)
   {
     ByteArray res = Header();
-    res.append(ReqStringParam());
-    res.append(addressPage);
-    res.append(param);
-    res.append(Eox());
+    for (auto val: ReqStringParam())
+        res.push_back(val);
+    for (auto val: addressPage)
+        res.push_back(val);
+    for (auto val: param)
+        res.push_back(val);
+    res.push_back(Eox());
     return res;
   }
 
   ByteArray createStringParamSetCmd(const ByteArray& addressPage, const ByteArray& param, const ByteArray& val, bool includeLen = false)
   {
     ByteArray res = includeLen ? Header(val.size() + 10) : Header();
-    res.append(StringParam());
-    res.append(addressPage);
-    res.append(param);
-    res.append(val);
-    res.append(Eox());
+    for (auto val: StringParam())
+        res.push_back(val);
+    for (auto v: addressPage)
+        res.push_back(v);
+    for (auto v: param)
+        res.push_back(v);
+    for (auto v: val)
+        res.push_back(v);
+    res.push_back(Eox());
     return res;
   }
 
@@ -246,21 +267,28 @@ protected:
   ByteArray createBlobParamGetCmd(const ByteArray& addressPage, const ByteArray& param)
   {
     ByteArray res = Header();
-    res.append(ReqBlobParam());
-    res.append(addressPage);
-    res.append(param);
-    res.append(Eox());
+    for (auto val: ReqBlobParam())
+        res.push_back(val);
+    for (auto v: addressPage)
+        res.push_back(v);
+    for (auto v: param)
+        res.push_back(v);
+    res.push_back(Eox());
     return res;
   }
 
   ByteArray createBlobParamSetCmd(const ByteArray& addressPage, const ByteArray& param, const ByteArray& val, bool includeLen = false)
   {
     ByteArray res = includeLen ? Header(val.size() + 10) : Header();
-    res.append(Blob());
-    res.append(addressPage);
-    res.append(param);
-    res.append(val);
-    res.append(Eox());
+    for (auto v: Blob())
+        res.push_back(v);
+    for (auto v: addressPage)
+        res.push_back(v);
+    for (auto v: param)
+        res.push_back(v);
+    for (auto v: val)
+        res.push_back(v);
+    res.push_back(Eox());
     return res;
   }
 
@@ -269,9 +297,11 @@ protected:
   ByteArray createExtParamGetCmd(const ByteArray& param)
   {
     ByteArray res = Header();
-    res.append(ReqExtParam());
-    res.append(param);
-    res.append(Eox());
+    for (auto v: ReqExtParam())
+        res.push_back(v);
+    for (auto v: param)
+        res.push_back(v);
+    res.push_back(Eox());
     return res;
   }
 
@@ -293,10 +323,13 @@ protected:
         res[6] = 0x02;
     }
 
-    res.append(ExtParamChange());
-    res.append(param);
-    res.append(vals);
-    res.append(Eox());
+    for (auto v: ExtParamChange())
+        res.push_back(v);
+    for (auto v: param)
+        res.push_back(v);
+    for (auto v: vals)
+        res.push_back(v);
+    res.push_back(Eox());
     return res;
   }
 
@@ -305,13 +338,14 @@ protected:
     return createExtParamSetCmd(Utils::packRawVal(param), Utils::packRawVal(val), includeLen);
   }
 
-  ByteArray createExtParamSetCmd(unsigned int param, const QVector<unsigned int>& vals, bool includeLen = false)
+  ByteArray createExtParamSetCmd(unsigned int param, const std::vector<unsigned int>& vals, bool includeLen = false)
   {
     ByteArray rawVals;
     for(unsigned int val: vals)
     {
-      ByteArray rawVal = Utils::packRawVal(val);
-      rawVals.append(rawVal);
+      auto rawVal = Utils::packRawVal(val);
+      for (auto v: rawVal)
+          rawVals.push_back(v);
     }
 
     return createExtParamSetCmd(Utils::packRawVal(param), rawVals, includeLen);
@@ -322,12 +356,17 @@ protected:
   ByteArray createValueAsStringGetCmd(const ByteArray& addressPage, const ByteArray& param, const ByteArray& val)
   {
     ByteArray res;
-    res.append(Header());
-    res.append(ReqParamAsString());
-    res.append(addressPage);
-    res.append(param);
-    res.append(val);
-    res.append(Eox());
+    for (auto v: Header())
+        res.push_back(v);
+    for (auto v: ReqParamAsString())
+        res.push_back(v);
+    for (auto v: addressPage)
+        res.push_back(v);
+    for (auto v: param)
+        res.push_back(v);
+    for (auto v: val)
+        res.push_back(v);
+    res.push_back(Eox());
     return res;
   }
 
@@ -341,10 +380,13 @@ protected:
   ByteArray createExtStringParamGetCmd(const ByteArray& param)
   {
     ByteArray res;
-    res.append(Header());
-    res.append(ReqExtStringParam());
-    res.append(param);
-    res.append(Eox());
+    for (auto v: Header())
+        res.push_back(v);
+    for (auto v: ReqExtStringParam())
+        res.push_back(v);
+    for (auto v: param)
+        res.push_back(v);
+     res.push_back(Eox());
     return res;
   }
 
@@ -359,11 +401,15 @@ protected:
   ByteArray createParamSetCmd(const ByteArray& func, const ByteArray& addressPage, const ByteArray& param, const ByteArray& val, bool includeLen = false)
   {
     ByteArray res = includeLen ? Header(val.size() + 10) : Header();
-    res.append(func);
-    res.append(addressPage);
-    res.append(param);
-    res.append(val);
-    res.append(Eox());
+    for (auto v: func)
+        res.push_back(v);
+    for (auto v: addressPage)
+        res.push_back(v);
+    for (auto v: param)
+        res.push_back(v);
+    for (auto v: val)
+        res.push_back(v);
+    res.push_back(Eox());
     return res;
   }
 
@@ -372,24 +418,34 @@ protected:
   ByteArray createReservedFct7E(const ByteArray& addressPage, const ByteArray& param, const ByteArray& val)
   {
     ByteArray res;
-    res.append(Header());
-    res.append(ReservedFct7E());
-    res.append(addressPage);
-    res.append(param);
-    res.append(val);
-    res.append(Eox());
+    for (auto v: Header())
+        res.push_back(v);
+    for (auto v: ReservedFct7E())
+        res.push_back(v);
+    for (auto v: addressPage)
+        res.push_back(v);
+    for (auto v: param)
+        res.push_back(v);
+    for (auto v: val)
+        res.push_back(v);
+    res.push_back(Eox());
     return res;
   }
 
   ByteArray createReservedFct7F(const ByteArray& addressPage, const ByteArray& param, const ByteArray& val)
   {
     ByteArray res;
-    res.append(Header());
-    res.append(ReservedFct7E());
-    res.append(addressPage);
-    res.append(param);
-    res.append(val);
-    res.append(Eox());
+    for (auto v: Header())
+        res.push_back(v);
+    for (auto v: ReservedFct7F())
+        res.push_back(v);
+    for (auto v: addressPage)
+        res.push_back(v);
+    for (auto v: param)
+        res.push_back(v);
+    for (auto v: val)
+        res.push_back(v);
+    res.push_back(Eox());
     return res;
   }
 };

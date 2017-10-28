@@ -15,7 +15,6 @@
 */
 #ifndef VIRTUALUNKNOWNPARAM_H
 #define VIRTUALUNKNOWNPARAM_H
-#include <QVector>
 #include "VirtualParam.h"
 
 class VirtualUnknownParam : public VirtualParam

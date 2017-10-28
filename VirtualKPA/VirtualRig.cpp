@@ -77,7 +77,7 @@ bool VirtualRig::load(QDataStream& stream, qint64 fileSize)
         }
         else
         {
-          mParams.append(param);
+          mParams.push_back(param);
         }
 
       }
@@ -93,21 +93,25 @@ bool VirtualRig::load(QDataStream& stream, qint64 fileSize)
 unsigned short VirtualRig::createKIPR(ByteArray& outBlob) const
 {
   outBlob.clear();
-  outBlob.append(mMagic);
-  outBlob.append(mHeader);
+  for (auto v: mMagic)
+      outBlob.push_back(v);
+  for (auto v: mHeader)
+      outBlob.push_back(v);
   ByteArray sysexData;
   for(VirtualParam* param : mParams)
   {
-    sysexData.append(0x00);
-    sysexData.append(param->createResponse(true));
+    sysexData.push_back(0x00);
+    for (auto v: param->createResponse(true))
+        sysexData.push_back(v);
   }
 
   unsigned int len = sysexData.size();
-  outBlob.append((len>>24) & 0xFF);
-  outBlob.append((len>>16) & 0xFF);
-  outBlob.append((len>>8)  & 0xFF);
-  outBlob.append(len & 0xFF);
-  outBlob.append(sysexData);
+  outBlob.push_back((len>>24) & 0xFF);
+  outBlob.push_back((len>>16) & 0xFF);
+  outBlob.push_back((len>>8)  & 0xFF);
+  outBlob.push_back(len & 0xFF);
+  for (auto v: sysexData)
+      outBlob.push_back(v);
 
   return Utils::crc14(outBlob);
 }
@@ -116,7 +120,7 @@ ByteArray VirtualRig::midiIn(const ByteArray& msg)
 {
   if(msg.size() >= 11)
   {
-    AddressPage ap = VirtualModule::extractAddressPage(msg.mid(1));
+    AddressPage ap = VirtualModule::extractAddressPage(ByteArray(msg.begin() + 1, msg.end()));
     auto it = mModules.find(ap);
     if(it != mModules.end())
     {

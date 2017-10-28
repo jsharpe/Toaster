@@ -31,7 +31,7 @@ bool VirtualStringParam::load(const ByteArray& buf)
   bool rc = false;
   if(buf.size() >= 9)
   {
-    mValue = QString::fromLatin1((const char*)buf.mid(9).data());
+    mValue = QString::fromLatin1((const char*)buf.data() + 9);
     rc = true;
   }
 

@@ -85,7 +85,7 @@ public:
     return strVal;
   }
 
-  static ByteArray packRawVal(unsigned short rawVal)
+  static ByteArray packRawVal(uint16_t rawVal)
   {
     unsigned char msb = (rawVal >> 7) & 0x7F;
     unsigned char lsb = rawVal & 0x7F;
@@ -95,7 +95,7 @@ public:
     return val;
   }
 
-  static ByteArray packRawVal(unsigned int rawVal)
+  static ByteArray packRawVal(uint32_t rawVal)
   {
     ByteArray val;
     val.push_back((rawVal >> 28) & 0x7f);
@@ -126,16 +126,16 @@ public:
 
   static int raw2SPDIFSource(unsigned short rawVal)
   {
-    static QVector<int> values = { 0, 1, 1, 2, 3, 4, 6, 7, 8, 7, 2, 2, 8, 9, 5, 8};
-    if(rawVal < values.size())
+    static int values[] = { 0, 1, 1, 2, 3, 4, 6, 7, 8, 7, 2, 2, 8, 9, 5, 8};
+    if(rawVal < sizeof(values)/sizeof(int))
       return values[rawVal];
     else return 8;
   }
 
   static unsigned short spdifSource2Raw(int source)
   {
-    static QVector<unsigned short> values = {0, 2, 3, 4, 5, 14, 6, 9, 12, 13};
-    if(source < values.size())
+    static unsigned short values[] = {0, 2, 3, 4, 5, 14, 6, 9, 12, 13};
+    if(source < sizeof(values)/sizeof(unsigned short))
       return values[source];
     return 13;
   }

@@ -37,29 +37,41 @@ ByteArray NRPNBase::createNRPNSingleParamSetCmd(const ByteArray& addressPage, co
   ByteArray res;
   if(val.size() == 2 || val.size() == 1)
   {
-    res.append(sHeader);
-    res.append(sAddressPageTag);
-    res.append(addressPage);
-    res.append(sHeader);
-    res.append(sParameterTag);
-    res.append(param);
+      for (auto v: sHeader)
+          res.push_back(v);
+      for (auto v: sAddressPageTag)
+          res.push_back(v);
+      for (auto v: addressPage)
+          res.push_back(v);
+      for (auto v: sHeader)
+          res.push_back(v);
+      for (auto v: sParameterTag)
+          res.push_back(v);
+      for (auto v: param)
+          res.push_back(v);
 
-    if(val.size() == 2)
-    {
-      res.append(sHeader);
-      res.append(sMSBValueTag);
-      res.push_back(val[0]);
+      if(val.size() == 2)
+      {
+          for (auto v: sHeader)
+              res.push_back(v);
+          for (auto v: sMSBValueTag)
+              res.push_back(v);
+          res.push_back(val[0]);
 
-      res.append(sHeader);
-      res.append(sLSBValueTag);
-      res.push_back(val[1]);
-    }
-    else
-    {
-      res.append(sHeader);
-      res.append(sLowResValueTag);
-      res.push_back(val[0]);
-    }
+          for (auto v: sHeader)
+              res.push_back(v);
+          for (auto v: sLSBValueTag)
+              res.push_back(v);
+          res.push_back(val[1]);
+      }
+      else
+      {
+          for (auto v: sHeader)
+              res.push_back(v);
+          for (auto v: sLowResValueTag)
+              res.push_back(v);
+          res.push_back(val[0]);
+      }
   }
   return res;
 }

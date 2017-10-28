@@ -73,7 +73,7 @@ VirtualParam* VirtualModule::createParam(const ByteArray& buf)
         newParam = new VirtualBlobParam(buf[8], this);
         break;
       case 6:
-        newParam = new VirtualExtendedParam(Utils::extractRawVal(buf.mid(7, 5)), this);
+        newParam = new VirtualExtendedParam(Utils::extractRawVal(ByteArray(buf.begin() + 7, buf.begin() + 7 + 5)), this);
         break;
       default:
         newParam = new VirtualUnknownParam(buf[5], buf[8], this);
@@ -91,7 +91,7 @@ ByteArray VirtualModule::midiIn(const ByteArray& msg)
     ParamId paramId = 0xFFFFFFFF;
     unsigned char paramType = msg[6];
     if(paramType == 0x06 || paramType == 0x46)
-      paramId = Utils::extractRawVal(msg.mid(8, 5));
+      paramId = Utils::extractRawVal(ByteArray(msg.begin() + 8, msg.begin() + 8 + 5));
     else
       paramId = msg[9];
 

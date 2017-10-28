@@ -13,7 +13,6 @@
 *   You should have received a copy of the GNU General Public License along with Toaster.
 *   If not, see <http://www.gnu.org/licenses/>.
 */
-#include <QVector>
 #include "VirtualBlobParam.h"
 #include "VirtualModule.h"
 
@@ -30,7 +29,8 @@ bool VirtualBlobParam::load(const ByteArray& buf)
   mBlob.clear();
   if(bufSize >= 15)
   {
-    mBlob.append(buf.mid(9));
+    for (auto v = buf.begin() + 9; v != buf.end(); ++v)
+        mBlob.push_back(*v);
     mBlob.pop_back();
     rc = true;
   }

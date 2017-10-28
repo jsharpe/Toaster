@@ -19,6 +19,7 @@
 #include "VirtualRig.h"
 #include "MidiConsumer.h"
 #include <memory>
+#include <vector>
 
 
 class VIRTUALKPASHARED_EXPORT VirtualKPA
@@ -51,7 +52,7 @@ private:
 
   std::unique_ptr<VirtualRig> mCurrentRig;
 
-  QList<IMidiConsumer*> mMidiConsumer;
+  std::vector<IMidiConsumer*> mMidiConsumer;
 
   static const ByteArray sKiprMagic1;
   static const ByteArray sKiprMagic2;

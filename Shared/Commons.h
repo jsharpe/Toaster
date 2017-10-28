@@ -16,11 +16,11 @@
 #ifndef COMMONDEFS_H
 #define COMMONDEFS_H
 
-#include <QString>
 #include <QtCore>
-#include <QVector>
+#include <string>
+#include <vector>
 
-typedef QVector<unsigned char> ByteArray;
+typedef std::vector<unsigned char> ByteArray;
 
 #define BYTEARRAYDECL(Name) \
   static const ByteArray s##Name;
@@ -179,8 +179,8 @@ enum StompInstance
 
 struct FXDefinition
 {
-  QString         mName;
-  QString         mShort;
+  std::string         mName;
+  std::string         mShort;
   unsigned char   mSysExCode;
 };
 

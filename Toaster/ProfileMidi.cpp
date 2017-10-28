@@ -47,7 +47,7 @@ void ProfileMidi::consumeSysExMsg(const ByteArray& msg)
 {
   if(msg.size() >= 12)
   {
-    QString strVal = Utils::extractString(msg.mid(10));
+    QString strVal = Utils::extractString(ByteArray(msg.begin() + 10, msg.end()));
     const char param = msg[9];
     if(param == sRigName[0])
       midiRigNameReceived(strVal);

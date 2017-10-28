@@ -71,7 +71,8 @@ unsigned short VirtualKPA::loadRig(const QString& rigFileName, ByteArray& blob)
   {
     qint64 fileSize = kiprFile.bytesAvailable();
     blob.reserve(fileSize + magicSize);
-    blob.append(magic);
+    for (auto v: magic)
+        blob.push_back(v);
     stream.readRawData((char*) blob.data()+magicSize, fileSize);
   }
 
@@ -116,5 +117,5 @@ void VirtualKPA::addMidiConsumer(IMidiConsumer* consumer)
 
 void VirtualKPA::removeMidiConsumer(IMidiConsumer* consumer)
 {
-  mMidiConsumer.removeOne(consumer);
+  mMidiConsumer.erase(std::find(mMidiConsumer.begin(), mMidiConsumer.end(), consumer));
 }

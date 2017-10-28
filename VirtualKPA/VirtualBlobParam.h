@@ -15,7 +15,6 @@
 */
 #ifndef VIRTUALBLOBPARAM_H
 #define VIRTUALBLOBPARAM_H
-#include <QVector>
 #include "VirtualParam.h"
 
 class VirtualBlobParam : public VirtualParam

@@ -37,8 +37,8 @@ void ExtParamMidi::consumeSysExMsg(const ByteArray& msg)
 {
   if(msg.size() >= 19)
   {
-    unsigned int param = Utils::extractRawVal(msg.mid(8));
-    unsigned int rawVal = Utils::extractRawVal(msg.mid(13));
+    unsigned int param = Utils::extractRawVal(ByteArray(msg.begin() + 8, msg.end()));
+    unsigned int rawVal = Utils::extractRawVal(ByteArray(msg.begin() + 13, msg.end()));
     if(param == sBrowserView)
       midiBrowserViewReceived(rawVal);
   }
