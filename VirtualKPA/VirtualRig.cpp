@@ -134,6 +134,7 @@ ByteArray VirtualRig::midiIn(const ByteArray& msg)
 
 const QString& VirtualRig::getRigName()
 {
-
+    static QString string;
+    return string;
 }
 
