@@ -535,7 +535,6 @@ void StompEditorFrame::requestValues() {
     delayObj.requestOnOffCutsTail();
 
   reverbObj.requestOnOffCutsTail();
-  profileObj.requestAmpName();
 }
 
 void StompEditorFrame::activatePage(std::unique_ptr<IStompEditorPage> page) {
