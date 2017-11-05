@@ -131,7 +131,6 @@ add_executable(Toaster
     Toaster/DebugSettingsDialog.cpp
     Toaster/DebugSettingsDialog.ui
     Toaster/Delay.cpp
-    Toaster/DelayCtxMenu.cpp
     Toaster/DelayFrame.cpp
     Toaster/DelayFrame.ui
     Toaster/DelayMidi.cpp

@@ -19,8 +19,41 @@
 #include "Settings.h"
 #include "Stomp.h"
 #include <QMenu>
+#include <vector>
 
-void createDelayMenu(QMenu &menu);
+void createDelayMenu(QMenu &menu) {
+  struct DelayNames {
+    QString name;
+    FXType type;
+  };
+
+  std::vector<DelayNames> delays = {
+      DelayNames{"Legacy Delay", LegacyDelay},
+      DelayNames{"Single Delay", SingleDelay},
+      DelayNames{"Dual Delay", DualDelay},
+      DelayNames{"Two Tap Delay", TwoTapDelay},
+      DelayNames{"Serial Two Tap Delay", SerialTwoTapDelay},
+      DelayNames{"Rhythm Delay", RhythmDelay},
+      DelayNames{"Quad Delay", QuadDelay},
+      DelayNames{"Dual Crystal", DualCrystal},
+      DelayNames{"Crystal Delay", CrystalDelay},
+      DelayNames{"Loop Pitch Delay", LoopPitchDelay},
+      DelayNames{"Frequency Shifter Delay", FrequencyShifterDelay},
+      DelayNames{"Dual Chromatic Delay", DualChromaticDelay},
+      DelayNames{"Dual Harmonic Delay", DualHarmonicDelay},
+      DelayNames{"Dual Crystal Delay", DualCrystalDelay},
+      DelayNames{"Dual Loop Pitch Delay", DualLoopPitchDelay},
+      DelayNames{"Melody Delay", MelodyDelay},
+      DelayNames{"Quad Chromatic Delay", QuadChromaticDelay},
+      DelayNames{"Quad Harmonic Delay", QuadHarmonicDelay},
+      DelayNames{"Crystal Delay", CrystalDelay},
+  };
+
+  for (auto delay : delays) {
+    menu.addAction(delay.name)->setData(QVariant((unsigned int)delay.type));
+  }
+}
+
 
 StompCtxMenu::StompCtxMenu(Stomp &stomp) : mStomp(stomp) {
   createWahMenu();
@@ -268,10 +301,7 @@ void StompCtxMenu::createDelayReverbMenu() {
 
   QAction *action = mDelayReverbMenu.addAction("Space");
   action->setData(QVariant((unsigned int)Space));
-
-  if (Settings::get().getKPAOSVersion() >= 0x04000000) {
-    createDelayMenu(mDelayReverbMenu);
-  }
+  createDelayMenu(mDelayReverbMenu);
 }
 
 void StompCtxMenu::setType(QAction *action) {

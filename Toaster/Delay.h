@@ -20,8 +20,6 @@
 #include "DelayMidi.h"
 #include <QObject>
 
-#define delayObj Delay::get()
-
 class Delay : public QObject, public DelayMidi {
   Q_OBJECT
 public:

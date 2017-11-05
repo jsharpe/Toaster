@@ -106,15 +106,10 @@ void StompEditorFrame::init(KemperStompState &stompState) {
   connect(&stompState.stompMod, &Stomp::typeReceived, this,
           &StompEditorFrame::onStompModType);
   // delay
-  if (Settings::get().getKPAOSVersion() >= 0x04000000) {
-    connect(&stompState.stompDelay, &Stomp::onOffReceived, this,
-            &StompEditorFrame::onDelayOnOff);
-    connect(&stompState.stompDelay, &Stomp::typeReceived, this,
-            &StompEditorFrame::onStompDelayType);
-  } else {
-    connect(&delayObj, &Delay::onOffCutsTailReceived, this,
-            &StompEditorFrame::onDelayOnOff);
-  }
+  connect(&stompState.stompDelay, &Stomp::onOffReceived, this,
+          &StompEditorFrame::onDelayOnOff);
+  connect(&stompState.stompDelay, &Stomp::typeReceived, this,
+          &StompEditorFrame::onStompDelayType);
 
   // reverb
   connect(&reverbObj, &Reverb::onOffCutsTailReceived, this,
@@ -127,7 +122,6 @@ void StompEditorFrame::activate(QObject &stomp) {
 
   if (mpActiveStomp != nullptr) {
     Stomp *pActiveStomp = qobject_cast<Stomp *>(mpActiveStomp);
-    Delay *pDelay = qobject_cast<Delay *>(mpActiveStomp);
     Reverb *pReverb = qobject_cast<Reverb *>(mpActiveStomp);
     Amp *pAmp = qobject_cast<Amp *>(mpActiveStomp);
     Cab *pCab = qobject_cast<Cab *>(mpActiveStomp);
@@ -138,8 +132,6 @@ void StompEditorFrame::activate(QObject &stomp) {
               SLOT(onActiveStompType(::FXType)));
       onActiveStompType(pActiveStomp->getFXType());
       pActiveStomp->requestType();
-    } else if (pDelay != nullptr) {
-      pDelay->requestType();
     } else if (pReverb != nullptr) {
       connect(pReverb, SIGNAL(typeReceived(::ReverbType)), this,
               SLOT(onReverbType(::ReverbType)));
@@ -519,10 +511,6 @@ void StompEditorFrame::prevDisplayPage() {
 
 void StompEditorFrame::requestValues() {
   stompState->requestAllValues();
-
-  if (Settings::get().getKPAOSVersion() < 0x04000000)
-    delayObj.requestOnOffCutsTail();
-
   reverbObj.requestOnOffCutsTail();
 }
 

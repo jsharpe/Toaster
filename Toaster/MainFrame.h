@@ -18,7 +18,6 @@
 #ifndef MAINFRAME_H
 #define MAINFRAME_H
 
-#include "DelayCtxMenu.h"
 #include "ReverbCtxMenu.h"
 #include "Stomp.h"
 #include "StompCtxMenu.h"
@@ -206,7 +205,6 @@ private:
   StompCtxMenu mStompXCtxMenu;
   StompCtxMenu mStompModCtxMenu;
   StompCtxMenu mStompDelayCtxMenu;
-  DelayCtxMenu mDelayCtxMenu;
   ReverbCtxMenu mReverbCtxMenu;
 
   OperationMode mOperationMode;

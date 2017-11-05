@@ -16,7 +16,6 @@
  * with Toaster. If not, see <http://www.gnu.org/licenses/>.
  */
 #include "BrowserFrame.h"
-#include "Delay.h"
 #include "Eq.h"
 #include "ExtParam.h"
 #include "Profile.h"
@@ -76,15 +75,10 @@ void BrowserFrame::init(KemperStompState &stompState) {
   connect(&stompState.stompMod, &Stomp::typeReceived, this,
           &BrowserFrame::onStompModType);
   // delay
-  if (Settings::get().getKPAOSVersion() >= 0x04000000) {
-    connect(&stompState.stompDelay, &Stomp::onOffReceived, this,
-            &BrowserFrame::onDelayOnOff);
-    connect(&stompState.stompDelay, &Stomp::typeReceived, this,
-            &BrowserFrame::onStompDelayType);
-  } else {
-    connect(&delayObj, &Delay::onOffCutsTailReceived, this,
-            &BrowserFrame::onDelayOnOff);
-  }
+  connect(&stompState.stompDelay, &Stomp::onOffReceived, this,
+          &BrowserFrame::onDelayOnOff);
+  connect(&stompState.stompDelay, &Stomp::typeReceived, this,
+          &BrowserFrame::onStompDelayType);
 }
 
 void BrowserFrame::requestValues() {

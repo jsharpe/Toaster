@@ -40,7 +40,7 @@ MainFrame::MainFrame(QWidget *parent)
       mStompBCtxMenu(stompState.stompB), mStompCCtxMenu(stompState.stompC),
       mStompDCtxMenu(stompState.stompD), mStompXCtxMenu(stompState.stompX),
       mStompModCtxMenu(stompState.stompMod),
-      mStompDelayCtxMenu(stompState.stompDelay), mDelayCtxMenu(delayObj),
+      mStompDelayCtxMenu(stompState.stompDelay),
       mReverbCtxMenu(reverbObj), mOperationMode(Browser),
       mPreviousOperationMode(Browser), mEditModeButton(NULL),
       mEditModeModule(NULL), mCurrRigName("") {
@@ -94,18 +94,10 @@ MainFrame::MainFrame(QWidget *parent)
   connect(&stompState.stompMod, &Stomp::modulationDepthReceived, this,
           &MainFrame::onModIntensity);
   // delay
-  if (Settings::get().getKPAOSVersion() >= 0x04000000) {
-    connect(&stompState.stompDelay, &Stomp::onOffReceived, this,
-            &MainFrame::onDelayOnOff);
-    connect(&stompState.stompDelay, &Stomp::typeReceived, this,
-            &MainFrame::onStompDelayType);
-  } else {
-    connect(&delayObj, &Delay::onOffCutsTailReceived, this,
-            &MainFrame::onDelayOnOff);
-    connect(&delayObj, &Delay::feedbackReceived, this,
-            &MainFrame::onDelayFeedback);
-    connect(&delayObj, &Delay::mixReceived, this, &MainFrame::onDelayMix);
-  }
+  connect(&stompState.stompDelay, &Stomp::onOffReceived, this,
+          &MainFrame::onDelayOnOff);
+  connect(&stompState.stompDelay, &Stomp::typeReceived, this,
+          &MainFrame::onStompDelayType);
   // reverb
   connect(&reverbObj, &Reverb::onOffCutsTailReceived, this,
           &MainFrame::onReverbOnOff);
@@ -159,11 +151,7 @@ MainFrame::MainFrame(QWidget *parent)
   ui->stompXButton->setCtxMenuProvider(&mStompXCtxMenu);
   ui->stompModButton->setCtxMenuProvider(&mStompModCtxMenu);
 
-  if (Settings::get().getKPAOSVersion() >= 0x04000000) {
-    ui->delayButton->setCtxMenuProvider(&mStompDelayCtxMenu);
-  } else {
-    ui->delayButton->setCtxMenuProvider(&mDelayCtxMenu);
-  }
+  ui->delayButton->setCtxMenuProvider(&mStompDelayCtxMenu);
 
   ui->reverbButton->setCtxMenuProvider(&mReverbCtxMenu);
 
@@ -209,8 +197,6 @@ void MainFrame::disconnectFromKPA() { globalObj.disconnectFromKPA(); }
 
 void MainFrame::requestValues() {
   stompState.requestAllValues();
-  if (!(Settings::get().getKPAOSVersion() >= 0x04000000))
-    delayObj.requestAllValues();
   reverbObj.requestAllValues();
   ampObj.requestAllValues();
   eqObj.requestAllValues();
@@ -388,19 +374,15 @@ void MainFrame::onReverbMix(int mix) { ui->reverbMixDial->setValue(mix); }
 // delay
 // ui => kpa
 void MainFrame::on_delayButton_clicked(QToasterButton &bt, bool longClick) {
-  if (Settings::get().getKPAOSVersion() >= 0x04000000) {
-    handleStompButtonClick(stompState.stompDelay, bt, longClick);
-  } else {
-    handleStompButtonClick(delayObj, bt, longClick);
-  }
+  handleStompButtonClick(stompState.stompDelay, bt, longClick);
 }
 
 void MainFrame::on_delayFeedbackDial_valueChanged(double arg1) {
-  delayObj.applyFeedback(arg1);
+  //delayObj.applyFeedback(arg1);
 }
 
 void MainFrame::on_delayMixDial_valueChanged(int value) {
-  delayObj.applyMix(value);
+  //delayObj.applyMix(value);
 }
 
 // kpa => ui
