@@ -119,9 +119,6 @@ void StompEditorFrame::init(KemperStompState &stompState) {
   // reverb
   connect(&reverbObj, &Reverb::onOffCutsTailReceived, this,
           &StompEditorFrame::onReverbOnOff);
-  // profile
-  connect(&profileObj, &Profile::ampNameReceived, this,
-          &StompEditorFrame::onAmpName);
 }
 
 void StompEditorFrame::activate(QObject &stomp) {
@@ -485,14 +482,6 @@ void StompEditorFrame::onDelayOnOff(bool onOff) {
 void StompEditorFrame::onReverbOnOff(bool onOff) {
   if (mpActivePage != nullptr)
     mpActivePage->displayReverbEnabled(onOff);
-}
-//------------------------------------------------------------------------------------------
-
-// profile
-// kpa => ui
-void StompEditorFrame::onAmpName(const QString &ampName) {
-  if (mpActivePage != nullptr)
-    mpActivePage->displayAmpName(ampName);
 }
 //------------------------------------------------------------------------------------------
 

@@ -65,9 +65,6 @@ private slots:
   // reverb
   // kpa => ui
   void onReverbOnOff(bool onOff);
-  // profile
-  // kpa => ui
-  void onAmpName(const QString &ampName);
 
 public slots:
   void nextDisplayPage();
