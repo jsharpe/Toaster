@@ -20,6 +20,7 @@
 #include "Commons.h"
 #include "ToasterWidgetsLib.h"
 #include <QWidget>
+#include <atomic>
 
 class TOASTERWIDGETS_EXPORT QMultiColorLed : public QWidget {
   Q_OBJECT
@@ -52,7 +53,7 @@ protected:
   void paintEvent(QPaintEvent *);
   void createSkin();
 
-  Color mColor;
+  std::atomic<Color> mColor;
 
   static QList<QPixmap> sSkinPixmaps;
 };
