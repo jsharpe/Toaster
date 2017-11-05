@@ -59,7 +59,9 @@ BYTEARRAYDEF(GlobalMidi, ConnectName, 0x7F)
 
 GlobalMidi::GlobalMidi() { SysExMsgDispatcher::get().addConsumer(this); }
 
-GlobalMidi::~GlobalMidi() {}
+GlobalMidi::~GlobalMidi() {
+  SysExMsgDispatcher::get().removeConsumer(this);
+}
 
 unsigned char GlobalMidi::getId() {
   unsigned char ret = 0x00;

@@ -36,7 +36,9 @@ BYTEARRAYDEF(ProfileMidi, RigPrev, 0x31)
 
 ProfileMidi::ProfileMidi() { SysExMsgDispatcher::get().addConsumer(this); }
 
-ProfileMidi::~ProfileMidi() {}
+ProfileMidi::~ProfileMidi() {
+    SysExMsgDispatcher::get().removeConsumer(this);
+}
 
 // ISysExConsumer
 void ProfileMidi::consumeSysExMsg(const ByteArray &msg) {

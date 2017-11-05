@@ -30,7 +30,9 @@ BYTEARRAYDEF(EqMidi, Presence, 0x07)
 
 EqMidi::EqMidi() { SysExMsgDispatcher::get().addConsumer(this); }
 
-EqMidi::~EqMidi() {}
+EqMidi::~EqMidi() {
+    SysExMsgDispatcher::get().removeConsumer(this);
+}
 
 unsigned char EqMidi::getId() {
   unsigned char ret = 0x00;

@@ -27,7 +27,9 @@ BYTEARRAYDEF(InputMidi, DistortionSense, 0x05)
 
 InputMidi::InputMidi() { SysExMsgDispatcher::get().addConsumer(this); }
 
-InputMidi::~InputMidi() {}
+InputMidi::~InputMidi() {
+  SysExMsgDispatcher::get().removeConsumer(this);
+}
 
 void InputMidi::consumeSysExMsg(const ByteArray &msg) {
   if (msg.size() >= 12) {

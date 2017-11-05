@@ -36,7 +36,9 @@ BYTEARRAYDEF(ReverbMidi, Ducking, 0x0C)
 
 ReverbMidi::ReverbMidi() { SysExMsgDispatcher::get().addConsumer(this); }
 
-ReverbMidi::~ReverbMidi() {}
+ReverbMidi::~ReverbMidi() {
+  SysExMsgDispatcher::get().removeConsumer(this);
+}
 
 unsigned char ReverbMidi::getId() {
   unsigned char ret = 0x00;

@@ -29,7 +29,9 @@ BYTEARRAYDEF(CabMidi, Character, 0x06)
 
 CabMidi::CabMidi() { SysExMsgDispatcher::get().addConsumer(this); }
 
-CabMidi::~CabMidi() {}
+CabMidi::~CabMidi() {
+    SysExMsgDispatcher::get().removeConsumer(this);
+}
 
 unsigned char CabMidi::getId() {
   unsigned char ret = 0x00;

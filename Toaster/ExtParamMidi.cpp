@@ -23,7 +23,7 @@ const unsigned int ExtParamMidi::sBrowserView = 0x1863c;
 ExtParamMidi::ExtParamMidi() { SysExMsgDispatcher::get().addConsumer(this); }
 
 ExtParamMidi::~ExtParamMidi() {
-  // SysExMsgDispatcher::get().removeConsumer(this);
+  SysExMsgDispatcher::get().removeConsumer(this);
 }
 
 unsigned char ExtParamMidi::getId() { return ExtParamChange()[0]; }

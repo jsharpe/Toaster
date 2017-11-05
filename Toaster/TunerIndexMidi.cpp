@@ -26,7 +26,9 @@ TunerIndexMidi::TunerIndexMidi() {
   SysExMsgDispatcher::get().addConsumer(this);
 }
 
-TunerIndexMidi::~TunerIndexMidi() {}
+TunerIndexMidi::~TunerIndexMidi() {
+    SysExMsgDispatcher::get().removeConsumer(this);
+}
 
 unsigned char TunerIndexMidi::getId() {
   unsigned char ret = 0x00;

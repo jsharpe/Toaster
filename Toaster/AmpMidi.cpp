@@ -32,9 +32,13 @@ BYTEARRAYDEF(AmpMidi, TubeShape, 0x0B)
 BYTEARRAYDEF(AmpMidi, TubeBias, 0x0C)
 BYTEARRAYDEF(AmpMidi, DirectMix, 0x0F)
 
-AmpMidi::AmpMidi() { SysExMsgDispatcher::get().addConsumer(this); }
+AmpMidi::AmpMidi() {
+    SysExMsgDispatcher::get().addConsumer(this);
+}
 
-AmpMidi::~AmpMidi() {}
+AmpMidi::~AmpMidi() {
+    SysExMsgDispatcher::get().removeConsumer(this);
+}
 
 unsigned char AmpMidi::getId() {
   unsigned char ret = 0x00;

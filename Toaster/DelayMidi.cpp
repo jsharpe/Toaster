@@ -38,7 +38,9 @@ BYTEARRAYDEF(DelayMidi, Ducking, 0x0E)
 
 DelayMidi::DelayMidi() { SysExMsgDispatcher::get().addConsumer(this); }
 
-DelayMidi::~DelayMidi() {}
+DelayMidi::~DelayMidi() {
+    SysExMsgDispatcher::get().removeConsumer(this);
+}
 
 unsigned char DelayMidi::getId() {
   unsigned char ret = 0x00;

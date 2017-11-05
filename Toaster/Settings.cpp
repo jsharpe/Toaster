@@ -42,7 +42,7 @@ void Settings::setMidiOutPort(const QString &outPort) {
 }
 
 bool Settings::getDebuggerActive() {
-  return value("Debug/Active", QVariant(false)).toBool();
+  return value("Debug/Active", QVariant(true)).toBool();
 }
 
 QString Settings::getDebugWriteStringValuesFileName() {
@@ -54,7 +54,7 @@ void Settings::setDebugWriteStringValuesFileName(const QString &fileName) {
 }
 
 bool Settings::getDebugPrintValues() {
-  return value("Debug/PrintValues", QVariant(true)).toBool();
+  return value("Debug/PrintValues", QVariant(false)).toBool();
 }
 
 void Settings::setDebugPrintValues(bool printValues) {

@@ -25,7 +25,9 @@ BYTEARRAYDEF(TunerMidi, Note, 0x54)
 
 TunerMidi::TunerMidi() { SysExMsgDispatcher::get().addConsumer(this); }
 
-TunerMidi::~TunerMidi() {}
+TunerMidi::~TunerMidi() {
+    SysExMsgDispatcher::get().removeConsumer(this);
+}
 
 unsigned char TunerMidi::getId() {
   unsigned char ret = 0x00;

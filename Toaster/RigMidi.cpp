@@ -30,7 +30,9 @@ BYTEARRAYDEF(RigMidi, EffectsEnable, 0x42)
 
 RigMidi::RigMidi() { SysExMsgDispatcher::get().addConsumer(this); }
 
-RigMidi::~RigMidi() {}
+RigMidi::~RigMidi() {
+    SysExMsgDispatcher::get().removeConsumer(this);
+}
 
 unsigned char RigMidi::getId() {
   unsigned char ret = 0x00;
