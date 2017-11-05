@@ -18,6 +18,7 @@ project(RtMidi LANGUAGES CXX)
 
 add_library(rtmidi rtmidi/RtMidi.cpp)
 target_include_directories(rtmidi PUBLIC RtMidi)
+target_link_libraries(rtmidi "-framework CoreFoundation" "-framework CoreAUDIO" "-framework CoreMIDI")
 
 project(VirtualKPA LANGUAGES CXX)
 
