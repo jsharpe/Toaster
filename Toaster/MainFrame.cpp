@@ -811,6 +811,5 @@ void MainFrame::on_tapButton_clicked(QToasterButton &bt, bool longClick) {
 void MainFrame::onRigNameReveived(const QString &rigName) {
   if (mCurrRigName != rigName) {
     mCurrRigName = rigName;
-    requestValues();
   }
 }
