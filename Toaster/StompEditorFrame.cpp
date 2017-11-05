@@ -139,6 +139,7 @@ void StompEditorFrame::activate(QObject &stomp) {
     if (pActiveStomp != nullptr) {
       connect(pActiveStomp, SIGNAL(typeReceived(::FXType)), this,
               SLOT(onActiveStompType(::FXType)));
+      onActiveStompType(pActiveStomp->getFXType());
       pActiveStomp->requestType();
     } else if (pDelay != nullptr) {
       pDelay->requestType();
@@ -156,8 +157,6 @@ void StompEditorFrame::activate(QObject &stomp) {
       activatePage(std::unique_ptr<InputFrame>(new InputFrame(this)));
     }
   }
-
-  requestValues();
 }
 
 void StompEditorFrame::deactivate() {
@@ -183,6 +182,7 @@ void StompEditorFrame::deactivate() {
     ui.dummyStompFrame->show();
     mpActivePage.reset();
     emit editorPageChanged(mpActivePage.get());
+    requestValues();
   }
 }
 
@@ -194,12 +194,13 @@ void StompEditorFrame::onActiveStompType(FXType fxType) {
       mpActivePage->deactivate();
       mpActivePage.reset();
       emit editorPageChanged(mpActivePage.get());
+      requestValues();
     }
   }
 
   pActiveStomp = qobject_cast<Stomp *>(mpActiveStomp);
 
-  if (mpActivePage == nullptr && pActiveStomp != nullptr) {
+  if (mpActivePage == nullptr) {
     switch (fxType) {
     case WahWah:
     case WahHighPass:
@@ -333,7 +334,24 @@ void StompEditorFrame::onActiveStompType(FXType fxType) {
     case LegacyDelay:
       mpActivePage.reset(new LegacyDelayFrame(this));
       break;
-    default:
+    case SingleDelay:
+    case DualDelay:
+    case TwoTapDelay:
+    case SerialTwoTapDelay:
+    case RhythmDelay:
+    case QuadDelay:
+    case CrystalDelay:
+    case LoopPitchDelay:
+    case FrequencyShifterDelay:
+    case DualChromaticDelay:
+    case DualHarmonicDelay:
+    case DualCrystalDelay:
+    case DualLoopPitchDelay:
+    case MelodyDelay:
+    case QuadChromaticDelay:
+    case QuadHarmonicDelay:
+    case DualCrystal:
+    case None:
       ui.dummyStompFrame->show();
       break;
     }
@@ -357,6 +375,7 @@ void StompEditorFrame::onReverbType(::ReverbType reverbType) {
       mpActivePage->deactivate();
       mpActivePage.reset();
       emit editorPageChanged(mpActivePage.get());
+      requestValues();
     }
   }
 
@@ -489,6 +508,7 @@ void StompEditorFrame::nextDisplayPage() {
     if (pageToSet != currentPage) {
       mpActivePage->setCurrentDisplayPage(pageToSet);
       emit editorPageChanged(mpActivePage.get());
+      requestValues();
     }
   }
 }
@@ -503,6 +523,7 @@ void StompEditorFrame::prevDisplayPage() {
     if (pageToSet != currentPage) {
       mpActivePage->setCurrentDisplayPage(pageToSet);
       emit editorPageChanged(mpActivePage.get());
+      requestValues();
     }
   }
 }
