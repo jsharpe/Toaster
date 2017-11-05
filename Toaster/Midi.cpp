@@ -88,6 +88,7 @@ void Midi::closePorts() {
 
 void Midi::processMidiInput(std::vector<unsigned char> *msg) {
   if (msg && msg->size() > 0) {
+    std::lock_guard<std::mutex> g(lock);
     for (IMidiConsumer *consumer : mConsumer) {
       if ((*msg)[0] == consumer->getStatusByte())
         consumer->consume(*msg);
@@ -133,10 +134,13 @@ void Midi::sendCmd(const ByteArray &cmd) {
 }
 
 void Midi::addConsumer(IMidiConsumer *consumer) {
-  if (consumer)
+  if (consumer) {
+    std::lock_guard<std::mutex> g(lock);
     mConsumer.push_back(consumer);
+  }
 }
 
 void Midi::removeConsumer(IMidiConsumer *consumer) {
+  std::lock_guard<std::mutex> g(lock);
   mConsumer.erase(std::find(mConsumer.begin(), mConsumer.end(), consumer));
 }

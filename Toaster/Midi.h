@@ -23,6 +23,7 @@
 #include <QStringList>
 #include <RtMidi.h>
 #include <list>
+#include <mutex>
 #include <vector>
 
 using namespace std;
@@ -56,6 +57,7 @@ private:
   RtMidiIn mMidiIn;
   RtMidiOut mMidiOut;
 
+  std::mutex lock;
   std::vector<IMidiConsumer *> mConsumer;
 };
 
