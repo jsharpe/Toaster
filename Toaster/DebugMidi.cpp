@@ -26,7 +26,9 @@ DebugMidi::DebugMidi() : mPrintValues(Settings::get().getDebuggerActive()) {
   SysExMsgDispatcher::get().addConsumer(this);
 }
 
-DebugMidi::~DebugMidi() {}
+DebugMidi::~DebugMidi() {
+  SysExMsgDispatcher::get().removeConsumer(this);
+}
 
 void DebugMidi::consumeSysExMsg(const ByteArray &msg) {
   if (msg.size() >= 10) // set to 10 to receive ack msgs (fct==0x7e, ap==0x7f)
