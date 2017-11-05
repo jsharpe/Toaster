@@ -22,6 +22,7 @@
 #include "MidiConsumer.h"
 #include <QLabel>
 #include <QMainWindow>
+#include <atomic>
 
 namespace Ui {
 class ToasterWindow;
@@ -71,9 +72,9 @@ private:
 
   Ui::ToasterWindow *ui;
 
-  bool mIsConnected2Midi;
-  bool mIsConnected2KPA;
-  bool mDataReceivedfromKPA;
+  std::atomic<bool> mIsConnected2Midi;
+  std::atomic<bool> mIsConnected2KPA;
+  std::atomic<bool> mDataReceivedfromKPA;
 
   ConnectionStatusFrame mConnectionStatus;
 };
