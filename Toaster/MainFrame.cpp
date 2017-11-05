@@ -209,9 +209,7 @@ void MainFrame::disconnectFromKPA() { globalObj.disconnectFromKPA(); }
 
 void MainFrame::requestValues() {
   stompState.requestAllValues();
-  if (Settings::get().getKPAOSVersion() >= 0x04000000)
-    stompState.stompDelay.requestAllValues();
-  else
+  if (!(Settings::get().getKPAOSVersion() >= 0x04000000))
     delayObj.requestAllValues();
   reverbObj.requestAllValues();
   ampObj.requestAllValues();
