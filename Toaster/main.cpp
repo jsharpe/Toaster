@@ -19,27 +19,6 @@
 #include "ToasterWindow.h"
 #include <QApplication>
 
-/*
-void TryToGetKPAOSVersion()
-{
-  QString inPort(Settings::get().getMidiInPort());
-  QString outPort(Settings::get().getMidiOutPort());
-
-  if(inPort.isEmpty() || outPort.isEmpty())
-  {
-    SettingsDialog settingsDialog(nullptr);
-    settingsDialog.exec();
-    inPort = Settings::get().getMidiInPort();
-    outPort = Settings::get().getMidiOutPort();
-  }
-
-  if(Midi::get().openPorts(inPort, outPort))
-  {
-    connect
-    stompDelayObj.requestOnOff();
-  }
-}
-*/
 
 int main(int argc, char *argv[]) {
   QApplication a(argc, argv);
