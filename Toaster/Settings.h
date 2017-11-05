@@ -18,6 +18,7 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 #include "QSettings"
+#include <atomic>
 
 #define SETTINGS Settings::get()
 
@@ -66,7 +67,7 @@ public:
   void setKPAOSVersion(unsigned int version);
 
 private:
-  unsigned int mKPAOSVersion;
+  std::atomic<unsigned int> mKPAOSVersion;
 };
 
 #endif // SETTINGS_H

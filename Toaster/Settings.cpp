@@ -18,7 +18,7 @@
 #include "Settings.h"
 
 Settings::Settings()
-    : QSettings(IniFormat, UserScope, "Toaster", "Toaster"), mKPAOSVersion(0) {}
+    : QSettings(IniFormat, UserScope, "Toaster", "Toaster"), mKPAOSVersion(0x04000000) {}
 
 Settings &Settings::get() {
   static Settings singleton;
