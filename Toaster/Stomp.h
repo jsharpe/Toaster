@@ -21,6 +21,7 @@
 #include "Commons.h"
 #include "StompMidi.h"
 #include <QObject>
+#include <atomic>
 
 class Stomp : public QObject, private StompMidi {
   Q_OBJECT
@@ -340,7 +341,7 @@ protected:
   virtual void midiDelayToTempoReceived(unsigned short rawVal);
   virtual void midiDelayModulationReceived(unsigned short rawVal);
 
-  FXType mFXType;
+  std::atomic<FXType> mFXType;
 
 public:
   Stomp(StompInstance instance);

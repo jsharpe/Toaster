@@ -323,8 +323,9 @@ void Stomp::applyDelayModulation(double modulation) {
 
 // StompMidi callbacks
 void Stomp::midiTypeReceived(unsigned short rawVal) {
-  mFXType = raw2FXType(rawVal);
-  emit typeReceived(mFXType);
+  auto FXType = raw2FXType(rawVal);
+  mFXType = FXType;
+  emit typeReceived(FXType);
 }
 
 void Stomp::midiOnOffReceived(unsigned short rawVal) {
