@@ -988,7 +988,5 @@ ByteArray StompMidi::getAddressPage() {
     return sAddressPageMod;
   case StompDelay:
     return sAddressPageDelay;
-  default:
-    return ByteArray();
   }
 }
