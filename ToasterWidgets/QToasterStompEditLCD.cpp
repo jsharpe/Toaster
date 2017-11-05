@@ -954,6 +954,9 @@ void QToasterStompEditLCD::setStompEnabled(StompInstance stompInstance,
   case StompMod:
     setStompModEnabled(enabled);
     break;
+  case StompDelay:
+    setDelayEnabled(enabled);
+    break;
   }
 }
 
