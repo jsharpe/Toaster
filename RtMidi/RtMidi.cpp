@@ -60,7 +60,7 @@ void RtMidi ::getCompiledApi(std::vector<RtMidi::Api> &apis) throw() {
 
 // The order here will control the order of RtMidi's API search in
 // the constructor.
-#if defined(__MACOSX_CORE__)
+#if defined(__APPLE__)
   apis.push_back(MACOSX_CORE);
 #endif
 #if defined(__LINUX_ALSA__)
@@ -99,7 +99,7 @@ void RtMidiIn ::openMidiApi(RtMidi::Api api, const std::string clientName,
   if (api == WINDOWS_MM)
     rtapi_ = new MidiInWinMM(clientName, queueSizeLimit);
 #endif
-#if defined(__MACOSX_CORE__)
+#if defined(__APPLE__)
   if (api == MACOSX_CORE)
     rtapi_ = new MidiInCore(clientName, queueSizeLimit);
 #endif
@@ -170,7 +170,7 @@ void RtMidiOut ::openMidiApi(RtMidi::Api api, const std::string clientName) {
   if (api == WINDOWS_MM)
     rtapi_ = new MidiOutWinMM(clientName);
 #endif
-#if defined(__MACOSX_CORE__)
+#if defined(__APPLE__)
   if (api == MACOSX_CORE)
     rtapi_ = new MidiOutCore(clientName);
 #endif
@@ -356,7 +356,7 @@ MidiOutApi ::~MidiOutApi(void) {}
 //
 // *************************************************** //
 
-#if defined(__MACOSX_CORE__)
+#if defined(__APPLE__)
 
 // The CoreMIDI API is based on the use of a callback function for
 // MIDI input.  We convert the system specific time stamps to delta
@@ -1087,7 +1087,7 @@ void MidiOutCore ::sendMessage(const std::vector<unsigned char> *message) {
   }
 }
 
-#endif // __MACOSX_CORE__
+#endif // __APPLE__
 
 //*********************************************************************//
 //  API: LINUX ALSA SEQUENCER

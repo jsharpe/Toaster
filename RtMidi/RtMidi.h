@@ -611,11 +611,11 @@ inline void RtMidiOut ::setErrorCallback(RtMidiErrorCallback errorCallback) {
 // **************************************************************** //
 
 #if !defined(__LINUX_ALSA__) && !defined(__UNIX_JACK__) &&                     \
-    !defined(__MACOSX_CORE__) && !defined(__WINDOWS_MM__)
+    !defined(__APPLE__) && !defined(__WINDOWS_MM__)
 #define __RTMIDI_DUMMY__
 #endif
 
-#if defined(__MACOSX_CORE__)
+#if defined(__APPLE__)
 
 class MidiInCore : public MidiInApi {
 public:
