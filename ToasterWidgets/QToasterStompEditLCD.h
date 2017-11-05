@@ -1,34 +1,35 @@
-/*  This file is part of Toaster, the editor and remote control for Kemper profiling amplifier.
-*
-*   Copyright (C) 2016  Thomas Langer
-*
-*   Toaster is free software: you can redistribute it and/or modify it under the terms of the
-*   GNU General Public License as published by the Free Software Foundation, either version 3
-*   of the License, or (at your option) any later version.
-*
-*   Toaster is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
-*   even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*   See the GNU General Public License for more details.
-*
-*   You should have received a copy of the GNU General Public License along with Toaster.
-*   If not, see <http://www.gnu.org/licenses/>.
-*/
+/*  This file is part of Toaster, the editor and remote control for Kemper
+ * profiling amplifier.
+ *
+ *   Copyright (C) 2016  Thomas Langer
+ *
+ *   Toaster is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ *   Toaster is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License along
+ * with Toaster. If not, see <http://www.gnu.org/licenses/>.
+ */
 #ifndef QTOASTERSTOMPEDITLCD_H
 #define QTOASTERSTOMPEDITLCD_H
 
-#include <QWidget>
 #include "Commons.h"
-#include "ToasterWidgetsLib.h"
 #include "QToasterLCD.h"
+#include "ToasterWidgetsLib.h"
+#include <QWidget>
 
 namespace Ui {
-  class QToasterStompEditLCD;
+class QToasterStompEditLCD;
 }
 
 struct ICtxMenuProvider;
 
-class TOASTERWIDGETS_EXPORT QToasterStompEditLCD : public QToasterLCD
-{
+class TOASTERWIDGETS_EXPORT QToasterStompEditLCD : public QToasterLCD {
   Q_OBJECT
   Q_ENUMS(ScaleView)
   Q_PROPERTY(QString stompInstance READ stompInstance WRITE setStompInstance)
@@ -90,18 +91,14 @@ class TOASTERWIDGETS_EXPORT QToasterStompEditLCD : public QToasterLCD
   Q_PROPERTY(double eqBand7Value READ eqBand7Value WRITE setEqBand7Value)
   Q_PROPERTY(double eqBand8Value READ eqBand8Value WRITE setEqBand8Value)
   Q_PROPERTY(ScaleView scaleView READ scaleView WRITE setScaleView)
-  Q_PROPERTY(bool stompsAndAmpHidden READ stompsAndAmpHidden WRITE setStompsAndAmpHidden)
+  Q_PROPERTY(bool stompsAndAmpHidden READ stompsAndAmpHidden WRITE
+                 setStompsAndAmpHidden)
 
 public:
   explicit QToasterStompEditLCD(QWidget *parent = 0);
   ~QToasterStompEditLCD();
 
-  enum ScaleView
-  {
-    Empty = 0,
-    GraphicEq = 1,
-    StompValue = 2
-  };
+  enum ScaleView { Empty = 0, GraphicEq = 1, StompValue = 2 };
 
   QString stompInstance() const;
   QString stompName() const;
@@ -167,7 +164,9 @@ public:
 
   bool stompsAndAmpHidden() const;
 
-  void setCtxMenuProvider(ICtxMenuProvider* ctxMenuProvider) { mpCtxMenuProvider = ctxMenuProvider; }
+  void setCtxMenuProvider(ICtxMenuProvider *ctxMenuProvider) {
+    mpCtxMenuProvider = ctxMenuProvider;
+  }
 
 public slots:
   virtual void setColor(Color color);
@@ -305,15 +304,15 @@ public slots:
   void setDelayEnabled(bool enabled);
   void setReverbEnabled(bool enabled);
 
-  void setAmpName(const QString& ampName);
+  void setAmpName(const QString &ampName);
 
 protected:
-  void paintEvent(QPaintEvent*);
-  void contextMenuEvent(QContextMenuEvent * cme);
+  void paintEvent(QPaintEvent *);
+  void contextMenuEvent(QContextMenuEvent *cme);
   void updatePageInfo();
 
-  void setEqBandValue(QWidget* widget, int value);
-  double getEqBandValue(QWidget* widget) const;
+  void setEqBandValue(QWidget *widget, int value);
+  double getEqBandValue(QWidget *widget) const;
 
   void setFonts();
 

@@ -1,36 +1,36 @@
-/*  This file is part of Toaster, the editor and remote control for Kemper profiling amplifier.
-*
-*   Copyright (C) 2016  Thomas Langer
-*
-*   Toaster is free software: you can redistribute it and/or modify it under the terms of the
-*   GNU General Public License as published by the Free Software Foundation, either version 3
-*   of the License, or (at your option) any later version.
-*
-*   Toaster is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
-*   even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*   See the GNU General Public License for more details.
-*
-*   You should have received a copy of the GNU General Public License along with Toaster.
-*   If not, see <http://www.gnu.org/licenses/>.
-*/
+/*  This file is part of Toaster, the editor and remote control for Kemper
+ * profiling amplifier.
+ *
+ *   Copyright (C) 2016  Thomas Langer
+ *
+ *   Toaster is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ *   Toaster is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License along
+ * with Toaster. If not, see <http://www.gnu.org/licenses/>.
+ */
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
-#include <QObject>
 #include "GlobalMidi.h"
+#include <QObject>
 
 class QTimer;
 
 #define globalObj Global::get()
 
-class Global : public QObject, public GlobalMidi
-{
+class Global : public QObject, public GlobalMidi {
   Q_OBJECT
 public:
-  static Global& get();
+  static Global &get();
 
-  enum OperationMode
-  {
+  enum OperationMode {
     Off = 0,
     Tuner = 1,
     Browser = 2,
@@ -53,7 +53,9 @@ public:
   void requestMonitorOutputEQBass() { midiRequestMonitorOutputEQBass(); }
   void requestMonitorOutputEQMiddle() { midiRequestMonitorOutputEQMiddle(); }
   void requestMonitorOutputEQTreble() { midiRequestMonitorOutputEQTreble(); }
-  void requestMonitorOutputEQPresence() { midiRequestMonitorOutputEQPresence(); }
+  void requestMonitorOutputEQPresence() {
+    midiRequestMonitorOutputEQPresence();
+  }
   void requestMainOutputEQBass() { midiRequestMainOutputEQBass(); }
   void requestMainOutputEQMiddle() { midiRequestMainOutputEQMiddle(); }
   void requestMainOutputEQTreble() { midiRequestMainOutputEQTreble(); }
@@ -135,7 +137,7 @@ public slots:
   void applyPureCab(double value);
   void applyOperationMode(Global::OperationMode opMode);
 
-  void connect2KPA(const QString& connectName);
+  void connect2KPA(const QString &connectName);
   void disconnectFromKPA();
 
 protected:
@@ -181,7 +183,7 @@ private:
   Global();
   ~Global();
 
-  QTimer* mBeaconTimer;
+  QTimer *mBeaconTimer;
 };
 
 #endif // GLOBAL_H

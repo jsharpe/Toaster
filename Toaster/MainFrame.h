@@ -1,29 +1,31 @@
-/*  This file is part of Toaster, the editor and remote control for Kemper profiling amplifier.
-*
-*   Copyright (C) 2016  Thomas Langer
-*
-*   Toaster is free software: you can redistribute it and/or modify it under the terms of the
-*   GNU General Public License as published by the Free Software Foundation, either version 3
-*   of the License, or (at your option) any later version.
-*
-*   Toaster is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
-*   even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*   See the GNU General Public License for more details.
-*
-*   You should have received a copy of the GNU General Public License along with Toaster.
-*   If not, see <http://www.gnu.org/licenses/>.
-*/
+/*  This file is part of Toaster, the editor and remote control for Kemper
+ * profiling amplifier.
+ *
+ *   Copyright (C) 2016  Thomas Langer
+ *
+ *   Toaster is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ *   Toaster is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License along
+ * with Toaster. If not, see <http://www.gnu.org/licenses/>.
+ */
 #ifndef MAINFRAME_H
 #define MAINFRAME_H
 
-#include <QFrame>
-#include "qtoasterbutton.h"
-#include "qchickenheaddial.h"
-#include "qmulticolorled.h"
-#include "StompCtxMenu.h"
 #include "DelayCtxMenu.h"
 #include "ReverbCtxMenu.h"
 #include "Stomp.h"
+#include "StompCtxMenu.h"
+#include "qchickenheaddial.h"
+#include "qmulticolorled.h"
+#include "qtoasterbutton.h"
+#include <QFrame>
 
 namespace Ui {
 class MainFrame;
@@ -31,30 +33,29 @@ class MainFrame;
 
 struct IStompEditorPage;
 
-//class QToasterButton;
+// class QToasterButton;
 
-class MainFrame : public QFrame
-{
-    Q_OBJECT
+class MainFrame : public QFrame {
+  Q_OBJECT
 
 public:
-    explicit MainFrame(QWidget *parent = 0);
-    ~MainFrame();
+  explicit MainFrame(QWidget *parent = 0);
+  ~MainFrame();
 
 public slots:
-  void connect2KPA(const QString& connectName);
+  void connect2KPA(const QString &connectName);
   void disconnectFromKPA();
   void requestValues();
 
 private slots:
   // stomps
   // ui => kpa
-  void on_stompAButton_clicked(QToasterButton& bt, bool longClick);
-  void on_stompBButton_clicked(QToasterButton& bt, bool longClick);
-  void on_stompCButton_clicked(QToasterButton& bt, bool longClick);
-  void on_stompDButton_clicked(QToasterButton& bt, bool longClick);
-  void on_stompXButton_clicked(QToasterButton& bt, bool longClick);
-  void on_stompModButton_clicked(QToasterButton& bt, bool longClick);
+  void on_stompAButton_clicked(QToasterButton &bt, bool longClick);
+  void on_stompBButton_clicked(QToasterButton &bt, bool longClick);
+  void on_stompCButton_clicked(QToasterButton &bt, bool longClick);
+  void on_stompDButton_clicked(QToasterButton &bt, bool longClick);
+  void on_stompXButton_clicked(QToasterButton &bt, bool longClick);
+  void on_stompModButton_clicked(QToasterButton &bt, bool longClick);
   void on_modRateDial_valueChanged(double value);
   void on_modIntensityDial_valueChanged(double value);
   // kpa => ui
@@ -96,7 +97,7 @@ private slots:
 
   // amp
   // ui => kpa
-  void on_amplifierButton_clicked(QToasterButton& bt, bool longClick);
+  void on_amplifierButton_clicked(QToasterButton &bt, bool longClick);
   void on_gainDial_valueChanged(double value);
   // kpa => ui
   void onAmpOnOff(bool onOff);
@@ -104,22 +105,22 @@ private slots:
 
   // eq
   // ui => kpa
-  void on_eqButton_clicked(QToasterButton& bt, bool longClick);
+  void on_eqButton_clicked(QToasterButton &bt, bool longClick);
   // kpa => ui
   void onEqOnOff(bool onOff);
 
   // cab
   // ui => kpa
-  void on_cabinetButton_clicked(QToasterButton& bt, bool longClick);
+  void on_cabinetButton_clicked(QToasterButton &bt, bool longClick);
   // kpa => ui
   void onCabOnOff(bool onOff);
 
   // rig
   // ui => kpa
   void on_rigVolumeDial_valueChanged(int value);
-  void on_stompsButton_clicked(QToasterButton& bt, bool longClick);
-  void on_stackButton_clicked(QToasterButton& bt, bool longClick);
-  void on_effectsButton_clicked(QToasterButton& bt, bool longClick);
+  void on_stompsButton_clicked(QToasterButton &bt, bool longClick);
+  void on_stackButton_clicked(QToasterButton &bt, bool longClick);
+  void on_effectsButton_clicked(QToasterButton &bt, bool longClick);
   // kpa => ui
   void onRigVolume(int volume);
   void onRigStompsEnable(bool stompsEnable);
@@ -128,7 +129,7 @@ private slots:
 
   // global
   // ui => kpa
-  void on_chickenHeadDial_valueChanged(const QChickenHeadDial::State& state);
+  void on_chickenHeadDial_valueChanged(const QChickenHeadDial::State &state);
   // kpa => ui
   void onGlobalOperationMode(unsigned short opMode);
   void onGlobalMainVolume(int volume);
@@ -153,15 +154,13 @@ private slots:
   // kpa => ui
   // currently none, TODO tempo stuff
 
-
-
   void on_exitButton_clicked(QToasterButton &bt, bool);
 
   void on_prevPageButton_clicked(QToasterButton &bt, bool longClick);
 
   void on_nextPageButton_clicked(QToasterButton &bt, bool longClick);
 
-  void onEditorPageChanged(IStompEditorPage* editorPage);
+  void onEditorPageChanged(IStompEditorPage *editorPage);
 
   void on_inputButton_clicked(QToasterButton &bt, bool longClick);
 
@@ -173,11 +172,10 @@ private slots:
 
   void on_tapButton_clicked(QToasterButton &bt, bool longClick);
 
-  void onRigNameReveived(const QString& rigName);
+  void onRigNameReveived(const QString &rigName);
 
 private:
-  enum OperationMode
-  {
+  enum OperationMode {
     Tuner,
     Browser,
     Perform,
@@ -191,30 +189,32 @@ private:
   };
 
   // utility methods
-  void handleStompButtonClick(QObject& module, QToasterButton& stompBt, bool longClick);
-  void toggleOperationMode(QObject& module, OperationMode opMode, QToasterButton* bt);
-  void setStompLedColor(::FXType type, QMultiColorLed* ledWidget);
+  void handleStompButtonClick(QObject &module, QToasterButton &stompBt,
+                              bool longClick);
+  void toggleOperationMode(QObject &module, OperationMode opMode,
+                           QToasterButton *bt);
+  void setStompLedColor(::FXType type, QMultiColorLed *ledWidget);
 
 private:
   Ui::MainFrame *ui;
 
   KemperStompState stompState;
-  StompCtxMenu  mStompACtxMenu;
-  StompCtxMenu  mStompBCtxMenu;
-  StompCtxMenu  mStompCCtxMenu;
-  StompCtxMenu  mStompDCtxMenu;
-  StompCtxMenu  mStompXCtxMenu;
-  StompCtxMenu  mStompModCtxMenu;
-  StompCtxMenu  mStompDelayCtxMenu;
-  DelayCtxMenu  mDelayCtxMenu;
+  StompCtxMenu mStompACtxMenu;
+  StompCtxMenu mStompBCtxMenu;
+  StompCtxMenu mStompCCtxMenu;
+  StompCtxMenu mStompDCtxMenu;
+  StompCtxMenu mStompXCtxMenu;
+  StompCtxMenu mStompModCtxMenu;
+  StompCtxMenu mStompDelayCtxMenu;
+  DelayCtxMenu mDelayCtxMenu;
   ReverbCtxMenu mReverbCtxMenu;
 
   OperationMode mOperationMode;
   OperationMode mPreviousOperationMode;
-  QToasterButton* mEditModeButton;
-  QObject*      mEditModeModule;
+  QToasterButton *mEditModeButton;
+  QObject *mEditModeModule;
 
-  QString       mCurrRigName;
+  QString mCurrRigName;
 };
 
 #endif // MAINFRAME_H

@@ -1,26 +1,27 @@
-/*  This file is part of Toaster, the editor and remote control for Kemper profiling amplifier.
-*
-*   Copyright (C) 2016  Thomas Langer
-*
-*   Toaster is free software: you can redistribute it and/or modify it under the terms of the
-*   GNU General Public License as published by the Free Software Foundation, either version 3
-*   of the License, or (at your option) any later version.
-*
-*   Toaster is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
-*   even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*   See the GNU General Public License for more details.
-*
-*   You should have received a copy of the GNU General Public License along with Toaster.
-*   If not, see <http://www.gnu.org/licenses/>.
-*/
+/*  This file is part of Toaster, the editor and remote control for Kemper
+ * profiling amplifier.
+ *
+ *   Copyright (C) 2016  Thomas Langer
+ *
+ *   Toaster is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ *   Toaster is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License along
+ * with Toaster. If not, see <http://www.gnu.org/licenses/>.
+ */
 #ifndef STOMPMIDI_H
 #define STOMPMIDI_H
-#include <map>
 #include "SysExBase.h"
 #include "SysExMsgDispatcher.h"
+#include <map>
 
-class StompMidi : public SysExBase, public SysExMsgDispatcher::ISysExConsumer
-{
+class StompMidi : public SysExBase, public SysExMsgDispatcher::ISysExConsumer {
 public:
   StompInstance getInstance() { return mInstance; }
 
@@ -110,7 +111,7 @@ protected:
   ~StompMidi();
 
   // ISysExConsumer
-  void consumeSysExMsg(const ByteArray& msg);
+  void consumeSysExMsg(const ByteArray &msg);
   unsigned char getId();
 
   // parameter
@@ -346,9 +347,11 @@ protected:
   virtual void midiModulationDepthReceived(unsigned short rawVal) = 0;
   virtual void midiModulationFeedbackReceived(unsigned short rawVal) = 0;
   virtual void midiModulationCrossoverReceived(unsigned short rawVal) = 0;
-  virtual void midiModulationHyperChorusAmountReceived(unsigned short rawVal) = 0;
+  virtual void
+  midiModulationHyperChorusAmountReceived(unsigned short rawVal) = 0;
   virtual void midiModulationManualReceived(unsigned short rawVal) = 0;
-  virtual void midiModulationPhaserPeakSpreadReceived(unsigned short rawVal) = 0;
+  virtual void
+  midiModulationPhaserPeakSpreadReceived(unsigned short rawVal) = 0;
   virtual void midiModulationPhaserStagesReceived(unsigned short rawVal) = 0;
   virtual void midiRotarySpeedReceived(unsigned short rawVal) = 0;
   virtual void midiRotaryDistanceReceived(unsigned short rawVal) = 0;
@@ -370,7 +373,8 @@ protected:
   virtual void midiParametricEQPeakFrequencyReceived(unsigned short rawVal) = 0;
   virtual void midiParametricEQPeakQFactorReceived(unsigned short rawVal) = 0;
   virtual void midiParametricEQPeakGain2Received(unsigned short rawVal) = 0;
-  virtual void midiParametricEQPeakFrequency2Received(unsigned short rawVal) = 0;
+  virtual void
+  midiParametricEQPeakFrequency2Received(unsigned short rawVal) = 0;
   virtual void midiParametricEQPeakQFactor2Received(unsigned short rawVal) = 0;
   virtual void midiWahPeakRangeReceived(unsigned short rawVal) = 0;
   virtual void midiDuckingReceived(unsigned short rawVal) = 0;
@@ -399,84 +403,80 @@ protected:
 
   StompInstance mInstance;
 
-  class FXType2MidiRawValMap : public std::map<FXType, unsigned short>
-  {
+  class FXType2MidiRawValMap : public std::map<FXType, unsigned short> {
   public:
-    FXType2MidiRawValMap()
-    {
-      (*this)[None] =                   0x00;
-      (*this)[WahWah] =                 0x01;
-      (*this)[WahLowPass] =             0x02;
-      (*this)[WahHighPass] =            0x03;
-      (*this)[WahVowelFilter] =         0x04;
-      (*this)[WahPhaser] =              0x06;
-      (*this)[WahFlanger] =             0x07;
-      (*this)[WahRateReducer] =         0x08;
-      (*this)[WahRingModulator] =       0x09;
-      (*this)[WahFrequencyShifter] =    0x0A;
-      (*this)[WahFormantShifter] =      0x0C;
-      (*this)[BitShaper] =              0x11;
-      (*this)[RectiShaper] =            0x12;
-      (*this)[SoftShaper] =             0x13;
-      (*this)[HardShaper] =             0x14;
-      (*this)[WaveShaper] =             0x15;
-      (*this)[GreenScream] =            0x21;
-      (*this)[PlusDS] =                 0x22;
-      (*this)[OneDS] =                  0x23;
-      (*this)[Muffin] =                 0x24;
-      (*this)[MouseDS] =                0x25;
-      (*this)[FuzzDS] =                 0x26;
-      (*this)[MetalDS] =                0x27;
-      (*this)[TrebleBooster] =          0x71;
-      (*this)[LeadBooster] =            0x72;
-      (*this)[PureBooster] =            0x73;
-      (*this)[WahPedalBooster] =        0x74;
-      (*this)[GraphicEqualizer] =       0x61;
-      (*this)[StudioEqualizer] =        0x62;
-      (*this)[MetalEqualizer] =         0x63;
-      (*this)[StereoWidener] =          0x65;
-      (*this)[Compressor] =             0x31;
-      (*this)[NoiseGate21] =            0x39;
-      (*this)[NoiseGate41] =            0x3A;
-      (*this)[VintageChorus] =          0x41;
-      (*this)[HyperChorus] =            0x42;
-      (*this)[AirChorus] =              0x43;
-      (*this)[MicroPitch] =             0x47;
-      (*this)[Vibrato] =                0x44;
-      (*this)[RotarySpeaker] =          0x45;
-      (*this)[Tremolo] =                0x46;
-      (*this)[Phaser] =                 0x51;
-      (*this)[PhaserVibe] =             0x52;
-      (*this)[PhaserOneway] =           0x53;
-      (*this)[Flanger] =                0x59;
-      (*this)[FlangerOneway] =          0x5B;
-      (*this)[Space] =                  0x40;
-      (*this)[LegacyDelay] =            0x91;
-      (*this)[SingleDelay] =            0x92;
-      (*this)[DualDelay] =              0x93;
-      (*this)[TwoTapDelay] =            0x94;
-      (*this)[SerialTwoTapDelay] =      0x95;
-      (*this)[RhythmDelay] =            0xA1;
-      (*this)[QuadDelay] =              0xA4;
-      (*this)[DualCrystal] =            0x8B;
-      (*this)[Transpose] =              0x81;
-      (*this)[PedalPitch] =             0x0B;
-      (*this)[PedalVinylStop] =         0x0D;
-      (*this)[ChromaticPitch] =         0x82;
-      (*this)[HarmonicPitch] =          0x83;
-      (*this)[AnalogOctaver] =          0x84;
-      (*this)[LoopMono] =               0x79;
-      (*this)[LoopStereo] =             0x7A;
-      (*this)[LoopDistortion] =         0x7B;
+    FXType2MidiRawValMap() {
+      (*this)[None] = 0x00;
+      (*this)[WahWah] = 0x01;
+      (*this)[WahLowPass] = 0x02;
+      (*this)[WahHighPass] = 0x03;
+      (*this)[WahVowelFilter] = 0x04;
+      (*this)[WahPhaser] = 0x06;
+      (*this)[WahFlanger] = 0x07;
+      (*this)[WahRateReducer] = 0x08;
+      (*this)[WahRingModulator] = 0x09;
+      (*this)[WahFrequencyShifter] = 0x0A;
+      (*this)[WahFormantShifter] = 0x0C;
+      (*this)[BitShaper] = 0x11;
+      (*this)[RectiShaper] = 0x12;
+      (*this)[SoftShaper] = 0x13;
+      (*this)[HardShaper] = 0x14;
+      (*this)[WaveShaper] = 0x15;
+      (*this)[GreenScream] = 0x21;
+      (*this)[PlusDS] = 0x22;
+      (*this)[OneDS] = 0x23;
+      (*this)[Muffin] = 0x24;
+      (*this)[MouseDS] = 0x25;
+      (*this)[FuzzDS] = 0x26;
+      (*this)[MetalDS] = 0x27;
+      (*this)[TrebleBooster] = 0x71;
+      (*this)[LeadBooster] = 0x72;
+      (*this)[PureBooster] = 0x73;
+      (*this)[WahPedalBooster] = 0x74;
+      (*this)[GraphicEqualizer] = 0x61;
+      (*this)[StudioEqualizer] = 0x62;
+      (*this)[MetalEqualizer] = 0x63;
+      (*this)[StereoWidener] = 0x65;
+      (*this)[Compressor] = 0x31;
+      (*this)[NoiseGate21] = 0x39;
+      (*this)[NoiseGate41] = 0x3A;
+      (*this)[VintageChorus] = 0x41;
+      (*this)[HyperChorus] = 0x42;
+      (*this)[AirChorus] = 0x43;
+      (*this)[MicroPitch] = 0x47;
+      (*this)[Vibrato] = 0x44;
+      (*this)[RotarySpeaker] = 0x45;
+      (*this)[Tremolo] = 0x46;
+      (*this)[Phaser] = 0x51;
+      (*this)[PhaserVibe] = 0x52;
+      (*this)[PhaserOneway] = 0x53;
+      (*this)[Flanger] = 0x59;
+      (*this)[FlangerOneway] = 0x5B;
+      (*this)[Space] = 0x40;
+      (*this)[LegacyDelay] = 0x91;
+      (*this)[SingleDelay] = 0x92;
+      (*this)[DualDelay] = 0x93;
+      (*this)[TwoTapDelay] = 0x94;
+      (*this)[SerialTwoTapDelay] = 0x95;
+      (*this)[RhythmDelay] = 0xA1;
+      (*this)[QuadDelay] = 0xA4;
+      (*this)[DualCrystal] = 0x8B;
+      (*this)[Transpose] = 0x81;
+      (*this)[PedalPitch] = 0x0B;
+      (*this)[PedalVinylStop] = 0x0D;
+      (*this)[ChromaticPitch] = 0x82;
+      (*this)[HarmonicPitch] = 0x83;
+      (*this)[AnalogOctaver] = 0x84;
+      (*this)[LoopMono] = 0x79;
+      (*this)[LoopStereo] = 0x7A;
+      (*this)[LoopDistortion] = 0x7B;
     }
     ~FXType2MidiRawValMap() { clear(); }
   };
 
-  class MidiRawValMap2FXType : public std::map<unsigned short, FXType>
-  {
+  class MidiRawValMap2FXType : public std::map<unsigned short, FXType> {
   public:
-    MidiRawValMap2FXType()
-    {
+    MidiRawValMap2FXType() {
       (*this)[0x00] = None;
       (*this)[0x01] = WahWah;
       (*this)[0x02] = WahLowPass;
@@ -551,9 +551,12 @@ protected:
 
   // utility methods
   ByteArray getAddressPage();
-  unsigned short fxType2Raw(FXType fxType) { return sFXType2MidiRawValMap[fxType]; }
-  FXType& raw2FXType (unsigned short rawVal) { return sMidiRawValMap2FXType[rawVal]; }
-
+  unsigned short fxType2Raw(FXType fxType) {
+    return sFXType2MidiRawValMap[fxType];
+  }
+  FXType &raw2FXType(unsigned short rawVal) {
+    return sMidiRawValMap2FXType[rawVal];
+  }
 };
 
 #endif // STOMPMIDI_H

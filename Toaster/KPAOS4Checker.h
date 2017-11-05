@@ -5,8 +5,7 @@
 
 class QTimer;
 
-class KPAOS4Checker : public QObject
-{
+class KPAOS4Checker : public QObject {
   Q_OBJECT
 public:
   explicit KPAOS4Checker(QObject *parent = 0);
@@ -22,7 +21,7 @@ public slots:
   void timerTimeout();
 
 private:
-  QTimer* mTimer;
+  QTimer *mTimer;
 };
 
 #endif // KPAOS4CHECKER_H

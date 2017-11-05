@@ -1,50 +1,45 @@
-/*  This file is part of Toaster, the editor and remote control for Kemper profiling amplifier.
-*
-*   Copyright (C) 2016  Thomas Langer
-*
-*   Toaster is free software: you can redistribute it and/or modify it under the terms of the
-*   GNU General Public License as published by the Free Software Foundation, either version 3
-*   of the License, or (at your option) any later version.
-*
-*   Toaster is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
-*   even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*   See the GNU General Public License for more details.
-*
-*   You should have received a copy of the GNU General Public License along with Toaster.
-*   If not, see <http://www.gnu.org/licenses/>.
-*/
-#include <QDebug>
-#include <QFile>
+/*  This file is part of Toaster, the editor and remote control for Kemper
+ * profiling amplifier.
+ *
+ *   Copyright (C) 2016  Thomas Langer
+ *
+ *   Toaster is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ *   Toaster is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License along
+ * with Toaster. If not, see <http://www.gnu.org/licenses/>.
+ */
 #include "DebugMidi.h"
 #include "Settings.h"
+#include <QDebug>
+#include <QFile>
 
 DebugMidi DebugMidi::mSingleton;
 
-DebugMidi::DebugMidi()
-  :mPrintValues(Settings::get().getDebuggerActive())
-{
+DebugMidi::DebugMidi() : mPrintValues(Settings::get().getDebuggerActive()) {
   SysExMsgDispatcher::get().addConsumer(this);
 }
 
-DebugMidi::~DebugMidi()
-{
+DebugMidi::~DebugMidi() {}
 
-}
-
-void DebugMidi::consumeSysExMsg(const ByteArray& msg)
-{
-  if(msg.size() >= 10)  // set to 10 to receive ack msgs (fct==0x7e, ap==0x7f)
+void DebugMidi::consumeSysExMsg(const ByteArray &msg) {
+  if (msg.size() >= 10) // set to 10 to receive ack msgs (fct==0x7e, ap==0x7f)
   {
-    if(mPrintValues)
+    if (mPrintValues)
       debugPrintValues(msg);
 
-    if(mWriteStringValues)
+    if (mWriteStringValues)
       debugWriteStringValues(msg);
   }
 }
 
-void DebugMidi::debugWriteStringValues(const ByteArray& msg)
-{
+void DebugMidi::debugWriteStringValues(const ByteArray &msg) {
 #if 0
   QString strVal;
   static unsigned short val1 = 0;
@@ -88,7 +83,7 @@ void DebugMidi::debugWriteStringValues(const ByteArray& msg)
   QString strVal;
   unsigned short rawVal = Utils::extractRawVal(msg[10], msg[11]);
 
-  for(int i = 12; (i < msg.size() && msg[i] != 0); ++i)
+  for (int i = 12; (i < msg.size() && msg[i] != 0); ++i)
     strVal.append(msg[i]);
   qDebug() << QString::number(rawVal) << strVal;
 
@@ -99,17 +94,16 @@ void DebugMidi::debugWriteStringValues(const ByteArray& msg)
 
   QTextStream textStream1(&outFile1);
   QTextStream textStream2(&outFile2);
-  textStream1 << "\"" << strVal  << "\",";
+  textStream1 << "\"" << strVal << "\",";
 
   static unsigned long long cnt2 = 0;
   static QString lastVal = "";
 
-  if(lastVal != strVal)
-  {
+  if (lastVal != strVal) {
     textStream2 << "{" << rawVal << ",\"" << strVal << "\"},";
     cnt2++;
     lastVal = strVal;
-    if(cnt2%100 == 0)
+    if (cnt2 % 100 == 0)
       textStream2 << endl;
   }
 
@@ -117,18 +111,17 @@ void DebugMidi::debugWriteStringValues(const ByteArray& msg)
 
   cnt1++;
 
-  if(cnt1%100 == 0)
+  if (cnt1 % 100 == 0)
     textStream1 << endl;
 
 #endif
 }
 
-void DebugMidi::debugPrintValues(const ByteArray& msg)
-{
+void DebugMidi::debugPrintValues(const ByteArray &msg) {
   unsigned int rawVal = -1;
   const char fct = msg[6];
 
-  //if(fct == 0x7e)
+  // if(fct == 0x7e)
   //  return;
 
   unsigned short ap = msg[8];
@@ -136,56 +129,48 @@ void DebugMidi::debugPrintValues(const ByteArray& msg)
 
   QString strVal("");
 
-  if(fct == SingleParamChange()[0])
-  {
+  if (fct == SingleParamChange()[0]) {
     rawVal = Utils::extractRawVal(msg[10], msg[11]);
     strVal = QString::number(rawVal, 16);
   }
 
-  else if(fct == StringParam()[0])
-  {
+  else if (fct == StringParam()[0]) {
     strVal = Utils::extractString(ByteArray(msg.begin() + 10, msg.end()));
-  }
-  else if(fct == ExtParamChange()[0])
-  {
+  } else if (fct == ExtParamChange()[0]) {
     rawVal = Utils::extractRawVal(ByteArray(msg.begin() + 8, msg.end()));
     ap = (rawVal >> 16) & 0xFFFF;
     param = rawVal & 0xFFFF;
     rawVal = Utils::extractRawVal(ByteArray(msg.begin() + 13, msg.end()));
     strVal = QString::number(rawVal, 16);
-  }
-  else if(fct == ExtStringParamChange()[0])
-  {
+  } else if (fct == ExtStringParamChange()[0]) {
     rawVal = Utils::extractRawVal(ByteArray(msg.begin() + 8, msg.end()));
     ap = (rawVal >> 16) & 0xFFFF;
     param = rawVal & 0xFFFF;
     strVal = Utils::extractString(ByteArray(msg.begin() + 13, msg.end()));
-  }
-  else
-  {
-    for(int i=10; i < msg.size(); ++i)
-    {
+  } else {
+    for (int i = 10; i < msg.size(); ++i) {
       strVal += "0x";
       strVal += QString::number(msg[i], 16);
       strVal += " ";
-      //rawValArray.push_back(msg[i));
+      // rawValArray.push_back(msg[i));
     }
   }
 
-  //if(ap != 0x38)
+  // if(ap != 0x38)
   //    return;
 
-  //if(mod == 0x00)
+  // if(mod == 0x00)
 
-    qDebug() << "Message size "     <<  QString::number(msg.size())
-             << ", function: "      <<  QString::number(fct, 16)
-             << ", address page: "  <<  QString::number(ap, 16)
-             << ", parameter: "     <<  QString::number(param, 16)
-             << ", value: "         << strVal;
+  qDebug() << "Message size " << QString::number(msg.size())
+           << ", function: " << QString::number(fct, 16)
+           << ", address page: " << QString::number(ap, 16)
+           << ", parameter: " << QString::number(param, 16)
+           << ", value: " << strVal;
 }
 
-void DebugMidi::debugRequestStringParam(unsigned char addressPage, unsigned char parameter, unsigned short val)
-{
+void DebugMidi::debugRequestStringParam(unsigned char addressPage,
+                                        unsigned char parameter,
+                                        unsigned short val) {
   ByteArray ap;
   ByteArray param;
   ap.push_back(addressPage);
@@ -193,52 +178,53 @@ void DebugMidi::debugRequestStringParam(unsigned char addressPage, unsigned char
   Midi::get().sendCmd(createValueAsStringGetCmd(ap, param, val));
 }
 
-void DebugMidi::debugScanRequest(unsigned char adddressPage, unsigned char minParam, unsigned char maxParam)
-{
+void DebugMidi::debugScanRequest(unsigned char adddressPage,
+                                 unsigned char minParam,
+                                 unsigned char maxParam) {
   ByteArray ap;
   ByteArray param;
   ap.push_back(adddressPage);
   param.push_back(minParam);
 
-  for(unsigned int i = minParam; i <= maxParam; i++)
-  {
+  for (unsigned int i = minParam; i <= maxParam; i++) {
     param[0] = i;
     Midi::get().sendCmd(createStringParamGetCmd(ap, param));
     Midi::get().sendCmd(createSingleParamGetCmd(ap, param));
   }
 }
 
-void DebugMidi::debugRequestExtParam(unsigned int param)
-{
+void DebugMidi::debugRequestExtParam(unsigned int param) {
   Midi::get().sendCmd(createExtParamGetCmd(param));
 }
 
-void DebugMidi::debugRequestExtStringParam(unsigned int param)
-{
+void DebugMidi::debugRequestExtStringParam(unsigned int param) {
   Midi::get().sendCmd(createExtStringParamGetCmd(param));
 }
 
-void DebugMidi::debugSendSingleParam(const ByteArray& addressPage, const ByteArray& param, const ByteArray& value)
-{
+void DebugMidi::debugSendSingleParam(const ByteArray &addressPage,
+                                     const ByteArray &param,
+                                     const ByteArray &value) {
   Midi::get().sendCmd(createSingleParamSetCmd(addressPage, param, value));
 }
 
-void DebugMidi::debugSendStringParam(const ByteArray& addressPage, const ByteArray& param, const ByteArray& value)
-{
+void DebugMidi::debugSendStringParam(const ByteArray &addressPage,
+                                     const ByteArray &param,
+                                     const ByteArray &value) {
   Midi::get().sendCmd(createStringParamSetCmd(addressPage, param, value));
 }
 
-void DebugMidi::debugSendExtParam(unsigned int param, unsigned int value)
-{
+void DebugMidi::debugSendExtParam(unsigned int param, unsigned int value) {
   Midi::get().sendCmd(createExtParamSetCmd(param, value));
 }
 
-void DebugMidi::debugSendReserveFct7E(const ByteArray& addressPage, const ByteArray& param, const ByteArray& value)
-{
+void DebugMidi::debugSendReserveFct7E(const ByteArray &addressPage,
+                                      const ByteArray &param,
+                                      const ByteArray &value) {
   Midi::get().sendCmd(createReservedFct7E(addressPage, param, value));
 }
 
-void DebugMidi::debugSendReserveFct7F(const ByteArray& addressPage, const ByteArray& param, const ByteArray& value)
-{
+void DebugMidi::debugSendReserveFct7F(const ByteArray &addressPage,
+                                      const ByteArray &param,
+                                      const ByteArray &value) {
   Midi::get().sendCmd(createReservedFct7F(addressPage, param, value));
 }

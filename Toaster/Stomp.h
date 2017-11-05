@@ -1,28 +1,28 @@
-/*  This file is part of Toaster, the editor and remote control for Kemper profiling amplifier.
-*
-*   Copyright (C) 2016  Thomas Langer
-*
-*   Toaster is free software: you can redistribute it and/or modify it under the terms of the
-*   GNU General Public License as published by the Free Software Foundation, either version 3
-*   of the License, or (at your option) any later version.
-*
-*   Toaster is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
-*   even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*   See the GNU General Public License for more details.
-*
-*   You should have received a copy of the GNU General Public License along with Toaster.
-*   If not, see <http://www.gnu.org/licenses/>.
-*/
+/*  This file is part of Toaster, the editor and remote control for Kemper
+ * profiling amplifier.
+ *
+ *   Copyright (C) 2016  Thomas Langer
+ *
+ *   Toaster is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ *   Toaster is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License along
+ * with Toaster. If not, see <http://www.gnu.org/licenses/>.
+ */
 #ifndef STOMP_H
 #define STOMP_H
 
-#include <QObject>
-#include "StompMidi.h"
 #include "Commons.h"
+#include "StompMidi.h"
+#include <QObject>
 
-
-class Stomp : public QObject, private StompMidi
-{
+class Stomp : public QObject, private StompMidi {
   Q_OBJECT
 public:
   using StompMidi::getInstance;
@@ -42,15 +42,21 @@ public:
   void requestWahTouchBoost() { midiRequestWahTouchBoost(); }
   void requestDistortionShaperDrive() { midiRequestDistortionShaperDrive(); }
   void requestDistortionBoosterTone() { midiRequestDistortionBoosterTone(); }
-  void requestCompressorGateIntensity() { midiRequestCompressorGateIntensity(); }
+  void requestCompressorGateIntensity() {
+    midiRequestCompressorGateIntensity();
+  }
   void requestCompressorAttack() { midiRequestCompressorAttack(); }
   void requestModulationRate() { midiRequestModulationRate(); }
   void requestModulationDepth() { midiRequestModulationDepth(); }
   void requestModulationFeedback() { midiRequestModulationFeedback(); }
   void requestModulationCrossover() { midiRequestModulationCrossover(); }
-  void requestModulationHyperChorusAmount() { midiRequestModulationHyperChorusAmount(); }
+  void requestModulationHyperChorusAmount() {
+    midiRequestModulationHyperChorusAmount();
+  }
   void requestModulationManual() { midiRequestModulationManual(); }
-  void requestModulationPhaserPeakSpread() { midiRequestModulationPhaserPeakSpread(); }
+  void requestModulationPhaserPeakSpread() {
+    midiRequestModulationPhaserPeakSpread();
+  }
   void requestModulationPhaserStages() { midiRequestModulationPhaserStages(); }
   void requestRotarySpeed() { midiRequestRotarySpeed(); }
   void requestRotaryDistance() { midiRequestRotaryDistance(); }
@@ -65,15 +71,27 @@ public:
   void requestGraphicEQBand7() { midiRequestGraphicEQBand7(); }
   void requestGraphicEQBand8() { midiRequestGraphicEQBand8(); }
   void requestParametricEQLowGain() { midiRequestParametricEQLowGain(); }
-  void requestParametricEQLowFrequency() { midiRequestParametricEQLowFrequency(); }
+  void requestParametricEQLowFrequency() {
+    midiRequestParametricEQLowFrequency();
+  }
   void requestParametricEQHighGain() { midiRequestParametricEQHighGain(); }
-  void requestParametricEQHighFrequency() { midiRequestParametricEQHighFrequency(); }
+  void requestParametricEQHighFrequency() {
+    midiRequestParametricEQHighFrequency();
+  }
   void requestParametricEQPeakGain() { midiRequestParametricEQPeakGain(); }
-  void requestParametricEQPeakFrequency() { midiRequestParametricEQPeakFrequency(); }
-  void requestParametricEQPeakQFactor() { midiRequestParametricEQPeakQFactor(); }
+  void requestParametricEQPeakFrequency() {
+    midiRequestParametricEQPeakFrequency();
+  }
+  void requestParametricEQPeakQFactor() {
+    midiRequestParametricEQPeakQFactor();
+  }
   void requestParametricEQPeakGain2() { midiRequestParametricEQPeakGain2(); }
-  void requestParametricEQPeakFrequency2() { midiRequestParametricEQPeakFrequency2(); }
-  void requestParametricEQPeakQFactor2() { midiRequestParametricEQPeakQFactor2(); }
+  void requestParametricEQPeakFrequency2() {
+    midiRequestParametricEQPeakFrequency2();
+  }
+  void requestParametricEQPeakQFactor2() {
+    midiRequestParametricEQPeakQFactor2();
+  }
   void requestWahPeakRange() { midiRequestWahPeakRange(); }
   void requestDucking() { midiRequestDucking(); }
   void requestIntensity() { midiRequestIntensity(); }
@@ -331,32 +349,26 @@ public:
 
 class KemperStompState {
 public:
-    KemperStompState() :
-       stompA(StompA),
-       stompB(StompB),
-       stompC(StompC),
-       stompD(StompD),
-       stompX(StompX),
-       stompMod(StompMod),
-       stompDelay(StompDelay)
-    { }
+  KemperStompState()
+      : stompA(StompA), stompB(StompB), stompC(StompC), stompD(StompD),
+        stompX(StompX), stompMod(StompMod), stompDelay(StompDelay) {}
 
-    void requestAllValues() {
-        stompA.requestAllValues();
-        stompB.requestAllValues();
-        stompC.requestAllValues();
-        stompD.requestAllValues();
-        stompX.requestAllValues();
-        stompMod.requestAllValues();
-        stompDelay.requestAllValues();
-    }
-    Stomp stompA;
-    Stomp stompB;
-    Stomp stompC;
-    Stomp stompD;
-    Stomp stompX;
-    Stomp stompMod;
-    Stomp stompDelay;
+  void requestAllValues() {
+    stompA.requestAllValues();
+    stompB.requestAllValues();
+    stompC.requestAllValues();
+    stompD.requestAllValues();
+    stompX.requestAllValues();
+    stompMod.requestAllValues();
+    stompDelay.requestAllValues();
+  }
+  Stomp stompA;
+  Stomp stompB;
+  Stomp stompC;
+  Stomp stompD;
+  Stomp stompX;
+  Stomp stompMod;
+  Stomp stompDelay;
 };
 
 #endif // STOMP_H

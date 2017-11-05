@@ -1,33 +1,34 @@
-/*  This file is part of Toaster, the editor and remote control for Kemper profiling amplifier.
-*
-*   Copyright (C) 2016  Thomas Langer
-*
-*   Toaster is free software: you can redistribute it and/or modify it under the terms of the
-*   GNU General Public License as published by the Free Software Foundation, either version 3
-*   of the License, or (at your option) any later version.
-*
-*   Toaster is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
-*   even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*   See the GNU General Public License for more details.
-*
-*   You should have received a copy of the GNU General Public License along with Toaster.
-*   If not, see <http://www.gnu.org/licenses/>.
-*/
+/*  This file is part of Toaster, the editor and remote control for Kemper
+ * profiling amplifier.
+ *
+ *   Copyright (C) 2016  Thomas Langer
+ *
+ *   Toaster is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ *   Toaster is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License along
+ * with Toaster. If not, see <http://www.gnu.org/licenses/>.
+ */
 #ifndef BROWSERFRAME_H
 #define BROWSERFRAME_H
-#include <QFrame>
 #include "Commons.h"
 #include "Stomp.h"
 #include "ui_BrowserFrame.h"
+#include <QFrame>
 
-class BrowserFrame : public QFrame
-{
+class BrowserFrame : public QFrame {
   Q_OBJECT
 
 public:
   explicit BrowserFrame(QWidget *parent = 0);
 
-  void init(KemperStompState & stompState);
+  void init(KemperStompState &stompState);
   void requestValues();
 
 private slots:
@@ -74,20 +75,20 @@ private slots:
   // profile
   // ui => kpa
   // kpa => ui
-  void onRigName(const QString& rigName);
-  void onRigAuthor(const QString& rigAuthor);
-  void onAmpName(const QString& ampName);
+  void onRigName(const QString &rigName);
+  void onRigAuthor(const QString &rigAuthor);
+  void onAmpName(const QString &ampName);
 
   // extended parameter
   // ui => kpa
   void on_browseModeDial_valueChanged(int view);
-  //void on_lcdDisplay_browserModeViewChanged(int view);
+  // void on_lcdDisplay_browserModeViewChanged(int view);
   // kpa => ui
   void onBrowserView(unsigned int view);
 
 private:
   Ui::BrowserFrame ui;
-  KemperStompState * stompState;
+  KemperStompState *stompState;
 };
 
 #endif // BROWSERFRAME_H

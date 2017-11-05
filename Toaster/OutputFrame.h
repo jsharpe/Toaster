@@ -1,38 +1,39 @@
-/*  This file is part of Toaster, the editor and remote control for Kemper profiling amplifier.
-*
-*   Copyright (C) 2016  Thomas Langer
-*
-*   Toaster is free software: you can redistribute it and/or modify it under the terms of the
-*   GNU General Public License as published by the Free Software Foundation, either version 3
-*   of the License, or (at your option) any later version.
-*
-*   Toaster is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
-*   even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*   See the GNU General Public License for more details.
-*
-*   You should have received a copy of the GNU General Public License along with Toaster.
-*   If not, see <http://www.gnu.org/licenses/>.
-*/
+/*  This file is part of Toaster, the editor and remote control for Kemper
+ * profiling amplifier.
+ *
+ *   Copyright (C) 2016  Thomas Langer
+ *
+ *   Toaster is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ *   Toaster is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License along
+ * with Toaster. If not, see <http://www.gnu.org/licenses/>.
+ */
 #ifndef OUTPUTFRAME_H
 #define OUTPUTFRAME_H
-#include <QWidget>
-#include <QVector>
-#include "ui_OutputFrame.h"
-#include "StompEditorPage.h"
 #include "Global.h"
+#include "StompEditorPage.h"
+#include "ui_OutputFrame.h"
+#include <QVector>
+#include <QWidget>
 
-class OutputFrame : public QWidget, public IStompEditorPage
-{
+class OutputFrame : public QWidget, public IStompEditorPage {
   Q_OBJECT
 
 public:
   explicit OutputFrame(QWidget *parent = 0);
   ~OutputFrame();
   // IStompEditorPage
-  virtual void activate(QObject& module);
+  virtual void activate(QObject &module);
   virtual void deactivate();
   virtual bool isActive() { return mpGlobal != nullptr; }
-  virtual QObject* getStomp()  { return mpGlobal; }
+  virtual QObject *getStomp() { return mpGlobal; }
   virtual QToasterLCD::Page getMaxDisplayPage();
   virtual QToasterLCD::Page getCurrentDisplayPage();
   virtual void setCurrentDisplayPage(QToasterLCD::Page page);
@@ -41,7 +42,7 @@ public:
   virtual void displayStompEnabled(StompInstance stompInstance, bool enabled);
   virtual void displayDelayEnabled(bool enabled);
   virtual void displayReverbEnabled(bool enabled);
-  virtual void displayAmpName(const QString&  ampName);
+  virtual void displayAmpName(const QString &ampName);
 private slots:
   // ui => kpa
   void on_mainOutputSourceDial_valueChanged(int valueIndex);
@@ -103,18 +104,12 @@ private slots:
   void OnAuxInHeadphone(double value);
   void OnConstantLatency(int valueIndex);
 
-
-
 private:
   Ui::OutputFrame ui;
-  Global* mpGlobal = nullptr;
-  const QVector<QString> mPageTitles = { "Output Source",
-                                         "Output Volumes",
-                                         "Monitor Output EQ",
-                                         "Main Output EQ",
-                                         "Output AddOns",
-                                         "Aux In" };
-  
+  Global *mpGlobal = nullptr;
+  const QVector<QString> mPageTitles = {"Output Source",     "Output Volumes",
+                                        "Monitor Output EQ", "Main Output EQ",
+                                        "Output AddOns",     "Aux In"};
 };
 
 #endif // OUTPUTFRAME_H

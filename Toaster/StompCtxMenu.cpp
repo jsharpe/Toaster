@@ -1,28 +1,28 @@
-/*  This file is part of Toaster, the editor and remote control for Kemper profiling amplifier.
-*
-*   Copyright (C) 2016  Thomas Langer
-*
-*   Toaster is free software: you can redistribute it and/or modify it under the terms of the
-*   GNU General Public License as published by the Free Software Foundation, either version 3
-*   of the License, or (at your option) any later version.
-*
-*   Toaster is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
-*   even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*   See the GNU General Public License for more details.
-*
-*   You should have received a copy of the GNU General Public License along with Toaster.
-*   If not, see <http://www.gnu.org/licenses/>.
-*/
-#include <QMenu>
-#include "Stomp.h"
+/*  This file is part of Toaster, the editor and remote control for Kemper
+ * profiling amplifier.
+ *
+ *   Copyright (C) 2016  Thomas Langer
+ *
+ *   Toaster is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ *   Toaster is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License along
+ * with Toaster. If not, see <http://www.gnu.org/licenses/>.
+ */
 #include "StompCtxMenu.h"
 #include "Settings.h"
+#include "Stomp.h"
+#include <QMenu>
 
-void createDelayMenu(QMenu & menu);
+void createDelayMenu(QMenu &menu);
 
-StompCtxMenu::StompCtxMenu(Stomp& stomp)
-  : mStomp(stomp)
-{
+StompCtxMenu::StompCtxMenu(Stomp &stomp) : mStomp(stomp) {
   createWahMenu();
   createDistortionMenu();
   createEQMenu();
@@ -34,11 +34,10 @@ StompCtxMenu::StompCtxMenu(Stomp& stomp)
   createDelayReverbMenu();
 }
 
-void StompCtxMenu::createMenu(QMenu& menu)
-{
-  connect(&menu, SIGNAL(triggered(QAction*)), this, SLOT(setType(QAction*)));
+void StompCtxMenu::createMenu(QMenu &menu) {
+  connect(&menu, SIGNAL(triggered(QAction *)), this, SLOT(setType(QAction *)));
 
-  QAction* action = menu.addAction("None");
+  QAction *action = menu.addAction("None");
   action->setData(QVariant((unsigned int)None));
 
   menu.addMenu(&mWahMenu);
@@ -52,12 +51,12 @@ void StompCtxMenu::createMenu(QMenu& menu)
   menu.addMenu(&mDelayReverbMenu);
 }
 
-void StompCtxMenu::createWahMenu()
-{
+void StompCtxMenu::createWahMenu() {
   mWahMenu.setTitle("Wah");
-  connect(&mWahMenu, SIGNAL(triggered(QAction*)), this, SLOT(setType(QAction*)));
+  connect(&mWahMenu, SIGNAL(triggered(QAction *)), this,
+          SLOT(setType(QAction *)));
 
-  QAction* action = mWahMenu.addAction("Wah Wah");
+  QAction *action = mWahMenu.addAction("Wah Wah");
   action->setData(QVariant((unsigned int)WahWah));
 
   action = mWahMenu.addAction("Wah Low Pass");
@@ -88,12 +87,12 @@ void StompCtxMenu::createWahMenu()
   action->setData(QVariant((unsigned int)WahFormantShifter));
 }
 
-void StompCtxMenu::createDistortionMenu()
-{
+void StompCtxMenu::createDistortionMenu() {
   mDistortionMenu.setTitle("Distortion");
-  connect(&mDistortionMenu, SIGNAL(triggered(QAction*)), this, SLOT(setType(QAction*)));
+  connect(&mDistortionMenu, SIGNAL(triggered(QAction *)), this,
+          SLOT(setType(QAction *)));
 
-  QAction* action = mDistortionMenu.addAction("Bit Shaper");
+  QAction *action = mDistortionMenu.addAction("Bit Shaper");
   action->setData(QVariant((unsigned int)BitShaper));
 
   action = mDistortionMenu.addAction("Recti Shaper");
@@ -142,12 +141,12 @@ void StompCtxMenu::createDistortionMenu()
   action->setData(QVariant((unsigned int)WahPedalBooster));
 }
 
-void StompCtxMenu::createEQMenu()
-{
+void StompCtxMenu::createEQMenu() {
   mEQMenu.setTitle("EQ");
-  connect(&mEQMenu, SIGNAL(triggered(QAction*)), this, SLOT(setType(QAction*)));
+  connect(&mEQMenu, SIGNAL(triggered(QAction *)), this,
+          SLOT(setType(QAction *)));
 
-  QAction* action = mEQMenu.addAction("Graphic Equalizer");
+  QAction *action = mEQMenu.addAction("Graphic Equalizer");
   action->setData(QVariant((unsigned int)GraphicEqualizer));
 
   action = mEQMenu.addAction("Studio Equalizer");
@@ -160,12 +159,12 @@ void StompCtxMenu::createEQMenu()
   action->setData(QVariant((unsigned int)StereoWidener));
 }
 
-void StompCtxMenu::createCompGateMenu()
-{
+void StompCtxMenu::createCompGateMenu() {
   mCompGateMenu.setTitle("Compressor/Gate");
-  connect(&mCompGateMenu, SIGNAL(triggered(QAction*)), this, SLOT(setType(QAction*)));
+  connect(&mCompGateMenu, SIGNAL(triggered(QAction *)), this,
+          SLOT(setType(QAction *)));
 
-  QAction* action = mCompGateMenu.addAction("Compressor");
+  QAction *action = mCompGateMenu.addAction("Compressor");
   action->setData(QVariant((unsigned int)Compressor));
 
   action = mCompGateMenu.addAction("Noise Gate 2:1");
@@ -175,12 +174,12 @@ void StompCtxMenu::createCompGateMenu()
   action->setData(QVariant((unsigned int)NoiseGate41));
 }
 
-void StompCtxMenu::createChorusMenu()
-{
+void StompCtxMenu::createChorusMenu() {
   mChorusMenu.setTitle("Chorus");
-  connect(&mChorusMenu, SIGNAL(triggered(QAction*)), this, SLOT(setType(QAction*)));
+  connect(&mChorusMenu, SIGNAL(triggered(QAction *)), this,
+          SLOT(setType(QAction *)));
 
-  QAction* action = mChorusMenu.addAction("Vintage Chorus");
+  QAction *action = mChorusMenu.addAction("Vintage Chorus");
   action->setData(QVariant((unsigned int)VintageChorus));
 
   action = mChorusMenu.addAction("Hyper Chorus");
@@ -202,12 +201,12 @@ void StompCtxMenu::createChorusMenu()
   action->setData(QVariant((unsigned int)Tremolo));
 }
 
-void StompCtxMenu::createPhaserFlangerMenu()
-{
+void StompCtxMenu::createPhaserFlangerMenu() {
   mPhaserFlangerMenu.setTitle("Phaser/Flanger");
-  connect(&mPhaserFlangerMenu, SIGNAL(triggered(QAction*)), this, SLOT(setType(QAction*)));
+  connect(&mPhaserFlangerMenu, SIGNAL(triggered(QAction *)), this,
+          SLOT(setType(QAction *)));
 
-  QAction* action = mPhaserFlangerMenu.addAction("Phaser");
+  QAction *action = mPhaserFlangerMenu.addAction("Phaser");
   action->setData(QVariant((unsigned int)Phaser));
 
   action = mPhaserFlangerMenu.addAction("Phaser Vibe");
@@ -223,12 +222,12 @@ void StompCtxMenu::createPhaserFlangerMenu()
   action->setData(QVariant((unsigned int)FlangerOneway));
 }
 
-void StompCtxMenu::createPitchShifterMenu()
-{
+void StompCtxMenu::createPitchShifterMenu() {
   mPitchShifterMenu.setTitle("Pitch Shifter");
-  connect(&mPitchShifterMenu, SIGNAL(triggered(QAction*)), this, SLOT(setType(QAction*)));
+  connect(&mPitchShifterMenu, SIGNAL(triggered(QAction *)), this,
+          SLOT(setType(QAction *)));
 
-  QAction* action = mPitchShifterMenu.addAction("Transpose");
+  QAction *action = mPitchShifterMenu.addAction("Transpose");
   action->setData(QVariant((unsigned int)Transpose));
 
   action = mPitchShifterMenu.addAction("Pedal Pitch");
@@ -247,12 +246,12 @@ void StompCtxMenu::createPitchShifterMenu()
   action->setData(QVariant((unsigned int)AnalogOctaver));
 }
 
-void StompCtxMenu::createEffectLoopMenu()
-{
+void StompCtxMenu::createEffectLoopMenu() {
   mEffectLoopMenu.setTitle("Effect Loop");
-  connect(&mEffectLoopMenu, SIGNAL(triggered(QAction*)), this, SLOT(setType(QAction*)));
+  connect(&mEffectLoopMenu, SIGNAL(triggered(QAction *)), this,
+          SLOT(setType(QAction *)));
 
-  QAction* action = mEffectLoopMenu.addAction("Loop Mono");
+  QAction *action = mEffectLoopMenu.addAction("Loop Mono");
   action->setData(QVariant((unsigned int)LoopMono));
 
   action = mEffectLoopMenu.addAction("Loop Stereo");
@@ -262,22 +261,20 @@ void StompCtxMenu::createEffectLoopMenu()
   action->setData(QVariant((unsigned int)LoopDistortion));
 }
 
-void StompCtxMenu::createDelayReverbMenu()
-{
+void StompCtxMenu::createDelayReverbMenu() {
   mDelayReverbMenu.setTitle("Delay/Reverb");
-  connect(&mDelayReverbMenu, SIGNAL(triggered(QAction*)), this, SLOT(setType(QAction*)));
+  connect(&mDelayReverbMenu, SIGNAL(triggered(QAction *)), this,
+          SLOT(setType(QAction *)));
 
-  QAction* action = mDelayReverbMenu.addAction("Space");
+  QAction *action = mDelayReverbMenu.addAction("Space");
   action->setData(QVariant((unsigned int)Space));
 
-  if(Settings::get().getKPAOSVersion() >= 0x04000000)
-  {
-     createDelayMenu(mDelayReverbMenu);
+  if (Settings::get().getKPAOSVersion() >= 0x04000000) {
+    createDelayMenu(mDelayReverbMenu);
   }
 }
 
-void StompCtxMenu::setType(QAction* action)
-{
+void StompCtxMenu::setType(QAction *action) {
   FXType fxType = (FXType)action->data().toUInt();
   mStomp.applyType(fxType);
 }
