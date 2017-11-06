@@ -31,11 +31,13 @@ void Stomp::requestAllValues() {
 // slots
 void Stomp::applyOnOff(bool onOff) {
   midiApplyOnOff(Utils::bool2Raw(onOff));
+  emit onOffReceived(onOff);
   midiRequestOnOff();
 }
 
 void Stomp::applyType(FXType type) {
   midiApplyType(fxType2Raw(type));
+  emit typeReceived(type);
   midiRequestType();
 }
 
