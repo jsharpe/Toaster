@@ -130,9 +130,6 @@ add_executable(Toaster
     Toaster/DebugMidi.cpp
     Toaster/DebugSettingsDialog.cpp
     Toaster/DebugSettingsDialog.ui
-    Toaster/Delay.cpp
-    Toaster/DelayFrame.cpp
-    Toaster/DelayFrame.ui
     Toaster/DelayMidi.cpp
     Toaster/DriveAndToneDSFrame.cpp
     Toaster/DriveAndToneDSFrame.ui
@@ -232,8 +229,6 @@ add_executable(Toaster
     Toaster/StudioEqualizerFrame.ui
     Toaster/SysExMsgDispatcher.cpp
     Toaster/Tap.cpp
-    Toaster/TapDelayFrame.cpp
-    Toaster/TapDelayFrame.ui
     Toaster/TapMidi.cpp
     Toaster/ToasterWindow.cpp
     Toaster/ToasterWindow.ui

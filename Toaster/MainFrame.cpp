@@ -19,7 +19,6 @@
 #include "Amp.h"
 #include "Cab.h"
 #include "DebugMidi.h"
-#include "Delay.h"
 #include "Eq.h"
 #include "Global.h"
 #include "Input.h"
@@ -606,16 +605,12 @@ void MainFrame::handleStompButtonClick(QObject &module, QToasterButton &stompBt,
     toggleOperationMode(module, StompEdit, &stompBt);
   } else {
     Stomp *pStomp = qobject_cast<Stomp *>(&module);
-    Delay *pDelay = qobject_cast<Delay *>(&module);
     Reverb *pReverb = qobject_cast<Reverb *>(&module);
     Amp *pAmp = qobject_cast<Amp *>(&module);
     Cab *pCab = qobject_cast<Cab *>(&module);
     if (pStomp != nullptr) {
       pStomp->applyOnOff(stompBt.toggleOnOff());
       pStomp->requestOnOff();
-    } else if (pDelay != nullptr) {
-      pDelay->applyOnOffCutsTail(stompBt.toggleOnOff());
-      pDelay->requestOnOffCutsTail();
     } else if (pReverb != nullptr) {
       pReverb->applyOnOffCutsTail(stompBt.toggleOnOff());
       pReverb->requestOnOffCutsTail();
