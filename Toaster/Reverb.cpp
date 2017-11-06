@@ -40,6 +40,7 @@ void Reverb::requestAllValues() {
 // slots
 void Reverb::applyType(::ReverbType type) {
   midiApplyType((unsigned short)type);
+  emit typeReceived(type);
   midiRequestType();
 }
 
