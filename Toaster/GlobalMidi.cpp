@@ -65,7 +65,7 @@ GlobalMidi::~GlobalMidi() {
 
 unsigned char GlobalMidi::getId() {
   unsigned char ret = 0x00;
-  ByteArray addressPage = getAddressPage();
+  const ByteArray &addressPage = getAddressPage();
   if (addressPage.size() > 0)
     ret = addressPage[0];
 
