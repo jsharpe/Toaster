@@ -19,6 +19,8 @@
 #define UTILS_H
 
 #include "Commons.h"
+#include <cstdint>
+#include <cassert>
 #include <QString>
 
 class Utils {
@@ -39,31 +41,32 @@ public:
 
   static unsigned short bool2Raw(bool val) { return val ? 1 : 0; }
 
-  static unsigned short extractRawVal(unsigned char msb, unsigned char lsb) {
-    unsigned short rawVal =
-        (((unsigned short)msb & 0x7F) << 7) | ((unsigned short)lsb & 0x7F);
+  static uint16_t extractRawVal(unsigned char msb, unsigned char lsb) {
+    uint16_t rawVal =
+        (((uint16_t)msb & 0x7F) << 7) | ((uint16_t)lsb & 0x7F);
     return rawVal;
   }
 
-  static unsigned int extractRawVal(unsigned char b0, unsigned char b1,
-                                    unsigned char b2, unsigned char b3,
-                                    unsigned char b4) {
+  static uint32_t extractRawVal(unsigned char b0, unsigned char b1,
+                                unsigned char b2, unsigned char b3,
+                                unsigned char b4) {
     unsigned char t0 = (b4 & 0x7F) | (b3 << 7);
     unsigned char t1 = ((b3 >> 1) & 0x3F) | (b2 << 6);
     unsigned char t2 = ((b2 >> 2) & 0x1F) | (b1 << 5);
     unsigned char t3 = ((b1 >> 3) & 0x0F) | (b0 << 4);
-    unsigned int rawVal = ((unsigned int)t0 << 24) | ((unsigned int)t1 << 16) |
-                          ((unsigned int)t2 << 8) | ((unsigned int)t3);
+    uint32_t rawVal = ((uint32_t)t0 << 24) | ((uint32_t)t1 << 16) |
+                          ((uint32_t)t2 << 8) | ((uint32_t)t3);
     return rawVal;
   }
 
-  static unsigned int extractRawVal(const ByteArray &b) {
+  static uint32_t extractRawVal(const ByteArray &b) {
+    assert(b.size() >= 5);
     unsigned char t0 = (b[4] & 0x7F) | (b[3] << 7);
     unsigned char t1 = ((b[3] >> 1) & 0x3F) | (b[2] << 6);
     unsigned char t2 = ((b[2] >> 2) & 0x1F) | (b[1] << 5);
     unsigned char t3 = ((b[1] >> 3) & 0x0F) | (b[0] << 4);
-    unsigned int rawVal = ((unsigned int)t0) | ((unsigned int)t1 << 8) |
-                          ((unsigned int)t2 << 16) | ((unsigned int)t3 << 24);
+    uint32_t rawVal = ((uint32_t)t0) | ((uint32_t)t1 << 8) |
+                      ((uint32_t)t2 << 16) | ((uint32_t)t3 << 24);
     return rawVal;
   }
 

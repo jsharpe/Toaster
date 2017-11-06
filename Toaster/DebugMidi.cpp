@@ -81,7 +81,7 @@ void DebugMidi::debugWriteStringValues(const ByteArray &msg) {
   }
 #else
   QString strVal;
-  unsigned short rawVal = Utils::extractRawVal(msg[10], msg[11]);
+  auto rawVal = Utils::extractRawVal(msg[10], msg[11]);
 
   for (int i = 12; (i < msg.size() && msg[i] != 0); ++i)
     strVal.append(msg[i]);

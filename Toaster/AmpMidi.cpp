@@ -51,7 +51,7 @@ unsigned char AmpMidi::getId() {
 
 void AmpMidi::consumeSysExMsg(const ByteArray &msg) {
   if (msg.size() >= 12) {
-    unsigned short rawVal = Utils::extractRawVal(msg[10], msg[11]);
+    auto rawVal = Utils::extractRawVal(msg[10], msg[11]);
     const char param = msg[9];
     if (param == sOnOff[0])
       midiOnOffReceived(rawVal);

@@ -45,7 +45,7 @@ unsigned char RigMidi::getId() {
 
 void RigMidi::consumeSysExMsg(const ByteArray &msg) {
   if (msg.size() >= 12) {
-    unsigned short rawVal = Utils::extractRawVal(msg[10], msg[11]);
+    auto rawVal = Utils::extractRawVal(msg[10], msg[11]);
     const char param = msg[9];
     if (param == sTempo[0])
       midiTempoReceived(rawVal);
