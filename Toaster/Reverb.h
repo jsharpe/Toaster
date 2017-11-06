@@ -20,6 +20,7 @@
 
 #include "ReverbMidi.h"
 #include <QObject>
+#include <atomic>
 
 #define reverbObj Reverb::get()
 
@@ -87,11 +88,13 @@ protected:
   virtual void midiOnOffKeepsTailReceived(unsigned short rawVal);
   virtual void midiDuckingReceived(unsigned short rawVal);
 
-  ReverbType mReverbType;
+  std::atomic<ReverbType> mReverbType;
 
 private:
-  Reverb();
-  ~Reverb();
+  Reverb() : mReverbType{ReverbType::Hall} {};
+  ~Reverb() = default;
+  Reverb(const Reverb &) = delete;
+  Reverb(Reverb &&) = delete;
 };
 
 #endif // REVERB_H

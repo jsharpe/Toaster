@@ -17,10 +17,6 @@
  */
 #include "Reverb.h"
 
-Reverb::Reverb() {}
-
-Reverb::~Reverb() {}
-
 Reverb &Reverb::get() {
   static Reverb reverb;
   return reverb;
