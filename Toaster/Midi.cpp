@@ -120,7 +120,7 @@ void Midi::sendCmd(const ByteArray &cmd) {
       if (cmd[0] != 0xB0) {
         mMidiOut.sendMessage(&cmd);
       } else if (cmd.size() % 3 == 0) {
-        ByteArray::const_iterator it = cmd.begin();
+        auto it = cmd.begin();
         for (int i = 0; i < cmd.size() / 3; ++i) {
           std::vector<unsigned char> tmp(it, it + 3);
           mMidiOut.sendMessage(&tmp);
