@@ -135,6 +135,7 @@ void StompEditorFrame::activate(QObject &stomp) {
     } else if (pReverb != nullptr) {
       connect(pReverb, SIGNAL(typeReceived(::ReverbType)), this,
               SLOT(onReverbType(::ReverbType)));
+      onReverbType(pReverb->getReverbType());
       pReverb->requestType();
     } else if (pAmp != nullptr) {
       activatePage(std::unique_ptr<AmpFrame>(new AmpFrame(this)));
