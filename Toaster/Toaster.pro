@@ -7,13 +7,11 @@
 CONFIG += debug_and_release
 QT       += core gui
 unix:QMAKE_CXXFLAGS += -std=c++11
-macx:QMAKE_CXXFLAGS += -stdlib=libc++
 win32:QMAKE_CXXFLAGS += -bigobj
 win32:LIBS += -lwinmm
 win32:DEFINES += __WINDOWS_MM__
 unix:!macx:DEFINES += __UNIX_JACK__ \
                       __LINUX_ALSA__
-macx:QMAKE_LFLAGS += -stdlib=libc++
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -118,7 +116,6 @@ SOURCES += main.cpp\
     DelayFrame.cpp \
     ReverbFrame.cpp \
     ReverbCtxMenu.cpp \
-    DelayCtxMenu.cpp \
     TapDelayFrame.cpp \
     DebugSettingsDialog.cpp \
     FlangerOnewayFrame.cpp \
@@ -139,7 +136,7 @@ SOURCES += main.cpp\
     StereoWidenerFrame.cpp \
     KPAOS4Checker.cpp
 
-macx:SOURCES_NOOPTIMIZE = MainVolumeValues.cpp \
+SOURCES += MainVolumeValues.cpp \
     RotaryDistanceValues.cpp \
     RigVolumeValues.cpp \
     MixValues.cpp \
@@ -148,23 +145,6 @@ macx:SOURCES_NOOPTIMIZE = MainVolumeValues.cpp \
     QFactorValues.cpp \
     FlangerRateValues.cpp \
     VoiceIntervalValues.cpp
-else:SOURCES += MainVolumeValues.cpp \
-    RotaryDistanceValues.cpp \
-    RigVolumeValues.cpp \
-    MixValues.cpp \
-    FrequencyValues.cpp \
-    TremoloRateValues.cpp \
-    QFactorValues.cpp \
-    FlangerRateValues.cpp \
-    VoiceIntervalValues.cpp
-
-macx:nooptimize.name = nooptimize
-macx:nooptimize.input = SOURCES_NOOPTIMIZE
-macx:nooptimize.dependency_type = TYPE_C
-macx:nooptimize.variable_out = OBJECTS
-macx:nooptimize.output = ${QMAKE_VAR_OBJECTS_DIR}${QMAKE_FILE_IN_BASE}$${first(QMAKE_EXT_OBJ)}
-macx:nooptimize.commands = $${QMAKE_CXX} $(CXXFLAGS) -O0 $(INCPATH) -c ${QMAKE_FILE_IN} -o ${QMAKE_FILE_OUT}
-macx:QMAKE_EXTRA_COMPILERS += nooptimize
 
 HEADERS  += ToasterWindow.h \
     Midi.h \
@@ -243,7 +223,6 @@ HEADERS  += ToasterWindow.h \
     DelayFrame.h \
     ReverbFrame.h \
     ReverbCtxMenu.h \
-    DelayCtxMenu.h \
     TapDelayFrame.h \
     DebugSettingsDialog.h \
     RotaryDistanceValues.h \
