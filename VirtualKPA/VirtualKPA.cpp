@@ -33,7 +33,7 @@ VirtualKPA &VirtualKPA::get() {
 VirtualRig *VirtualKPA::loadRig(const QString &rigFilePath) {
   QFile kiprFile(rigFilePath);
 
-  VirtualRig *newRig = nullptr;
+  std::unique_ptr<VirtualRig> newRig = nullptr;
 
   kiprFile.open(QIODevice::ReadOnly);
   QDataStream stream(&kiprFile);
@@ -41,16 +41,15 @@ VirtualRig *VirtualKPA::loadRig(const QString &rigFilePath) {
   ByteArray magic(4, 0x00);
   stream.readRawData((char *)magic.data(), 4);
   if (magic == sKiprMagic1 || magic == sKiprMagic2) {
-    newRig = new VirtualRig(rigFilePath, magic);
+    newRig.reset(new VirtualRig(rigFilePath, magic));
     if (!newRig->load(stream, fileSize)) {
-      delete newRig;
       newRig = nullptr;
     }
   }
 
-  mCurrentRig.reset(newRig);
+  mCurrentRig = std::move(newRig);
 
-  return newRig;
+  return mCurrentRig.get();
 }
 
 unsigned short VirtualKPA::loadRig(const QString &rigFileName,

@@ -28,10 +28,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
   init();
 }
 
-SettingsDialog::~SettingsDialog() {
-  if (ui != nullptr)
-    delete ui;
-}
+SettingsDialog::~SettingsDialog() {}
 
 void SettingsDialog::init() {
   ui->inputPortComboBox->addItems(Midi::get().getInPorts());

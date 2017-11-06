@@ -70,7 +70,7 @@ private:
   void showSettingsDialog();
   void openMidiPorts();
 
-  Ui::ToasterWindow *ui;
+  std::unique_ptr<Ui::ToasterWindow> ui;
 
   std::atomic<bool> mIsConnected2Midi;
   std::atomic<bool> mIsConnected2KPA;

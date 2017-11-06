@@ -19,6 +19,7 @@
 #define SETTINGSDIALOG_H
 
 #include <QDialog>
+#include <memory>
 
 namespace Ui {
 class SettingsDialog;
@@ -37,7 +38,7 @@ private slots:
   void on_buttonBox_accepted();
 
 private:
-  Ui::SettingsDialog *ui;
+  std::unique_ptr<Ui::SettingsDialog> ui;
 };
 
 #endif // SETTINGSDIALOG_H

@@ -19,6 +19,7 @@
 #define DEBUGSETTINGSDIALOG_H
 
 #include <QDialog>
+#include <memory>
 
 namespace Ui {
 class DebugSettingsDialog;
@@ -35,7 +36,7 @@ private slots:
   void on_printValuesCheckBox_clicked(bool checked);
 
 private:
-  Ui::DebugSettingsDialog *ui;
+  std::unique_ptr<Ui::DebugSettingsDialog> ui;
 };
 
 #endif // DEBUGSETTINGSDIALOG_H

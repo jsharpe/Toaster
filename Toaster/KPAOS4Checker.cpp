@@ -7,14 +7,7 @@
 #include <memory>
 
 KPAOS4Checker::KPAOS4Checker(QObject *parent) : QObject(parent) {
-  mTimer = new QTimer(this);
-}
-
-KPAOS4Checker::~KPAOS4Checker() {
-  if (mTimer != nullptr) {
-    delete mTimer;
-    mTimer = nullptr;
-  }
+  mTimer.reset(new QTimer(this));
 }
 
 void KPAOS4Checker::check() {
@@ -34,14 +27,14 @@ void KPAOS4Checker::check() {
     el.connect(this, &KPAOS4Checker::stopLoop, &el, &QEventLoop::quit);
     el.connect(stompDelayObj.get(), &Stomp::onOffReceived, this,
                &KPAOS4Checker::onOfReceived);
-    el.connect(mTimer, &QTimer::timeout, this, &KPAOS4Checker::timerTimeout);
+    el.connect(mTimer.get(), &QTimer::timeout, this, &KPAOS4Checker::timerTimeout);
     mTimer->start(500);
     stompDelayObj->requestOnOff();
     el.exec();
     el.disconnect(this, &KPAOS4Checker::stopLoop, &el, &QEventLoop::quit);
     el.disconnect(stompDelayObj.get(), &Stomp::onOffReceived, this,
                   &KPAOS4Checker::onOfReceived);
-    el.disconnect(mTimer, &QTimer::timeout, this, &KPAOS4Checker::timerTimeout);
+    el.disconnect(mTimer.get(), &QTimer::timeout, this, &KPAOS4Checker::timerTimeout);
   }
 }
 
