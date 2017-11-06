@@ -152,7 +152,6 @@ void StompEditorFrame::activate(QObject &stomp) {
 void StompEditorFrame::deactivate() {
   if (mpActiveStomp != nullptr) {
     Stomp *pActiveStomp = qobject_cast<Stomp *>(mpActiveStomp);
-    Delay *pDelay = qobject_cast<Delay *>(mpActiveStomp);
     Reverb *pReverb = qobject_cast<Reverb *>(mpActiveStomp);
 
     if (pActiveStomp != nullptr)
