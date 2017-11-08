@@ -39,13 +39,9 @@ unsigned char TunerIndexMidi::getId() {
   return ret;
 }
 
-void TunerIndexMidi::consumeSysExMsg(const ByteArray &msg) {
-  if (msg.size() >= 12) {
-    auto rawVal = Utils::extractRawVal(msg[10], msg[11]);
-    const char param = msg[9];
+void TunerIndexMidi::consumeSysExMsg(unsigned char param, uint16_t rawVal) {
     if (param == sIndex[0])
       midiIndexReceived(rawVal);
-  }
 }
 
 ByteArray TunerIndexMidi::getAddressPage() { return sAddressPage; }

@@ -63,8 +63,8 @@ public:
   ~GlobalMidi();
 
   // ISysExConsumer
-  unsigned char getId();
-  void consumeSysExMsg(const ByteArray &msg);
+  unsigned char getId() override final;
+  void consumeSysExMsg(unsigned char param, uint16_t rawVal) override final;
 
 protected:
   // parameter

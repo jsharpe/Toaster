@@ -49,10 +49,7 @@ unsigned char ReverbMidi::getId() {
   return ret;
 }
 
-void ReverbMidi::consumeSysExMsg(const ByteArray &msg) {
-  if (msg.size() >= 12) {
-    auto rawVal = Utils::extractRawVal(msg[10], msg[11]);
-    const char param = msg[9];
+void ReverbMidi::consumeSysExMsg(unsigned char param, uint16_t rawVal) {
     if (param == sType[0])
       midiTypeReceived(rawVal);
     else if (param == sOnOffCutsTail[0])
@@ -77,7 +74,6 @@ void ReverbMidi::consumeSysExMsg(const ByteArray &msg) {
       midiOnOffKeepsTailReceived(rawVal);
     else if (param == sDucking[0])
       midiDuckingReceived(rawVal);
-  }
 }
 
 void ReverbMidi::midiRequestType() {

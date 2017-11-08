@@ -145,8 +145,9 @@ protected:
   ~StompMidi();
 
   // ISysExConsumer
-  void consumeSysExMsg(const ByteArray &msg);
-  unsigned char getId();
+  void consumeSysExMsg(const ByteArray &msg) override final;
+  void consumeSysExMsg(unsigned char, uint16_t rawVal) override final;
+  unsigned char getId() override final;
 
   // parameter
   // Type

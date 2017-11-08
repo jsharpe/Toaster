@@ -36,8 +36,8 @@ protected:
   void midiApplyMuteSignal(unsigned short rawVal);
 
   // ISysExConsumer
-  unsigned char getId();
-  void consumeSysExMsg(const ByteArray &msg);
+  unsigned char getId() override final;
+  void consumeSysExMsg(unsigned char param, uint16_t rawVal) override final;
 
   // receive callbacks for derived class
   virtual void midiNoteReceived(unsigned short rawVal) = 0;

@@ -30,8 +30,13 @@ private:
 public:
   class ISysExConsumer {
   public:
-    virtual void consumeSysExMsg(const ByteArray &msg) = 0;
+    virtual void consumeSysExMsg(const ByteArray &msg) {}
+    virtual void consumeSysExMsg(unsigned char param, uint16_t rawVal) {}
     virtual unsigned char getId() = 0;
+  protected:
+    ~ISysExConsumer() = default;
+    ISysExConsumer() = default;
+    ISysExConsumer(ISysExConsumer &&) = delete;
   };
 
   static SysExMsgDispatcher &get();

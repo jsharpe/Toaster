@@ -43,10 +43,7 @@ unsigned char EqMidi::getId() {
   return ret;
 }
 
-void EqMidi::consumeSysExMsg(const ByteArray &msg) {
-  if (msg.size() >= 12) {
-    unsigned short rawVal = Utils::extractRawVal(msg[10], msg[11]);
-    const char param = msg[9];
+void EqMidi::consumeSysExMsg(unsigned char param, uint16_t rawVal) {
     if (param == sOnOff[0])
       midiOnOffReceived(rawVal);
     else if (param == sBass[0])
@@ -57,7 +54,6 @@ void EqMidi::consumeSysExMsg(const ByteArray &msg) {
       midiTrebleReceived(rawVal);
     else if (param == sPresence[0])
       midiPresenceReceived(rawVal);
-  }
 }
 
 void EqMidi::midiRequestOnOff() {

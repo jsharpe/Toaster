@@ -49,10 +49,7 @@ unsigned char AmpMidi::getId() {
   return ret;
 }
 
-void AmpMidi::consumeSysExMsg(const ByteArray &msg) {
-  if (msg.size() >= 12) {
-    auto rawVal = Utils::extractRawVal(msg[10], msg[11]);
-    const char param = msg[9];
+void AmpMidi::consumeSysExMsg(unsigned char param, uint16_t rawVal) {
     if (param == sOnOff[0])
       midiOnOffReceived(rawVal);
     else if (param == sGain[0])
@@ -73,7 +70,6 @@ void AmpMidi::consumeSysExMsg(const ByteArray &msg) {
       midiTubeBiasReceived(rawVal);
     else if (param == sDirectMix[0])
       midiDirectMixReceived(rawVal);
-  }
 }
 
 void AmpMidi::midiRequestOnOff() {

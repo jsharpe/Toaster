@@ -31,17 +31,13 @@ InputMidi::~InputMidi() {
   SysExMsgDispatcher::get().removeConsumer(this);
 }
 
-void InputMidi::consumeSysExMsg(const ByteArray &msg) {
-  if (msg.size() >= 12) {
-    auto rawVal = Utils::extractRawVal(msg[10], msg[11]);
-    const char param = msg[9];
+void InputMidi::consumeSysExMsg(unsigned char param, uint16_t rawVal) {
     if (param == sNoiseGate[0])
       midiNoiseGateReceived(rawVal);
     else if (param == sCleanSense[0])
       midiCleanSenseReceived(rawVal);
     else if (param == sDistortionSense[0])
       midiDistortionSenseReceived(rawVal);
-  }
 }
 
 unsigned char InputMidi::getId() {

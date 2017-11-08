@@ -42,10 +42,7 @@ unsigned char CabMidi::getId() {
   return ret;
 }
 
-void CabMidi::consumeSysExMsg(const ByteArray &msg) {
-  if (msg.size() >= 12) {
-    auto rawVal = Utils::extractRawVal(msg[10], msg[11]);
-    const char param = msg[9];
+void CabMidi::consumeSysExMsg(unsigned char param, uint16_t rawVal) {
     if (param == sOnOff[0])
       midiOnOffReceived(rawVal);
     else if (param == sVolume[0])
@@ -56,7 +53,6 @@ void CabMidi::consumeSysExMsg(const ByteArray &msg) {
       midiLowShiftReceived(rawVal);
     else if (param == sCharacter[0])
       midiCharacterReceived(rawVal);
-  }
 }
 
 void CabMidi::midiRequestOnOff() {

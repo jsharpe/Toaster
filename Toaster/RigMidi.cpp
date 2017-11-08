@@ -43,10 +43,7 @@ unsigned char RigMidi::getId() {
   return ret;
 }
 
-void RigMidi::consumeSysExMsg(const ByteArray &msg) {
-  if (msg.size() >= 12) {
-    auto rawVal = Utils::extractRawVal(msg[10], msg[11]);
-    const char param = msg[9];
+void RigMidi::consumeSysExMsg(unsigned char param, uint16_t rawVal) {
     if (param == sTempo[0])
       midiTempoReceived(rawVal);
     else if (param == sVolume[0])
@@ -59,7 +56,6 @@ void RigMidi::consumeSysExMsg(const ByteArray &msg) {
       midiStackEnableReceived(rawVal);
     else if (param == sEffectsEnable[0])
       midiEffectsEnableReceived(rawVal);
-  }
 }
 
 void RigMidi::midiRequestTempo() {

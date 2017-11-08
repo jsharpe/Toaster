@@ -38,15 +38,11 @@ unsigned char TunerMidi::getId() {
   return ret;
 }
 
-void TunerMidi::consumeSysExMsg(const ByteArray &msg) {
-  if (msg.size() >= 12) {
-    auto rawVal = Utils::extractRawVal(msg[10], msg[11]);
-    const char param = msg[9];
+void TunerMidi::consumeSysExMsg(unsigned char param, uint16_t rawVal) {
     if (param == sNote[0])
       midiNoteReceived(rawVal);
     else if (param == sMuteSignal[0])
       midiMuteSignalReceived(rawVal);
-  }
 }
 
 void TunerMidi::midiRequestMuteSignal() {

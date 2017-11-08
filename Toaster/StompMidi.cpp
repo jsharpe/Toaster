@@ -147,10 +147,9 @@ StompMidi::StompMidi(StompInstance instance) : mInstance(instance) {
 
 StompMidi::~StompMidi() { SysExMsgDispatcher::get().removeConsumer(this); }
 
-void StompMidi::consumeSysExMsg(const ByteArray &msg) {
-  if (msg.size() >= 12) {
-    auto rawVal = Utils::extractRawVal(msg[10], msg[11]);
-    const char param = msg[9];
+void StompMidi::consumeSysExMsg(const ByteArray &msg) {}
+
+void StompMidi::consumeSysExMsg(unsigned char param, uint16_t rawVal) {
     if (param == sOnOff[0])
       midiOnOffReceived(rawVal);
     else if (param == sType[0])
@@ -291,7 +290,6 @@ void StompMidi::consumeSysExMsg(const ByteArray &msg) {
       midiDelayToTempoReceived(rawVal);
     else if (param == sDelayModulation[0])
       midiDelayModulationReceived(rawVal);
-  }
 }
 
 unsigned char StompMidi::getId() {

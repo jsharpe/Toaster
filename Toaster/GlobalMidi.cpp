@@ -72,10 +72,7 @@ unsigned char GlobalMidi::getId() {
   return ret;
 }
 
-void GlobalMidi::consumeSysExMsg(const ByteArray &msg) {
-  if (msg.size() >= 12) {
-    auto rawVal = Utils::extractRawVal(msg[10], msg[11]);
-    const char param = msg[9];
+void GlobalMidi::consumeSysExMsg(unsigned char param, uint16_t rawVal) {
     if (param == sMainOutputVolume[0])
       midiMainOutputVolumeReceived(rawVal);
     else if (param == sHeadphoneOutputVolume[0])
@@ -138,7 +135,6 @@ void GlobalMidi::consumeSysExMsg(const ByteArray &msg) {
       midiPureCabReceived(rawVal);
     else if (param == sOperationMode[0])
       midiOperationModeReceived(rawVal);
-  }
 }
 
 void GlobalMidi::midiRequestMainOutputVolume() {

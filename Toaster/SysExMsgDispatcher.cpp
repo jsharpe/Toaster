@@ -36,21 +36,29 @@ SysExMsgDispatcher &SysExMsgDispatcher::get() {
 void SysExMsgDispatcher::consume(const ByteArray &msg) {
   if (msg.size() >= 8) {
     const ByteArray &header = Header();
-    if (header[0] == (msg)[0] && header[1] == (msg)[1] &&
-        header[2] == (msg)[2] && header[3] == (msg)[3]) {
+    if (header[0] == msg[0] && header[1] == msg[1] &&
+        header[2] == msg[2] && header[3] == msg[3]) {
       std::lock_guard<std::mutex> l(this->lock);
       for (auto *consumer : mConsumer) {
         auto consumerId = consumer->getId();
         if ((ExtParamChange()[0] == (msg)[6] &&
              consumerId ==
-                 (msg)[6])) // special handling for extended parameter function
+                 (msg)[6])) { // special handling for extended parameter function
           consumer->consumeSysExMsg(msg);
+        }
         else if ((ExtParamChange()[0] == (msg)[7] &&
-                  consumerId == (msg)[6])) // special handling for extended
-                                           // parameter function
+                  consumerId == (msg)[6])) { // special handling for extended
+                                             // parameter function
           consumer->consumeSysExMsg(msg);
-        else if ((consumerId == (msg)[8] || consumerId == 0xFF))
-          consumer->consumeSysExMsg(msg);
+        }
+        else if ((consumerId == (msg)[8] || consumerId == 0xFF)) {
+          uint16_t rawVal = msg[10];
+          if (msg.size() >= 12) {
+            rawVal = Utils::extractRawVal(msg[10], msg[11]);
+          }
+          consumer->consumeSysExMsg(msg[9], rawVal);
+        } else {
+        }
       }
     }
   }
