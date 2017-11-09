@@ -18,14 +18,13 @@
 #ifndef DEBUGMIDI_H
 #define DEBUGMIDI_H
 #include "SysExBase.h"
-#include "SysExMsgDispatcher.h"
+#include "MidiConsumer.h"
 #include <QString>
 
-class DebugMidi : public SysExBase, public SysExMsgDispatcher::ISysExConsumer {
+class DebugMidi : public SysExBase, public IMidiConsumer {
 public:
-  // ISysExConsumer
-  unsigned char getId() { return 0xFF; }
-  void consumeSysExMsg(const ByteArray &msg);
+  void consume(const ByteArray &msg) override final;
+  unsigned char getStatusByte() override final { return 0xF0; }
 
   static DebugMidi &get() { return mSingleton; }
 
