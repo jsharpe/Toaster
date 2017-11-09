@@ -154,13 +154,13 @@ enum WahPedalMode { Off, Touch, On, BypassAtStop, BypassAtHeel, BypassAtToe };
 enum RotarySpeed { Slow, Fast };
 
 enum StompInstance {
-  StompA,
-  StompB,
-  StompC,
-  StompD,
-  StompX,
-  StompMod,
-  StompDelay
+  StompA = 0,
+  StompB = 1,
+  StompC = 2,
+  StompD = 3,
+  StompX = 6,
+  StompMod = 8,
+  StompDelay = 10
 };
 
 struct FXDefinition {

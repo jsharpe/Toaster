@@ -293,11 +293,9 @@ void StompMidi::consumeSysExMsg(unsigned char param, uint16_t rawVal) {
 }
 
 unsigned char StompMidi::getId() {
-  unsigned char ret = 0x00;
-  ByteArray addressPage = getAddressPage();
-  if (addressPage.size() > 0)
-    ret = addressPage[0];
-
+  unsigned char ret = 0x32; // 50 in decimal
+  //offset for stomp slot
+  ret += this->getInstance();
   return ret;
 }
 
