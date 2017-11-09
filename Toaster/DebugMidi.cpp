@@ -122,9 +122,6 @@ void DebugMidi::debugPrintValues(const ByteArray &msg) {
   unsigned int rawVal = -1;
   const char fct = msg[6];
 
-  // if(fct == 0x7e)
-  //  return;
-
   unsigned short ap = msg[8];
   unsigned short param = msg[9];
 
@@ -136,31 +133,25 @@ void DebugMidi::debugPrintValues(const ByteArray &msg) {
   }
 
   else if (fct == StringParam()[0]) {
-    strVal = Utils::extractString(ByteArray(msg.begin() + 10, msg.end()));
+    strVal = Utils::extractString(ByteArray(msg.begin() + 10, msg.end() - 1));
   } else if (fct == ExtParamChange()[0]) {
-    rawVal = Utils::extractRawVal(ByteArray(msg.begin() + 8, msg.end()));
+    rawVal = Utils::extractRawVal(ByteArray(msg.begin() + 8, msg.end() - 1));
     ap = (rawVal >> 16) & 0xFFFF;
     param = rawVal & 0xFFFF;
-    rawVal = Utils::extractRawVal(ByteArray(msg.begin() + 13, msg.end()));
+    rawVal = Utils::extractRawVal(ByteArray(msg.begin() + 13, msg.end() - 1));
     strVal = QString::number(rawVal, 16);
   } else if (fct == ExtStringParamChange()[0]) {
-    rawVal = Utils::extractRawVal(ByteArray(msg.begin() + 8, msg.end()));
+    rawVal = Utils::extractRawVal(ByteArray(msg.begin() + 8, msg.end() - 1));
     ap = (rawVal >> 16) & 0xFFFF;
     param = rawVal & 0xFFFF;
-    strVal = Utils::extractString(ByteArray(msg.begin() + 13, msg.end()));
+    strVal = Utils::extractString(ByteArray(msg.begin() + 13, msg.end() - 1));
   } else {
     for (int i = 10; i < msg.size(); ++i) {
       strVal += "0x";
       strVal += QString::number(msg[i], 16);
       strVal += " ";
-      // rawValArray.push_back(msg[i));
     }
   }
-
-  // if(ap != 0x38)
-  //    return;
-
-  // if(mod == 0x00)
 
   qDebug() << "Message size " << QString::number(msg.size())
            << ", function: " << QString::number(fct, 16)
