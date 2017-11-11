@@ -33,33 +33,74 @@ SysExMsgDispatcher &SysExMsgDispatcher::get() {
   return singleton;
 }
 
+enum class MsgType {
+    SingleParameterChange = 0x01,
+    MultiParameterChange = 0x02,
+    StringParameter = 0x03,
+    BLOB = 0x04,
+    //0x05 reserved
+    ExtendedParameterChange = 0x06,
+    ExtendedStringParameterChange = 0x07,
+    ResponseParameterValueRenderedString = 0x3c,
+    RequestSingleParameter = 0x41,
+    RequestMultiParameter = 0x42,
+    RequestStringParameter = 0x43,
+    RequestExtendedStringParameter = 0x47,
+    RequestParameterValueRenderedString = 0x7C,
+    //0x7E reserved
+    //0x7F reserved
+};
+
 void SysExMsgDispatcher::consume(const ByteArray &msg) {
-  if (msg.size() >= 8) {
+  if (msg.size() >= 9) {
     const ByteArray &header = Header();
     if (header[0] == msg[0] && header[1] == msg[1] &&
-        header[2] == msg[2] && header[3] == msg[3]) {
-      std::lock_guard<std::mutex> l(this->lock);
-      for (auto *consumer : mConsumer) {
-        auto consumerId = consumer->getId();
-        if ((ExtParamChange()[0] == (msg)[6] &&
-             consumerId ==
-                 (msg)[6])) { // special handling for extended parameter function
-          consumer->consumeSysExMsg(msg);
-        }
-        else if ((ExtParamChange()[0] == (msg)[7] &&
-                  consumerId == (msg)[6])) { // special handling for extended
-                                             // parameter function
-          consumer->consumeSysExMsg(msg);
-        }
-        else if ((consumerId == (msg)[8] || consumerId == 0xFF)) {
-          uint16_t rawVal = msg[10];
-          if (msg.size() >= 12) {
-            rawVal = Utils::extractRawVal(msg[10], msg[11]);
-          }
-          consumer->consumeSysExMsg(msg[9], rawVal);
+        header[2] == msg[2] && header[3] == msg[3] &&
+        // 0x02 == msg[4] && // Product type = Kemper - this is sometimes 0x00?
+        // msg[5] is midi channel
+        0x00 == msg [7] && // Instance is always 0
+        msg[msg.size()-1] == 0xF7) {
+        uint16_t rawVal {0};
+        MsgType fct = MsgType(msg[6]);
+        unsigned char addressPage = msg[8];
+        unsigned char paramId = 0;
+        if (fct == MsgType::StringParameter ||
+            fct == MsgType::ExtendedStringParameterChange) {
+            std::lock_guard<std::mutex> l(this->lock);
+            for (auto *consumer : mConsumer) {
+                auto consumerId = consumer->getId();
+                if (consumerId == addressPage) {
+                    consumer->consumeSysExMsg(msg);
+                }
+            }
         } else {
+            paramId = msg[9];
+            if (msg.size() == 13) {
+                rawVal = Utils::extractRawVal(msg[10], msg[11]);
+            } else if (fct == MsgType::MultiParameterChange) {
+                //This is just a guess how to handle this message
+                for(int i=10; i < msg.size()-2; i+=2) {
+                    rawVal = Utils::extractRawVal(msg[i], msg[i+1]);
+                    std::lock_guard<std::mutex> l(this->lock);
+                    for (auto *consumer : mConsumer) {
+                        auto consumerId = consumer->getId();
+                        if (consumerId == addressPage) {
+                            consumer->consumeSysExMsg(paramId+1, rawVal);
+                        }
+                    }
+                }
+                return;
+            } else {
+                return;
+            }
         }
-      }
+        std::lock_guard<std::mutex> l(this->lock);
+        for (auto *consumer : mConsumer) {
+            auto consumerId = consumer->getId();
+            if (consumerId == addressPage) {
+                consumer->consumeSysExMsg(paramId, rawVal);
+            }
+        }
     }
   }
 }
