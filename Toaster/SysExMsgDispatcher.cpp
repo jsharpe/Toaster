@@ -42,6 +42,7 @@ enum class MsgType {
     ExtendedParameterChange = 0x06,
     ExtendedStringParameterChange = 0x07,
     ResponseParameterValueRenderedString = 0x3c,
+    // 0x40 Beacon
     RequestSingleParameter = 0x41,
     RequestMultiParameter = 0x42,
     RequestStringParameter = 0x43,
@@ -78,14 +79,13 @@ void SysExMsgDispatcher::consume(const ByteArray &msg) {
             if (msg.size() == 13) {
                 rawVal = Utils::extractRawVal(msg[10], msg[11]);
             } else if (fct == MsgType::MultiParameterChange) {
-                //This is just a guess how to handle this message
                 for(int i=10; i < msg.size()-2; i+=2) {
                     rawVal = Utils::extractRawVal(msg[i], msg[i+1]);
                     std::lock_guard<std::mutex> l(this->lock);
                     for (auto *consumer : mConsumer) {
                         auto consumerId = consumer->getId();
                         if (consumerId == addressPage) {
-                            consumer->consumeSysExMsg(paramId+1, rawVal);
+                            consumer->consumeSysExMsg(paramId++, rawVal);
                         }
                     }
                 }
