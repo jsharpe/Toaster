@@ -151,214 +151,144 @@ protected:
 
   // parameter
   // Type
-  void midiRequestType();
   void midiApplyType(unsigned short rawVal);
   // OnOff
-  void midiRequestOnOff();
   void midiApplyOnOff(unsigned short rawVal);
   // Mix
-  void midiRequestMix();
   void midiApplyMix(unsigned short rawVal);
   // Volume
-  void midiRequestVolume();
   void midiApplyVolume(unsigned short rawVal);
   // Stereo
-  void midiRequestStereo();
   void midiApplyStereo(unsigned short rawVal);
   // WahManual
-  void midiRequestWahManual();
   void midiApplyWahManual(unsigned short rawVal);
   // WahPeak
-  void midiRequestWahPeak();
   void midiApplyWahPeak(unsigned short rawVal);
   // WahRange
-  void midiRequestWahRange();
   void midiApplyWahRange(unsigned short rawVal);
   // WahPedalMode
-  void midiRequestWahPedalMode();
   void midiApplyWahPedalMode(unsigned short rawVal);
   // WahTouchAttack
-  void midiRequestWahTouchAttack();
   void midiApplyWahTouchAttack(unsigned short rawVal);
   // WahTouchRelease
-  void midiRequestWahTouchRelease();
   void midiApplyWahTouchRelease(unsigned short rawVal);
   // WahTouchBoost
-  void midiRequestWahTouchBoost();
   void midiApplyWahTouchBoost(unsigned short rawVal);
   // DistortionShaperDrive
-  void midiRequestDistortionShaperDrive();
   void midiApplyDistortionShaperDrive(unsigned short rawVal);
   // DistortionBoosterTone
-  void midiRequestDistortionBoosterTone();
   void midiApplyDistortionBoosterTone(unsigned short rawVal);
   // CompressorGateIntensity
-  void midiRequestCompressorGateIntensity();
   void midiApplyCompressorGateIntensity(unsigned short rawVal);
   // CompressorAttack
-  void midiRequestCompressorAttack();
   void midiApplyCompressorAttack(unsigned short rawVal);
   // ModulationRate
-  void midiRequestModulationRate();
   void midiApplyModulationRate(unsigned short rawVal);
   // ModulationDepth
-  void midiRequestModulationDepth();
   void midiApplyModulationDepth(unsigned short rawVal);
   // ModulationFeedback
-  void midiRequestModulationFeedback();
   void midiApplyModulationFeedback(unsigned short rawVal);
   // ModulationCrossover
-  void midiRequestModulationCrossover();
   void midiApplyModulationCrossover(unsigned short rawVal);
   // ModulationHyperChorusAmount
-  void midiRequestModulationHyperChorusAmount();
   void midiApplyModulationHyperChorusAmount(unsigned short rawVal);
   // ModulationManual
-  void midiRequestModulationManual();
   void midiApplyModulationManual(unsigned short rawVal);
   // ModulationPhaserPeakSpread
-  void midiRequestModulationPhaserPeakSpread();
   void midiApplyModulationPhaserPeakSpread(unsigned short rawVal);
   // ModulationPhaserStages
-  void midiRequestModulationPhaserStages();
   void midiApplyModulationPhaserStages(unsigned short rawVal);
   // RotarySpeed
-  void midiRequestRotarySpeed();
   void midiApplyRotarySpeed(unsigned short rawVal);
   // RotaryDistance
-  void midiRequestRotaryDistance();
   void midiApplyRotaryDistance(unsigned short rawVal);
   // RotaryBalance
-  void midiRequestRotaryBalance();
   void midiApplyRotaryBalance(unsigned short rawVal);
   // CompressorSquash
-  void midiRequestCompressorSquash();
   void midiApplyCompressorSquash(unsigned short rawVal);
   // GraphicEQBand1
-  void midiRequestGraphicEQBand1();
   void midiApplyGraphicEQBand1(unsigned short rawVal);
   // GraphicEQBand2
-  void midiRequestGraphicEQBand2();
   void midiApplyGraphicEQBand2(unsigned short rawVal);
   // GraphicEQBand3
-  void midiRequestGraphicEQBand3();
   void midiApplyGraphicEQBand3(unsigned short rawVal);
   // GraphicEQBand4
-  void midiRequestGraphicEQBand4();
   void midiApplyGraphicEQBand4(unsigned short rawVal);
   // GraphicEQBand5
-  void midiRequestGraphicEQBand5();
   void midiApplyGraphicEQBand5(unsigned short rawVal);
   // GraphicEQBand6
-  void midiRequestGraphicEQBand6();
   void midiApplyGraphicEQBand6(unsigned short rawVal);
   // GraphicEQBand7
-  void midiRequestGraphicEQBand7();
   void midiApplyGraphicEQBand7(unsigned short rawVal);
   // GraphicEQBand8
-  void midiRequestGraphicEQBand8();
   void midiApplyGraphicEQBand8(unsigned short rawVal);
   // ParametricEQLowGain
-  void midiRequestParametricEQLowGain();
   void midiApplyParametricEQLowGain(unsigned short rawVal);
   // ParametricEQLowFrequency
-  void midiRequestParametricEQLowFrequency();
   void midiApplyParametricEQLowFrequency(unsigned short rawVal);
   // ParametricEQHighGain
-  void midiRequestParametricEQHighGain();
   void midiApplyParametricEQHighGain(unsigned short rawVal);
   // ParametricEQHighFrequency
-  void midiRequestParametricEQHighFrequency();
   void midiApplyParametricEQHighFrequency(unsigned short rawVal);
   // ParametricEQPeakGain
-  void midiRequestParametricEQPeakGain();
   void midiApplyParametricEQPeakGain(unsigned short rawVal);
   // ParametricEQPeakFrequency
-  void midiRequestParametricEQPeakFrequency();
   void midiApplyParametricEQPeakFrequency(unsigned short rawVal);
   // ParametricEQPeakQFactor
-  void midiRequestParametricEQPeakQFactor();
   void midiApplyParametricEQPeakQFactor(unsigned short rawVal);
   // ParametricEQPeakGain2
-  void midiRequestParametricEQPeakGain2();
   void midiApplyParametricEQPeakGain2(unsigned short rawVal);
   // ParametricEQPeakFrequency2
-  void midiRequestParametricEQPeakFrequency2();
   void midiApplyParametricEQPeakFrequency2(unsigned short rawVal);
   // ParametricEQPeakQFactor2
-  void midiRequestParametricEQPeakQFactor2();
   void midiApplyParametricEQPeakQFactor2(unsigned short rawVal);
   // WahPeakRange
-  void midiRequestWahPeakRange();
   void midiApplyWahPeakRange(unsigned short rawVal);
   // Ducking
-  void midiRequestDucking();
   void midiApplyDucking(unsigned short rawVal);
   // Intensity
-  void midiRequestIntensity();
   void midiApplyIntensity(unsigned short rawVal);
   // VoiceMix
-  void midiRequestVoiceMix();
   void midiApplyVoiceMix(unsigned short rawVal);
   // Voice1Pitch
-  void midiRequestVoice1Pitch();
   void midiApplyVoice1Pitch(unsigned short rawVal);
   // Voice2Pitch
-  void midiRequestVoice2Pitch();
   void midiApplyVoice2Pitch(unsigned short rawVal);
   // Detune
-  void midiRequestDetune();
   void midiApplyDetune(unsigned short rawVal);
   // SmoothChords
-  void midiRequestSmoothChords();
   void midiApplySmoothChords(unsigned short rawVal);
   // PureTuning
-  void midiRequestPureTuning();
   void midiApplyPureTuning(unsigned short rawVal);
   // Voice1Interval
-  void midiRequestVoice1Interval();
   void midiApplyVoice1Interval(unsigned short rawVal);
   // Voice2Interval
-  void midiRequestVoice2Interval();
   void midiApplyVoice2Interval(unsigned short rawVal);
   // Key
-  void midiRequestKey();
   void midiApplyKey(unsigned short rawVal);
   // FormantShiftOnOff
-  void midiRequestFormantShiftOnOff();
   void midiApplyFormantShiftOnOff(unsigned short rawVal);
   // FormantShift
-  void midiRequestFormantShift();
   void midiApplyFormantShift(unsigned short rawVal);
   // LowCut
-  void midiRequestLowCut();
   void midiApplyLowCut(unsigned short rawVal);
   // HighCut
-  void midiRequestHighCut();
   void midiApplyHighCut(unsigned short rawVal);
   // DelayMix
-  void midiRequestDelayMix();
   void midiApplyDelayMix(unsigned short rawVal);
   // Delay1Time
-  void midiRequestDelay1Time();
   void midiApplyDelay1Time(unsigned short rawVal);
   // Delay2Ratio
-  void midiRequestDelay2Ratio();
   void midiApplyDelay2Ratio(unsigned short rawVal);
   // DelayNoteValue1
-  void midiRequestDelayNoteValue1();
   void midiApplyDelayNoteValue1(unsigned short rawVal);
   // DelayNoteValue2
-  void midiRequestDelayNoteValue2();
   void midiApplyDelayNoteValue2(unsigned short rawVal);
   // DelayFeedback
-  void midiRequestDelayFeedback();
   void midiApplyDelayFeedback(unsigned short rawVal);
   // DelayToTempo
-  void midiRequestDelayToTempo();
   void midiApplyDelayToTempo(unsigned short rawVal);
   // DelayModulation
-  void midiRequestDelayModulation();
   void midiApplyDelayModulation(unsigned short rawVal);
 
   // receive callbacks for derived class

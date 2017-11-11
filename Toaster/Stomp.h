@@ -29,94 +29,94 @@ public:
   using StompMidi::getInstance;
 
   void requestAllValues();
-  void requestType() { midiRequestType(); }
-  void requestOnOff() { midiRequestOnOff(); }
-  void requestMix() { midiRequestMix(); }
-  void requestVolume() { midiRequestVolume(); }
-  void requestStereo() { midiRequestStereo(); }
-  void requestWahManual() { midiRequestWahManual(); }
-  void requestWahPeak() { midiRequestWahPeak(); }
-  void requestWahRange() { midiRequestWahRange(); }
-  void requestWahPedalMode() { midiRequestWahPedalMode(); }
-  void requestWahTouchAttack() { midiRequestWahTouchAttack(); }
-  void requestWahTouchRelease() { midiRequestWahTouchRelease(); }
-  void requestWahTouchBoost() { midiRequestWahTouchBoost(); }
-  void requestDistortionShaperDrive() { midiRequestDistortionShaperDrive(); }
-  void requestDistortionBoosterTone() { midiRequestDistortionBoosterTone(); }
+  void requestType() {  }
+  void requestOnOff() {  }
+  void requestMix() {  }
+  void requestVolume() {  }
+  void requestStereo() {  }
+  void requestWahManual() {  }
+  void requestWahPeak() {  }
+  void requestWahRange() {  }
+  void requestWahPedalMode() {  }
+  void requestWahTouchAttack() {  }
+  void requestWahTouchRelease() {  }
+  void requestWahTouchBoost() {  }
+  void requestDistortionShaperDrive() {  }
+  void requestDistortionBoosterTone() {  }
   void requestCompressorGateIntensity() {
-    midiRequestCompressorGateIntensity();
+
   }
-  void requestCompressorAttack() { midiRequestCompressorAttack(); }
-  void requestModulationRate() { midiRequestModulationRate(); }
-  void requestModulationDepth() { midiRequestModulationDepth(); }
-  void requestModulationFeedback() { midiRequestModulationFeedback(); }
-  void requestModulationCrossover() { midiRequestModulationCrossover(); }
+  void requestCompressorAttack() {  }
+  void requestModulationRate() {  }
+  void requestModulationDepth() {  }
+  void requestModulationFeedback() {  }
+  void requestModulationCrossover() {  }
   void requestModulationHyperChorusAmount() {
-    midiRequestModulationHyperChorusAmount();
+
   }
-  void requestModulationManual() { midiRequestModulationManual(); }
+  void requestModulationManual() {  }
   void requestModulationPhaserPeakSpread() {
-    midiRequestModulationPhaserPeakSpread();
+
   }
-  void requestModulationPhaserStages() { midiRequestModulationPhaserStages(); }
-  void requestRotarySpeed() { midiRequestRotarySpeed(); }
-  void requestRotaryDistance() { midiRequestRotaryDistance(); }
-  void requestRotaryBalance() { midiRequestRotaryBalance(); }
-  void requestCompressorSquash() { midiRequestCompressorSquash(); }
-  void requestGraphicEQBand1() { midiRequestGraphicEQBand1(); }
-  void requestGraphicEQBand2() { midiRequestGraphicEQBand2(); }
-  void requestGraphicEQBand3() { midiRequestGraphicEQBand3(); }
-  void requestGraphicEQBand4() { midiRequestGraphicEQBand4(); }
-  void requestGraphicEQBand5() { midiRequestGraphicEQBand5(); }
-  void requestGraphicEQBand6() { midiRequestGraphicEQBand6(); }
-  void requestGraphicEQBand7() { midiRequestGraphicEQBand7(); }
-  void requestGraphicEQBand8() { midiRequestGraphicEQBand8(); }
-  void requestParametricEQLowGain() { midiRequestParametricEQLowGain(); }
+  void requestModulationPhaserStages() {  }
+  void requestRotarySpeed() {  }
+  void requestRotaryDistance() {  }
+  void requestRotaryBalance() {  }
+  void requestCompressorSquash() {  }
+  void requestGraphicEQBand1() {  }
+  void requestGraphicEQBand2() {  }
+  void requestGraphicEQBand3() {  }
+  void requestGraphicEQBand4() {  }
+  void requestGraphicEQBand5() {  }
+  void requestGraphicEQBand6() {  }
+  void requestGraphicEQBand7() {  }
+  void requestGraphicEQBand8() {  }
+  void requestParametricEQLowGain() {  }
   void requestParametricEQLowFrequency() {
-    midiRequestParametricEQLowFrequency();
+
   }
-  void requestParametricEQHighGain() { midiRequestParametricEQHighGain(); }
+  void requestParametricEQHighGain() {  }
   void requestParametricEQHighFrequency() {
-    midiRequestParametricEQHighFrequency();
+
   }
-  void requestParametricEQPeakGain() { midiRequestParametricEQPeakGain(); }
+  void requestParametricEQPeakGain() {  }
   void requestParametricEQPeakFrequency() {
-    midiRequestParametricEQPeakFrequency();
+
   }
   void requestParametricEQPeakQFactor() {
-    midiRequestParametricEQPeakQFactor();
+
   }
-  void requestParametricEQPeakGain2() { midiRequestParametricEQPeakGain2(); }
+  void requestParametricEQPeakGain2() {  }
   void requestParametricEQPeakFrequency2() {
-    midiRequestParametricEQPeakFrequency2();
+
   }
   void requestParametricEQPeakQFactor2() {
-    midiRequestParametricEQPeakQFactor2();
+
   }
-  void requestWahPeakRange() { midiRequestWahPeakRange(); }
-  void requestDucking() { midiRequestDucking(); }
-  void requestIntensity() { midiRequestIntensity(); }
-  void requestVoiceMix() { midiRequestVoiceMix(); }
-  void requestVoice1Pitch() { midiRequestVoice1Pitch(); }
-  void requestVoice2Pitch() { midiRequestVoice2Pitch(); }
-  void requestDetune() { midiRequestDetune(); }
-  void requestSmoothChords() { midiRequestSmoothChords(); }
-  void requestPureTuning() { midiRequestPureTuning(); }
-  void requestVoice1Interval() { midiRequestVoice1Interval(); }
-  void requestVoice2Interval() { midiRequestVoice2Interval(); }
-  void requestKey() { midiRequestKey(); }
-  void requestFormantShiftOnOff() { midiRequestFormantShiftOnOff(); }
-  void requestFormantShift() { midiRequestFormantShift(); }
-  void requestLowCut() { midiRequestLowCut(); }
-  void requestHighCut() { midiRequestHighCut(); }
-  void requestDelayMix() { midiRequestDelayMix(); }
-  void requestDelay1Time() { midiRequestDelay1Time(); }
-  void requestDelay2Ratio() { midiRequestDelay2Ratio(); }
-  void requestDelayNoteValue1() { midiRequestDelayNoteValue1(); }
-  void requestDelayNoteValue2() { midiRequestDelayNoteValue2(); }
-  void requestDelayFeedback() { midiRequestDelayFeedback(); }
-  void requestDelayToTempo() { midiRequestDelayToTempo(); }
-  void requestDelayModulation() { midiRequestDelayModulation(); }
+  void requestWahPeakRange() {  }
+  void requestDucking() {  }
+  void requestIntensity() {  }
+  void requestVoiceMix() {  }
+  void requestVoice1Pitch() {  }
+  void requestVoice2Pitch() {  }
+  void requestDetune() {  }
+  void requestSmoothChords() {  }
+  void requestPureTuning() {  }
+  void requestVoice1Interval() {  }
+  void requestVoice2Interval() {  }
+  void requestKey() {  }
+  void requestFormantShiftOnOff() {  }
+  void requestFormantShift() {  }
+  void requestLowCut() {  }
+  void requestHighCut() {  }
+  void requestDelayMix() {  }
+  void requestDelay1Time() {  }
+  void requestDelay2Ratio() {  }
+  void requestDelayNoteValue1() {  }
+  void requestDelayNoteValue2() {  }
+  void requestDelayFeedback() {  }
+  void requestDelayToTempo() {  }
+  void requestDelayModulation() {  }
 
   ::FXType getFXType() const { return mFXType; }
 

@@ -299,15 +299,8 @@ unsigned char StompMidi::getId() {
   return ret;
 }
 
-void StompMidi::midiRequestType() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sType));
-}
-
 void StompMidi::midiApplyType(unsigned short rawVal) {
   Midi::get().sendCmd(createSingleParamSetCmd(getAddressPage(), sType, rawVal));
-}
-void StompMidi::midiRequestOnOff() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sOnOff));
 }
 
 void StompMidi::midiApplyOnOff(unsigned short rawVal) {
@@ -315,16 +308,8 @@ void StompMidi::midiApplyOnOff(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sOnOff, rawVal));
 }
 
-void StompMidi::midiRequestMix() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sMix));
-}
-
 void StompMidi::midiApplyMix(unsigned short rawVal) {
   Midi::get().sendCmd(createSingleParamSetCmd(getAddressPage(), sMix, rawVal));
-}
-
-void StompMidi::midiRequestVolume() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sVolume));
 }
 
 void StompMidi::midiApplyVolume(unsigned short rawVal) {
@@ -332,17 +317,9 @@ void StompMidi::midiApplyVolume(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sVolume, rawVal));
 }
 
-void StompMidi::midiRequestStereo() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sStereo));
-}
-
 void StompMidi::midiApplyStereo(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sStereo, rawVal));
-}
-
-void StompMidi::midiRequestWahManual() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sWahManual));
 }
 
 void StompMidi::midiApplyWahManual(unsigned short rawVal) {
@@ -350,17 +327,9 @@ void StompMidi::midiApplyWahManual(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sWahManual, rawVal));
 }
 
-void StompMidi::midiRequestWahPeak() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sWahPeak));
-}
-
 void StompMidi::midiApplyWahPeak(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sWahPeak, rawVal));
-}
-
-void StompMidi::midiRequestWahRange() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sWahRange));
 }
 
 void StompMidi::midiApplyWahRange(unsigned short rawVal) {
@@ -368,18 +337,9 @@ void StompMidi::midiApplyWahRange(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sWahRange, rawVal));
 }
 
-void StompMidi::midiRequestWahPedalMode() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sWahPedalMode));
-}
-
 void StompMidi::midiApplyWahPedalMode(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sWahPedalMode, rawVal));
-}
-
-void StompMidi::midiRequestWahTouchAttack() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sWahTouchAttack));
 }
 
 void StompMidi::midiApplyWahTouchAttack(unsigned short rawVal) {
@@ -387,19 +347,9 @@ void StompMidi::midiApplyWahTouchAttack(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sWahTouchAttack, rawVal));
 }
 
-void StompMidi::midiRequestWahTouchRelease() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sWahTouchRelease));
-}
-
 void StompMidi::midiApplyWahTouchRelease(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sWahTouchRelease, rawVal));
-}
-
-void StompMidi::midiRequestWahTouchBoost() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sWahTouchBoost));
 }
 
 void StompMidi::midiApplyWahTouchBoost(unsigned short rawVal) {
@@ -407,19 +357,9 @@ void StompMidi::midiApplyWahTouchBoost(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sWahTouchBoost, rawVal));
 }
 
-void StompMidi::midiRequestDistortionShaperDrive() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sDistortionShaperDrive));
-}
-
 void StompMidi::midiApplyDistortionShaperDrive(unsigned short rawVal) {
   Midi::get().sendCmd(createSingleParamSetCmd(getAddressPage(),
                                               sDistortionShaperDrive, rawVal));
-}
-
-void StompMidi::midiRequestDistortionBoosterTone() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sDistortionBoosterTone));
 }
 
 void StompMidi::midiApplyDistortionBoosterTone(unsigned short rawVal) {
@@ -427,19 +367,9 @@ void StompMidi::midiApplyDistortionBoosterTone(unsigned short rawVal) {
                                               sDistortionBoosterTone, rawVal));
 }
 
-void StompMidi::midiRequestCompressorGateIntensity() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sCompressorGateIntensity));
-}
-
 void StompMidi::midiApplyCompressorGateIntensity(unsigned short rawVal) {
   Midi::get().sendCmd(createSingleParamSetCmd(
       getAddressPage(), sCompressorGateIntensity, rawVal));
-}
-
-void StompMidi::midiRequestCompressorAttack() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sCompressorAttack));
 }
 
 void StompMidi::midiApplyCompressorAttack(unsigned short rawVal) {
@@ -447,59 +377,29 @@ void StompMidi::midiApplyCompressorAttack(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sCompressorAttack, rawVal));
 }
 
-void StompMidi::midiRequestModulationRate() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sModulationRate));
-}
-
 void StompMidi::midiApplyModulationRate(unsigned short rawVal) {
-  Midi::get().sendCmd(
-      createSingleParamSetCmd(getAddressPage(), sModulationRate, rawVal));
-}
-
-void StompMidi::midiRequestModulationDepth() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sModulationDepth));
+      Midi::get().sendCmd(
+              createSingleParamSetCmd(getAddressPage(), sModulationRate, rawVal));
 }
 
 void StompMidi::midiApplyModulationDepth(unsigned short rawVal) {
-  Midi::get().sendCmd(
-      createSingleParamSetCmd(getAddressPage(), sModulationDepth, rawVal));
-}
-
-void StompMidi::midiRequestModulationFeedback() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sModulationFeedback));
+    Midi::get().sendCmd(
+        createSingleParamSetCmd(getAddressPage(), sModulationDepth, rawVal));
 }
 
 void StompMidi::midiApplyModulationFeedback(unsigned short rawVal) {
-  Midi::get().sendCmd(
-      createSingleParamSetCmd(getAddressPage(), sModulationFeedback, rawVal));
-}
-
-void StompMidi::midiRequestModulationCrossover() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sModulationCrossover));
+    Midi::get().sendCmd(
+        createSingleParamSetCmd(getAddressPage(), sModulationFeedback, rawVal));
 }
 
 void StompMidi::midiApplyModulationCrossover(unsigned short rawVal) {
-  Midi::get().sendCmd(
-      createSingleParamSetCmd(getAddressPage(), sModulationCrossover, rawVal));
-}
-
-void StompMidi::midiRequestModulationHyperChorusAmount() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sModulationHyperChorusAmount));
+    Midi::get().sendCmd(
+        createSingleParamSetCmd(getAddressPage(), sModulationCrossover, rawVal));
 }
 
 void StompMidi::midiApplyModulationHyperChorusAmount(unsigned short rawVal) {
-  Midi::get().sendCmd(createSingleParamSetCmd(
-      getAddressPage(), sModulationHyperChorusAmount, rawVal));
-}
-
-void StompMidi::midiRequestModulationManual() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sModulationManual));
+    Midi::get().sendCmd(createSingleParamSetCmd(
+        getAddressPage(), sModulationHyperChorusAmount, rawVal));
 }
 
 void StompMidi::midiApplyModulationManual(unsigned short rawVal) {
@@ -507,19 +407,9 @@ void StompMidi::midiApplyModulationManual(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sModulationManual, rawVal));
 }
 
-void StompMidi::midiRequestModulationPhaserPeakSpread() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sModulationPhaserPeakSpread));
-}
-
 void StompMidi::midiApplyModulationPhaserPeakSpread(unsigned short rawVal) {
   Midi::get().sendCmd(createSingleParamSetCmd(
       getAddressPage(), sModulationPhaserPeakSpread, rawVal));
-}
-
-void StompMidi::midiRequestModulationPhaserStages() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sModulationPhaserStages));
 }
 
 void StompMidi::midiApplyModulationPhaserStages(unsigned short rawVal) {
@@ -527,18 +417,9 @@ void StompMidi::midiApplyModulationPhaserStages(unsigned short rawVal) {
                                               sModulationPhaserStages, rawVal));
 }
 
-void StompMidi::midiRequestRotarySpeed() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sRotarySpeed));
-}
-
 void StompMidi::midiApplyRotarySpeed(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sRotarySpeed, rawVal));
-}
-
-void StompMidi::midiRequestRotaryDistance() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sRotaryDistance));
 }
 
 void StompMidi::midiApplyRotaryDistance(unsigned short rawVal) {
@@ -546,19 +427,9 @@ void StompMidi::midiApplyRotaryDistance(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sRotaryDistance, rawVal));
 }
 
-void StompMidi::midiRequestRotaryBalance() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sRotaryBalance));
-}
-
 void StompMidi::midiApplyRotaryBalance(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sRotaryBalance, rawVal));
-}
-
-void StompMidi::midiRequestCompressorSquash() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sCompressorSquash));
 }
 
 void StompMidi::midiApplyCompressorSquash(unsigned short rawVal) {
@@ -566,19 +437,9 @@ void StompMidi::midiApplyCompressorSquash(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sCompressorSquash, rawVal));
 }
 
-void StompMidi::midiRequestGraphicEQBand1() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sGraphicEQBand1));
-}
-
 void StompMidi::midiApplyGraphicEQBand1(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sGraphicEQBand1, rawVal));
-}
-
-void StompMidi::midiRequestGraphicEQBand2() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sGraphicEQBand2));
 }
 
 void StompMidi::midiApplyGraphicEQBand2(unsigned short rawVal) {
@@ -586,19 +447,9 @@ void StompMidi::midiApplyGraphicEQBand2(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sGraphicEQBand2, rawVal));
 }
 
-void StompMidi::midiRequestGraphicEQBand3() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sGraphicEQBand3));
-}
-
 void StompMidi::midiApplyGraphicEQBand3(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sGraphicEQBand3, rawVal));
-}
-
-void StompMidi::midiRequestGraphicEQBand4() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sGraphicEQBand4));
 }
 
 void StompMidi::midiApplyGraphicEQBand4(unsigned short rawVal) {
@@ -606,19 +457,9 @@ void StompMidi::midiApplyGraphicEQBand4(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sGraphicEQBand4, rawVal));
 }
 
-void StompMidi::midiRequestGraphicEQBand5() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sGraphicEQBand5));
-}
-
 void StompMidi::midiApplyGraphicEQBand5(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sGraphicEQBand5, rawVal));
-}
-
-void StompMidi::midiRequestGraphicEQBand6() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sGraphicEQBand6));
 }
 
 void StompMidi::midiApplyGraphicEQBand6(unsigned short rawVal) {
@@ -626,19 +467,9 @@ void StompMidi::midiApplyGraphicEQBand6(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sGraphicEQBand6, rawVal));
 }
 
-void StompMidi::midiRequestGraphicEQBand7() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sGraphicEQBand7));
-}
-
 void StompMidi::midiApplyGraphicEQBand7(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sGraphicEQBand7, rawVal));
-}
-
-void StompMidi::midiRequestGraphicEQBand8() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sGraphicEQBand8));
 }
 
 void StompMidi::midiApplyGraphicEQBand8(unsigned short rawVal) {
@@ -646,19 +477,9 @@ void StompMidi::midiApplyGraphicEQBand8(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sGraphicEQBand8, rawVal));
 }
 
-void StompMidi::midiRequestParametricEQLowGain() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sParametricEQLowGain));
-}
-
 void StompMidi::midiApplyParametricEQLowGain(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sParametricEQLowGain, rawVal));
-}
-
-void StompMidi::midiRequestParametricEQLowFrequency() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sParametricEQLowFrequency));
 }
 
 void StompMidi::midiApplyParametricEQLowFrequency(unsigned short rawVal) {
@@ -666,19 +487,9 @@ void StompMidi::midiApplyParametricEQLowFrequency(unsigned short rawVal) {
       getAddressPage(), sParametricEQLowFrequency, rawVal));
 }
 
-void StompMidi::midiRequestParametricEQHighGain() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sParametricEQHighGain));
-}
-
 void StompMidi::midiApplyParametricEQHighGain(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sParametricEQHighGain, rawVal));
-}
-
-void StompMidi::midiRequestParametricEQHighFrequency() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sParametricEQHighFrequency));
 }
 
 void StompMidi::midiApplyParametricEQHighFrequency(unsigned short rawVal) {
@@ -686,19 +497,9 @@ void StompMidi::midiApplyParametricEQHighFrequency(unsigned short rawVal) {
       getAddressPage(), sParametricEQHighFrequency, rawVal));
 }
 
-void StompMidi::midiRequestParametricEQPeakGain() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sParametricEQPeakGain));
-}
-
 void StompMidi::midiApplyParametricEQPeakGain(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sParametricEQPeakGain, rawVal));
-}
-
-void StompMidi::midiRequestParametricEQPeakFrequency() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sParametricEQPeakFrequency));
 }
 
 void StompMidi::midiApplyParametricEQPeakFrequency(unsigned short rawVal) {
@@ -706,19 +507,9 @@ void StompMidi::midiApplyParametricEQPeakFrequency(unsigned short rawVal) {
       getAddressPage(), sParametricEQPeakFrequency, rawVal));
 }
 
-void StompMidi::midiRequestParametricEQPeakQFactor() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sParametricEQPeakQFactor));
-}
-
 void StompMidi::midiApplyParametricEQPeakQFactor(unsigned short rawVal) {
   Midi::get().sendCmd(createSingleParamSetCmd(
       getAddressPage(), sParametricEQPeakQFactor, rawVal));
-}
-
-void StompMidi::midiRequestParametricEQPeakGain2() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sParametricEQPeakGain2));
 }
 
 void StompMidi::midiApplyParametricEQPeakGain2(unsigned short rawVal) {
@@ -726,19 +517,9 @@ void StompMidi::midiApplyParametricEQPeakGain2(unsigned short rawVal) {
                                               sParametricEQPeakGain2, rawVal));
 }
 
-void StompMidi::midiRequestParametricEQPeakFrequency2() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sParametricEQPeakFrequency2));
-}
-
 void StompMidi::midiApplyParametricEQPeakFrequency2(unsigned short rawVal) {
   Midi::get().sendCmd(createSingleParamSetCmd(
       getAddressPage(), sParametricEQPeakFrequency2, rawVal));
-}
-
-void StompMidi::midiRequestParametricEQPeakQFactor2() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sParametricEQPeakQFactor2));
 }
 
 void StompMidi::midiApplyParametricEQPeakQFactor2(unsigned short rawVal) {
@@ -746,17 +527,9 @@ void StompMidi::midiApplyParametricEQPeakQFactor2(unsigned short rawVal) {
       getAddressPage(), sParametricEQPeakQFactor2, rawVal));
 }
 
-void StompMidi::midiRequestWahPeakRange() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sWahPeakRange));
-}
-
 void StompMidi::midiApplyWahPeakRange(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sWahPeakRange, rawVal));
-}
-
-void StompMidi::midiRequestDucking() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sDucking));
 }
 
 void StompMidi::midiApplyDucking(unsigned short rawVal) {
@@ -764,17 +537,9 @@ void StompMidi::midiApplyDucking(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sDucking, rawVal));
 }
 
-void StompMidi::midiRequestIntensity() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sIntensity));
-}
-
 void StompMidi::midiApplyIntensity(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sIntensity, rawVal));
-}
-
-void StompMidi::midiRequestVoiceMix() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sVoiceMix));
 }
 
 void StompMidi::midiApplyVoiceMix(unsigned short rawVal) {
@@ -782,17 +547,9 @@ void StompMidi::midiApplyVoiceMix(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sVoiceMix, rawVal));
 }
 
-void StompMidi::midiRequestVoice1Pitch() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sVoice1Pitch));
-}
-
 void StompMidi::midiApplyVoice1Pitch(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sVoice1Pitch, rawVal));
-}
-
-void StompMidi::midiRequestVoice2Pitch() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sVoice2Pitch));
 }
 
 void StompMidi::midiApplyVoice2Pitch(unsigned short rawVal) {
@@ -800,17 +557,9 @@ void StompMidi::midiApplyVoice2Pitch(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sVoice2Pitch, rawVal));
 }
 
-void StompMidi::midiRequestDetune() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sDetune));
-}
-
 void StompMidi::midiApplyDetune(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sDetune, rawVal));
-}
-
-void StompMidi::midiRequestSmoothChords() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sSmoothChords));
 }
 
 void StompMidi::midiApplySmoothChords(unsigned short rawVal) {
@@ -818,23 +567,9 @@ void StompMidi::midiApplySmoothChords(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sSmoothChords, rawVal));
 }
 
-void StompMidi::midiRequestPureTuning() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sPureTuning));
-}
-
-void StompMidi::midiRequestVoice1Interval() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sVoice1Interval));
-}
-
 void StompMidi::midiApplyVoice1Interval(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sVoice1Interval, rawVal));
-}
-
-void StompMidi::midiRequestVoice2Interval() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sVoice2Interval));
 }
 
 void StompMidi::midiApplyVoice2Interval(unsigned short rawVal) {
@@ -847,17 +582,8 @@ void StompMidi::midiApplyPureTuning(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sPureTuning, rawVal));
 }
 
-void StompMidi::midiRequestKey() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sKey));
-}
-
 void StompMidi::midiApplyKey(unsigned short rawVal) {
   Midi::get().sendCmd(createSingleParamSetCmd(getAddressPage(), sKey, rawVal));
-}
-
-void StompMidi::midiRequestFormantShiftOnOff() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sFormantShiftOnOff));
 }
 
 void StompMidi::midiApplyFormantShiftOnOff(unsigned short rawVal) {
@@ -865,17 +591,9 @@ void StompMidi::midiApplyFormantShiftOnOff(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sFormantShiftOnOff, rawVal));
 }
 
-void StompMidi::midiRequestFormantShift() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sFormantShift));
-}
-
 void StompMidi::midiApplyFormantShift(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sFormantShift, rawVal));
-}
-
-void StompMidi::midiRequestLowCut() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sLowCut));
 }
 
 void StompMidi::midiApplyLowCut(unsigned short rawVal) {
@@ -883,17 +601,9 @@ void StompMidi::midiApplyLowCut(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sLowCut, rawVal));
 }
 
-void StompMidi::midiRequestHighCut() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sHighCut));
-}
-
 void StompMidi::midiApplyHighCut(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sHighCut, rawVal));
-}
-
-void StompMidi::midiRequestDelayMix() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sDelayMix));
 }
 
 void StompMidi::midiApplyDelayMix(unsigned short rawVal) {
@@ -901,17 +611,9 @@ void StompMidi::midiApplyDelayMix(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sDelayMix, rawVal));
 }
 
-void StompMidi::midiRequestDelay1Time() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sDelay1Time));
-}
-
 void StompMidi::midiApplyDelay1Time(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sDelay1Time, rawVal));
-}
-
-void StompMidi::midiRequestDelay2Ratio() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sDelay2Ratio));
 }
 
 void StompMidi::midiApplyDelay2Ratio(unsigned short rawVal) {
@@ -919,19 +621,10 @@ void StompMidi::midiApplyDelay2Ratio(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sDelay2Ratio, rawVal));
 }
 
-void StompMidi::midiRequestDelayNoteValue1() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sDelayNoteValue1));
-}
 
 void StompMidi::midiApplyDelayNoteValue1(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sDelayNoteValue1, rawVal));
-}
-
-void StompMidi::midiRequestDelayNoteValue2() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sDelayNoteValue2));
 }
 
 void StompMidi::midiApplyDelayNoteValue2(unsigned short rawVal) {
@@ -939,28 +632,14 @@ void StompMidi::midiApplyDelayNoteValue2(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sDelayNoteValue2, rawVal));
 }
 
-void StompMidi::midiRequestDelayFeedback() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sDelayFeedback));
-}
-
 void StompMidi::midiApplyDelayFeedback(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sDelayFeedback, rawVal));
 }
 
-void StompMidi::midiRequestDelayToTempo() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sDelayToTempo));
-}
-
 void StompMidi::midiApplyDelayToTempo(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sDelayToTempo, rawVal));
-}
-
-void StompMidi::midiRequestDelayModulation() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sDelayModulation));
 }
 
 void StompMidi::midiApplyDelayModulation(unsigned short rawVal) {
