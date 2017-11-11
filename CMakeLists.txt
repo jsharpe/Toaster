@@ -161,7 +161,6 @@ add_executable(Toaster
     Toaster/InputFrame.cpp
     Toaster/InputFrame.ui
     Toaster/InputMidi.cpp
-    Toaster/KPAOS4Checker.cpp
     Toaster/LegacyDelayFrame.cpp
     Toaster/LegacyDelayFrame.ui
     Toaster/LookUpTables.cpp
