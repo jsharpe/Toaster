@@ -33,6 +33,7 @@
 #include "StompEditorPage.h"
 #include "Tap.h"
 #include "ui_MainFrame.h"
+#include "SysExBase.h"
 
 MainFrame::MainFrame(QWidget *parent)
     : QFrame(parent), ui(new Ui::MainFrame), mStompACtxMenu(stompState.stompA),
@@ -195,22 +196,10 @@ void MainFrame::connect2KPA(const QString &connectName) {
 void MainFrame::disconnectFromKPA() { globalObj.disconnectFromKPA(); }
 
 void MainFrame::requestValues() {
-  stompState.requestAllValues();
-  reverbObj.requestAllValues();
-  ampObj.requestAllValues();
-  eqObj.requestAllValues();
-  cabObj.requestAllValues();
-  rigObj.requestAllValues();
-  globalObj.requestAllValues();
-  inputObj.requestAllValues();
-  profileObj.requestAllValues();
-
-  ui->browser->requestValues();
-
-  MasterVolume::get().requestValues();
-  // DebugMidi::get().debugScanRequest(0x04, 0x00, 0x7F);
-  // DebugMidi::get().debugScanRequest(0x00, 0x0, 0x7F);
-  // DebugMidi::get().debugScanRequest(0x01, 0x00, 0x7F);
+    for (unsigned char ap = 0x0; ap < 0xFE; ++ap) {
+        ByteArray a = {ap, 0x00};
+        Midi::get().sendCmd(SysExBase::createMultiParamGetCmd(a, 0x00));
+    }
 }
 
 // stomps

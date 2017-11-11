@@ -21,9 +21,8 @@
 #include <QString>
 
 class SysExBase {
-protected:
-  SysExBase() {}
-  ~SysExBase() {}
+public:
+  SysExBase() = default;
 
   // sysex header & base struct
   static const ByteArray &Header() {
@@ -172,8 +171,8 @@ protected:
 
   //===========================================================================================================================
   // multiparameter 0x02
-  ByteArray createMultiParamGetCmd(const ByteArray &addressPage,
-                                   unsigned char startParam) {
+  static ByteArray createMultiParamGetCmd(const ByteArray &addressPage,
+                                          unsigned char startParam) {
     ByteArray res = Header();
     for (auto v : ReqMultiParamVals())
       res.push_back(v);
