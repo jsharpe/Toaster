@@ -35,7 +35,7 @@ protected:
   }
 
   static const ByteArray Header(unsigned short len) {
-    static ByteArray id = {0x00, 0x20, 0x33, 0x00, 0x00};
+    static ByteArray id = {0x00, 0x20, 0x33, 0x00, 0x02};
     ByteArray res = {0xF0};
 
     if (len < 128) {
@@ -173,14 +173,13 @@ protected:
   //===========================================================================================================================
   // multiparameter 0x02
   ByteArray createMultiParamGetCmd(const ByteArray &addressPage,
-                                   const ByteArray &startParam) {
+                                   unsigned char startParam) {
     ByteArray res = Header();
     for (auto v : ReqMultiParamVals())
       res.push_back(v);
     for (auto v : addressPage)
       res.push_back(v);
-    for (auto v : startParam)
-      res.push_back(v);
+    res.push_back(0x00);
     res.push_back(Eox());
     return res;
   }
