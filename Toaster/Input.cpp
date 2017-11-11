@@ -27,9 +27,6 @@ Input &Input::get() {
 }
 
 void Input::requestAllValues() {
-  midiRequestNoiseGate();
-  midiRequestCleanSense();
-  midiRequestDistortionSense();
 }
 
 // slots

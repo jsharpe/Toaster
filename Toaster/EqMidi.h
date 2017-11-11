@@ -41,19 +41,14 @@ protected:
 
   // parameter
   // OnOff
-  void midiRequestOnOff();
   void midiApplyOnOff(unsigned short rawVal);
   // Bass
-  void midiRequestBass();
   void midiApplyBass(unsigned short rawVal);
   // Middle
-  void midiRequestMiddle();
   void midiApplyMiddle(unsigned short rawVal);
   // Treble
-  void midiRequestTreble();
   void midiApplyTreble(unsigned short rawVal);
   // Presence
-  void midiRequestPresence();
   void midiApplyPresence(unsigned short rawVal);
 
   // receive callbacks for derived class

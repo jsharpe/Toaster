@@ -27,16 +27,6 @@ Amp &Amp::get() {
 }
 
 void Amp::requestAllValues() {
-  midiRequestOnOff();
-  midiRequestGain();
-  midiRequestDefinition();
-  midiRequestClarity();
-  midiRequestPowerSagging();
-  midiRequestPick();
-  midiRequestCompressor();
-  midiRequestTubeShape();
-  midiRequestTubeBias();
-  midiRequestDirectMix();
 }
 
 // slots

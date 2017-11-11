@@ -1,4 +1,5 @@
 /*  This file is part of Toaster, the editor and remote control for Kemper
+  midiRequestEffectsEnable();
  * profiling amplifier.
  *
  *   Copyright (C) 2016  Thomas Langer

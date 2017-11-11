@@ -28,9 +28,9 @@ Global &Global::get() {
 }
 
 void Global::requestAllValues() {
-  midiRequestOperationMode();
-  midiRequestMonitorOutputVolume();
-  midiRequestHeadphoneOutputVolume();
+
+
+
 }
 
 // slots

@@ -26,7 +26,7 @@ ExtParam &ExtParam::get() {
   return extParam;
 }
 
-void ExtParam::requestAllValues() { midiRequestBrowserView(); }
+void ExtParam::requestAllValues() {  }
 
 void ExtParam::applyBrowserView(unsigned int view) {
   midiApplyBrowserView(view);

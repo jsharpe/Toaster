@@ -45,10 +45,6 @@ void TunerMidi::consumeSysExMsg(unsigned char param, uint16_t rawVal) {
       midiMuteSignalReceived(rawVal);
 }
 
-void TunerMidi::midiRequestMuteSignal() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sMuteSignal));
-}
-
 void TunerMidi::midiApplyMuteSignal(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sMuteSignal, rawVal));

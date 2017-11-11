@@ -27,15 +27,6 @@ Profile &Profile::get() {
 }
 
 void Profile::requestAllValues() {
-  midiRequestRigName();
-  midiRequestRigAuthor();
-  midiRequestRigDateTime();
-  midiRequestRigComment();
-  midiRequestAmpName();
-  midiRequestAmpAuthor();
-  midiRequestAmpDate();
-  midiRequestAmpTime();
-  midiRequestCabName();
 }
 
 void Profile::applyRigName(const QString &rigName) {

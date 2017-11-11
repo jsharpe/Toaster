@@ -23,30 +23,16 @@ Reverb &Reverb::get() {
 }
 
 void Reverb::requestAllValues() {
-  midiRequestType();
-  midiRequestOnOffCutsTail();
-  midiRequestMix();
-  midiRequestVolume();
-  midiRequestDelRevBalance();
-  midiRequestTime();
-  midiRequestDamping();
-  midiRequestBandwidth();
-  midiRequestCenterFrequency();
-  midiRequestPreDelay();
-  midiRequestOnOffKeepsTail();
-  midiRequestDucking();
 }
 
 // slots
 void Reverb::applyType(::ReverbType type) {
   midiApplyType((unsigned short)type);
   emit typeReceived(type);
-  midiRequestType();
 }
 
 void Reverb::applyOnOffCutsTail(bool onOff) {
   midiApplyOnOffCutsTail(Utils::bool2Raw(onOff));
-  midiRequestOnOffCutsTail();
 }
 
 void Reverb::applyMix(int mix) { midiApplyMix((unsigned short)mix); }

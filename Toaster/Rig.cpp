@@ -27,12 +27,6 @@ Rig &Rig::get() {
 }
 
 void Rig::requestAllValues() {
-  midiRequestTempo();
-  midiRequestVolume();
-  midiRequestTempoEnable();
-  midiRequestStompsEnable();
-  midiRequestStackEnable();
-  midiRequestEffectsEnable();
 }
 
 // slots

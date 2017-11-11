@@ -39,37 +39,37 @@ public:
   };
 
   void requestAllValues();
-  void requestWahPedalToPitch() { midiRequestWahPedalToPitch(); }
-  void requestMasterTune() { midiRequestMasterTune(); }
-  void requestMonitorCabOff() { midiRequestMonitorCabOff(); }
-  void requestMainOutputSource() { midiRequestMainOutputSource(); }
-  void requestMonitorOutputSource() { midiRequestMonitorOutputSource(); }
-  void requestDirectOutputSource() { midiRequestDirectOutputSource(); }
-  void requestSPDIFOutputSource() { midiRequestSPDIFOutputSource(); }
-  void requestMainOutputVolume() { midiRequestMainOutputVolume(); }
-  void requestMonitorOutputVolume() { midiRequestMonitorOutputVolume(); }
-  void requestDirectOutputVolume() { midiRequestDirectOutputVolume(); }
-  void requestHeadphoneOutputVolume() { midiRequestHeadphoneOutputVolume(); }
-  void requestMonitorOutputEQBass() { midiRequestMonitorOutputEQBass(); }
-  void requestMonitorOutputEQMiddle() { midiRequestMonitorOutputEQMiddle(); }
-  void requestMonitorOutputEQTreble() { midiRequestMonitorOutputEQTreble(); }
+  void requestWahPedalToPitch() {  }
+  void requestMasterTune() {  }
+  void requestMonitorCabOff() {  }
+  void requestMainOutputSource() {  }
+  void requestMonitorOutputSource() {  }
+  void requestDirectOutputSource() {  }
+  void requestSPDIFOutputSource() {  }
+  void requestMainOutputVolume() {  }
+  void requestMonitorOutputVolume() {  }
+  void requestDirectOutputVolume() {  }
+  void requestHeadphoneOutputVolume() {  }
+  void requestMonitorOutputEQBass() {  }
+  void requestMonitorOutputEQMiddle() {  }
+  void requestMonitorOutputEQTreble() {  }
   void requestMonitorOutputEQPresence() {
-    midiRequestMonitorOutputEQPresence();
+
   }
-  void requestMainOutputEQBass() { midiRequestMainOutputEQBass(); }
-  void requestMainOutputEQMiddle() { midiRequestMainOutputEQMiddle(); }
-  void requestMainOutputEQTreble() { midiRequestMainOutputEQTreble(); }
-  void requestMainOutputEQPresence() { midiRequestMainOutputEQPresence(); }
-  void requestAuxInToMain() { midiRequestAuxInToMain(); }
-  void requestAuxInToHeadphone() { midiRequestAuxInToHeadphone(); }
-  void requestConstantLatencyOnOff() { midiRequestConstantLatencyOnOff(); }
-  void requestSpace() { midiRequestSpace(); }
-  void requestHeadphoneSpaceOnOff() { midiRequestHeadphoneSpaceOnOff(); }
-  void requestReampSense() { midiRequestReampSense(); }
-  void requestPureCabOnOff() { midiRequestPureCabOnOff(); }
-  void requestPureCab() { midiRequestPureCab(); }
-  void requestInputSource() { midiRequestInputSource(); }
-  void requestSPDIFOutputVlume() { midiRequestSPDIFOutputVolume(); }
+  void requestMainOutputEQBass() {  }
+  void requestMainOutputEQMiddle() {  }
+  void requestMainOutputEQTreble() {  }
+  void requestMainOutputEQPresence() {  }
+  void requestAuxInToMain() {  }
+  void requestAuxInToHeadphone() {  }
+  void requestConstantLatencyOnOff() {  }
+  void requestSpace() {  }
+  void requestHeadphoneSpaceOnOff() {  }
+  void requestReampSense() {  }
+  void requestPureCabOnOff() {  }
+  void requestPureCab() {  }
+  void requestInputSource() {  }
+  void requestSPDIFOutputVlume() {  }
 
 signals:
   void mainOutputVolumeReceived(int volume);

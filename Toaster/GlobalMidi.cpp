@@ -137,19 +137,9 @@ void GlobalMidi::consumeSysExMsg(unsigned char param, uint16_t rawVal) {
       midiOperationModeReceived(rawVal);
 }
 
-void GlobalMidi::midiRequestMainOutputVolume() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sMainOutputVolume));
-}
-
 void GlobalMidi::midiApplyMainOutputVolume(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sMainOutputVolume, rawVal));
-}
-
-void GlobalMidi::midiRequestHeadphoneOutputVolume() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sHeadphoneOutputVolume));
 }
 
 void GlobalMidi::midiApplyHeadphoneOutputVolume(unsigned short rawVal) {
@@ -157,19 +147,9 @@ void GlobalMidi::midiApplyHeadphoneOutputVolume(unsigned short rawVal) {
                                               sHeadphoneOutputVolume, rawVal));
 }
 
-void GlobalMidi::midiRequestMonitorOutputVolume() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sMonitorOutputVolume));
-}
-
 void GlobalMidi::midiApplyMonitorOutputVolume(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sMonitorOutputVolume, rawVal));
-}
-
-void GlobalMidi::midiRequestDirectOutputVolume() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sDirectOutputVolume));
 }
 
 void GlobalMidi::midiApplyDirectOutputVolume(unsigned short rawVal) {
@@ -177,18 +157,9 @@ void GlobalMidi::midiApplyDirectOutputVolume(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sDirectOutputVolume, rawVal));
 }
 
-void GlobalMidi::midiRequestSPDIFOutputVolume() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sSPDIFOutputVolume));
-}
-
 void GlobalMidi::midiApplySPDIFOutputVolume(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sSPDIFOutputVolume, rawVal));
-}
-
-void GlobalMidi::midiRequestMasterTune() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sMasterTune));
 }
 
 void GlobalMidi::midiApplyMasterTune(unsigned short rawVal) {
@@ -196,19 +167,9 @@ void GlobalMidi::midiApplyMasterTune(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sMasterTune, rawVal));
 }
 
-void GlobalMidi::midiRequestMonitorCabOff() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sMonitorCabOff));
-}
-
 void GlobalMidi::midiApplyMonitorCabOff(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sMonitorCabOff, rawVal));
-}
-
-void GlobalMidi::midiRequestSPDIFInputEnable() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sSPDIFInputEnable));
 }
 
 void GlobalMidi::midiApplySPDIFInputEnable(unsigned short rawVal) {
@@ -216,19 +177,9 @@ void GlobalMidi::midiApplySPDIFInputEnable(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sSPDIFInputEnable, rawVal));
 }
 
-void GlobalMidi::midiRequestMainOutputEQBass() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sMainOutputEQBass));
-}
-
 void GlobalMidi::midiApplyMainOutputEQBass(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sMainOutputEQBass, rawVal));
-}
-
-void GlobalMidi::midiRequestMainOutputEQMiddle() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sMainOutputEQMiddle));
 }
 
 void GlobalMidi::midiApplyMainOutputEQMiddle(unsigned short rawVal) {
@@ -236,19 +187,9 @@ void GlobalMidi::midiApplyMainOutputEQMiddle(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sMainOutputEQMiddle, rawVal));
 }
 
-void GlobalMidi::midiRequestMainOutputEQTreble() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sMainOutputEQTreble));
-}
-
 void GlobalMidi::midiApplyMainOutputEQTreble(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sMainOutputEQTreble, rawVal));
-}
-
-void GlobalMidi::midiRequestMainOutputEQPresence() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sMainOutputEQPresence));
 }
 
 void GlobalMidi::midiApplyMainOutputEQPresence(unsigned short rawVal) {
@@ -256,19 +197,9 @@ void GlobalMidi::midiApplyMainOutputEQPresence(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sMainOutputEQPresence, rawVal));
 }
 
-void GlobalMidi::midiRequestMonitorOutputEQBass() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sMonitorOutputEQBass));
-}
-
 void GlobalMidi::midiApplyMonitorOutputEQBass(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sMonitorOutputEQBass, rawVal));
-}
-
-void GlobalMidi::midiRequestMonitorOutputEQMiddle() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sMonitorOutputEQMiddle));
 }
 
 void GlobalMidi::midiApplyMonitorOutputEQMiddle(unsigned short rawVal) {
@@ -276,19 +207,9 @@ void GlobalMidi::midiApplyMonitorOutputEQMiddle(unsigned short rawVal) {
                                               sMonitorOutputEQMiddle, rawVal));
 }
 
-void GlobalMidi::midiRequestMonitorOutputEQTreble() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sMonitorOutputEQTreble));
-}
-
 void GlobalMidi::midiApplyMonitorOutputEQTreble(unsigned short rawVal) {
   Midi::get().sendCmd(createSingleParamSetCmd(getAddressPage(),
                                               sMonitorOutputEQTreble, rawVal));
-}
-
-void GlobalMidi::midiRequestMonitorOutputEQPresence() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sMonitorOutputEQPresence));
 }
 
 void GlobalMidi::midiApplyMonitorOutputEQPresence(unsigned short rawVal) {
@@ -296,19 +217,9 @@ void GlobalMidi::midiApplyMonitorOutputEQPresence(unsigned short rawVal) {
       getAddressPage(), sMonitorOutputEQPresence, rawVal));
 }
 
-void GlobalMidi::midiRequestMainOutputSource() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sMainOutputSource));
-}
-
 void GlobalMidi::midiApplyMainOutputSource(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sMainOutputSource, rawVal));
-}
-
-void GlobalMidi::midiRequestSPDIFOutputSource() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sSPDIFOutputSource));
 }
 
 void GlobalMidi::midiApplySPDIFOutputSource(unsigned short rawVal) {
@@ -316,19 +227,9 @@ void GlobalMidi::midiApplySPDIFOutputSource(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sSPDIFOutputSource, rawVal));
 }
 
-void GlobalMidi::midiRequestMonitorOutputSource() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sMonitorOutputSource));
-}
-
 void GlobalMidi::midiApplyMonitorOutputSource(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sMonitorOutputSource, rawVal));
-}
-
-void GlobalMidi::midiRequestDirectOutputSource() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sDirectOutputSource));
 }
 
 void GlobalMidi::midiApplyDirectOutputSource(unsigned short rawVal) {
@@ -336,18 +237,9 @@ void GlobalMidi::midiApplyDirectOutputSource(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sDirectOutputSource, rawVal));
 }
 
-void GlobalMidi::midiRequestAuxInToMain() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sAuxInToMain));
-}
-
 void GlobalMidi::midiApplyAuxInToMain(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sAuxInToMain, rawVal));
-}
-
-void GlobalMidi::midiRequestAuxInToHeadphone() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sAuxInToHeadphone));
 }
 
 void GlobalMidi::midiApplyAuxInToHeadphone(unsigned short rawVal) {
@@ -355,18 +247,9 @@ void GlobalMidi::midiApplyAuxInToHeadphone(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sAuxInToHeadphone, rawVal));
 }
 
-void GlobalMidi::midiRequestConstantLatencyOnOff() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sConstantLatencyOnOff));
-}
-
 void GlobalMidi::midiApplyConstantLatencyOnOff(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sConstantLatencyOnOff, rawVal));
-}
-
-void GlobalMidi::midiRequestSpace() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sSpace));
 }
 
 void GlobalMidi::midiApplySpace(unsigned short rawVal) {
@@ -374,19 +257,9 @@ void GlobalMidi::midiApplySpace(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sSpace, rawVal));
 }
 
-void GlobalMidi::midiRequestHeadphoneSpaceOnOff() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sHeadphoneSpaceOnOff));
-}
-
 void GlobalMidi::midiApplyHeadphoneSpaceOnOff(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sHeadphoneSpaceOnOff, rawVal));
-}
-
-void GlobalMidi::midiRequestWahPedalToPitch() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sWahPedalToPitch));
 }
 
 void GlobalMidi::midiApplyWahPedalToPitch(unsigned short rawVal) {
@@ -394,17 +267,9 @@ void GlobalMidi::midiApplyWahPedalToPitch(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sWahPedalToPitch, rawVal));
 }
 
-void GlobalMidi::midiRequestInputSource() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sInputSource));
-}
-
 void GlobalMidi::midiApplyInputSource(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sInputSource, rawVal));
-}
-
-void GlobalMidi::midiRequestReampSense() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sReampSense));
 }
 
 void GlobalMidi::midiApplyReampSense(unsigned short rawVal) {
@@ -412,27 +277,14 @@ void GlobalMidi::midiApplyReampSense(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sReampSense, rawVal));
 }
 
-void GlobalMidi::midiRequestPureCabOnOff() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sPureCabOnOff));
-}
-
 void GlobalMidi::midiApplyPureCabOnOff(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sPureCabOnOff, rawVal));
 }
 
-void GlobalMidi::midiRequestPureCab() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sPureCab));
-}
-
 void GlobalMidi::midiApplyPureCab(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sPureCab, rawVal));
-}
-
-void GlobalMidi::midiRequestOperationMode() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sOperationMode));
 }
 
 void GlobalMidi::midiApplyOperationMode(unsigned short rawVal) {

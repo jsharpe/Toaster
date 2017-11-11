@@ -27,11 +27,7 @@ Eq &Eq::get() {
 }
 
 void Eq::requestAllValues() {
-  midiRequestOnOff();
-  midiRequestBass();
-  midiRequestMiddle();
-  midiRequestTreble();
-  midiRequestPresence();
+  Midi::get().sendCmd(createMultiParamGetCmd(getAddressPage(), 0x00));
 }
 
 // slots

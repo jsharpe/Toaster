@@ -58,17 +58,9 @@ void RigMidi::consumeSysExMsg(unsigned char param, uint16_t rawVal) {
       midiEffectsEnableReceived(rawVal);
 }
 
-void RigMidi::midiRequestTempo() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sTempo));
-}
-
 void RigMidi::midiApplyTempo(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sTempo, rawVal));
-}
-
-void RigMidi::midiRequestVolume() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sVolume));
 }
 
 void RigMidi::midiApplyVolume(unsigned short rawVal) {
@@ -76,17 +68,9 @@ void RigMidi::midiApplyVolume(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sVolume, rawVal));
 }
 
-void RigMidi::midiRequestTempoEnable() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sTempoEnable));
-}
-
 void RigMidi::midiApplyTempoEnable(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sTempoEnable, rawVal));
-}
-
-void RigMidi::midiRequestStompsEnable() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sStompsEnable));
 }
 
 void RigMidi::midiApplyStompsEnable(unsigned short rawVal) {
@@ -94,19 +78,11 @@ void RigMidi::midiApplyStompsEnable(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sStompsEnable, rawVal));
 }
 
-void RigMidi::midiRequestStackEnable() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sStackEnable));
-}
-
 void RigMidi::midiApplyStackEnable(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sStackEnable, rawVal));
 }
 
-void RigMidi::midiRequestEffectsEnable() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sEffectsEnable));
-}
 
 void RigMidi::midiApplyEffectsEnable(unsigned short rawVal) {
   Midi::get().sendCmd(

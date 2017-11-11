@@ -196,8 +196,9 @@ void MainFrame::connect2KPA(const QString &connectName) {
 void MainFrame::disconnectFromKPA() { globalObj.disconnectFromKPA(); }
 
 void MainFrame::requestValues() {
-    for (unsigned char ap = 0x0; ap < 0xFE; ++ap) {
-        ByteArray a = {ap, 0x00};
+    std::vector<unsigned char> aps = {0x04, 0x09, 0x0A, 0x0B, 0x0C, 0x32, 0x33, 0x34, 0x35, 0x38, 0x3A, 0x3C, 0x4A, 0x4B, 0x76, 0x7C, 0x7D, 0x7F};
+    for (auto ap: aps) {
+        ByteArray a = {ap};
         Midi::get().sendCmd(SysExBase::createMultiParamGetCmd(a, 0x00));
     }
 }

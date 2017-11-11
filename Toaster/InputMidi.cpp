@@ -49,10 +49,6 @@ unsigned char InputMidi::getId() {
   return ret;
 }
 
-void InputMidi::midiRequestNoiseGate() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sNoiseGate));
-}
-
 void InputMidi::midiApplyNoiseGate(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sNoiseGate, rawVal));
@@ -60,20 +56,11 @@ void InputMidi::midiApplyNoiseGate(unsigned short rawVal) {
                                                   Utils::packRawVal(rawVal)));
 }
 
-void InputMidi::midiRequestCleanSense() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sCleanSense));
-}
-
 void InputMidi::midiApplyCleanSense(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sCleanSense, rawVal));
   Midi::get().sendCmd(createNRPNSingleParamSetCmd(getAddressPage(), sCleanSense,
                                                   Utils::packRawVal(rawVal)));
-}
-
-void InputMidi::midiRequestDistortionSense() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sDistortionSense));
 }
 
 void InputMidi::midiApplyDistortionSense(unsigned short rawVal) {

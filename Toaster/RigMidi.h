@@ -43,22 +43,16 @@ public:
 protected:
   // parameter
   // Tempo
-  void midiRequestTempo();
   void midiApplyTempo(unsigned short rawVal);
   // Volume
-  void midiRequestVolume();
   void midiApplyVolume(unsigned short rawVal);
   // TempoEnable
-  void midiRequestTempoEnable();
   void midiApplyTempoEnable(unsigned short rawVal);
   // StompsEnable
-  void midiRequestStompsEnable();
   void midiApplyStompsEnable(unsigned short rawVal);
   // StackEnablevoid
-  void midiRequestStackEnable();
   void midiApplyStackEnable(unsigned short rawVal);
   // EffectsEnable
-  void midiRequestEffectsEnable();
   void midiApplyEffectsEnable(unsigned short rawVal);
 
   // receive callbacks for derived class

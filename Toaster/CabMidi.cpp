@@ -55,17 +55,9 @@ void CabMidi::consumeSysExMsg(unsigned char param, uint16_t rawVal) {
       midiCharacterReceived(rawVal);
 }
 
-void CabMidi::midiRequestOnOff() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sOnOff));
-}
-
 void CabMidi::midiApplyOnOff(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sOnOff, rawVal));
-}
-
-void CabMidi::midiRequestVolume() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sVolume));
 }
 
 void CabMidi::midiApplyVolume(unsigned short rawVal) {
@@ -73,26 +65,14 @@ void CabMidi::midiApplyVolume(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sVolume, rawVal));
 }
 
-void CabMidi::midiRequestHighShift() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sHighShift));
-}
-
 void CabMidi::midiApplyHighShift(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sHighShift, rawVal));
 }
 
-void CabMidi::midiRequestLowShift() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sLowShift));
-}
-
 void CabMidi::midiApplyLowShift(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sLowShift, rawVal));
-}
-
-void CabMidi::midiRequestCharacter() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sCharacter));
 }
 
 void CabMidi::midiApplyCharacter(unsigned short rawVal) {

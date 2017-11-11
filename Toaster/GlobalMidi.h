@@ -69,97 +69,66 @@ public:
 protected:
   // parameter
   // MainOutputVolume
-  void midiRequestMainOutputVolume();
   void midiApplyMainOutputVolume(unsigned short rawVal);
   // HeadphoneOutputVolume
-  void midiRequestHeadphoneOutputVolume();
   void midiApplyHeadphoneOutputVolume(unsigned short rawVal);
   // MonitorOutputVolume
-  void midiRequestMonitorOutputVolume();
   void midiApplyMonitorOutputVolume(unsigned short rawVal);
   // DirectOutputVolume
-  void midiRequestDirectOutputVolume();
   void midiApplyDirectOutputVolume(unsigned short rawVal);
   // SPDIFOutputVolume
-  void midiRequestSPDIFOutputVolume();
   void midiApplySPDIFOutputVolume(unsigned short rawVal);
   // MasterTune
-  void midiRequestMasterTune();
   void midiApplyMasterTune(unsigned short rawVal);
   // MonitorCabOff
-  void midiRequestMonitorCabOff();
   void midiApplyMonitorCabOff(unsigned short);
   // SPDIFInputEnable
-  void midiRequestSPDIFInputEnable();
   void midiApplySPDIFInputEnable(unsigned short rawVal);
   // MainOutputEQBass
-  void midiRequestMainOutputEQBass();
   void midiApplyMainOutputEQBass(unsigned short rawVal);
   // MainOutputEQMiddle
-  void midiRequestMainOutputEQMiddle();
   void midiApplyMainOutputEQMiddle(unsigned short rawVal);
   // MainOutputEQTreble
-  void midiRequestMainOutputEQTreble();
   void midiApplyMainOutputEQTreble(unsigned short rawVal);
   // MainOutputEQPresence
-  void midiRequestMainOutputEQPresence();
   void midiApplyMainOutputEQPresence(unsigned short rawVal);
   // MonitorOutputEQBass
-  void midiRequestMonitorOutputEQBass();
   void midiApplyMonitorOutputEQBass(unsigned short rawVal);
   // MonitorOutputEQMiddle
-  void midiRequestMonitorOutputEQMiddle();
   void midiApplyMonitorOutputEQMiddle(unsigned short rawVal);
   // MonitorOutputEQTreble
-  void midiRequestMonitorOutputEQTreble();
   void midiApplyMonitorOutputEQTreble(unsigned short rawVal);
   // MonitorOutputEQPresence
-  void midiRequestMonitorOutputEQPresence();
   void midiApplyMonitorOutputEQPresence(unsigned short rawVal);
   // MainOutputSource
-  void midiRequestMainOutputSource();
   void midiApplyMainOutputSource(unsigned short rawVal);
   // SPDIFOutputSource
-  void midiRequestSPDIFOutputSource();
   void midiApplySPDIFOutputSource(unsigned short rawVal);
   // MonitorOutputSource
-  void midiRequestMonitorOutputSource();
   void midiApplyMonitorOutputSource(unsigned short rawVal);
   // DirectOutputSource
-  void midiRequestDirectOutputSource();
   void midiApplyDirectOutputSource(unsigned short rawVal);
   // AuxInToMain
-  void midiRequestAuxInToMain();
   void midiApplyAuxInToMain(unsigned short rawVal);
   // AuxInToHeadphone
-  void midiRequestAuxInToHeadphone();
   void midiApplyAuxInToHeadphone(unsigned short rawVal);
   // ConstantLatencyOnOff
-  void midiRequestConstantLatencyOnOff();
   void midiApplyConstantLatencyOnOff(unsigned short rawVal);
   // Space
-  void midiRequestSpace();
   void midiApplySpace(unsigned short rawVal);
   // HeadphoneSpaceOnOff
-  void midiRequestHeadphoneSpaceOnOff();
   void midiApplyHeadphoneSpaceOnOff(unsigned short rawVal);
   // WahPedalToPitch
-  void midiRequestWahPedalToPitch();
   void midiApplyWahPedalToPitch(unsigned short rawVal);
   // InputSource
-  void midiRequestInputSource();
   void midiApplyInputSource(unsigned short rawVal);
   // ReampSens
-  void midiRequestReampSense();
   void midiApplyReampSense(unsigned short rawVal);
   // PureCabOnOff
-  void midiRequestPureCabOnOff();
   void midiApplyPureCabOnOff(unsigned short rawVal);
   // PureCab
-  void midiRequestPureCab();
   void midiApplyPureCab(unsigned short rawVal);
   // OperationMode
-  void midiRequestOperationMode();
   void midiApplyOperationMode(unsigned short rawVal);
   // ConnectName
   void midiApplyConnectName(const QString &connectName);

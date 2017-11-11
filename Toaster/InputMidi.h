@@ -41,13 +41,10 @@ protected:
 
   // parameter
   // Noise Gate
-  void midiRequestNoiseGate();
   void midiApplyNoiseGate(unsigned short rawVal);
   // Clean Sense
-  void midiRequestCleanSense();
   void midiApplyCleanSense(unsigned short rawVal);
   // Distortion Sense
-  void midiRequestDistortionSense();
   void midiApplyDistortionSense(unsigned short rawVal);
 
   // receive callbacks for derived class

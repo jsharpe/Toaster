@@ -47,31 +47,22 @@ protected:
 
   // parameter
   // RigName
-  void midiRequestRigName();
   void midiApplyRigName(const QString &rigName);
   // RigAuthor
-  void midiRequestRigAuthor();
   void midiApplyRigAuthor(const QString &rigAuthor);
   // RigDateTime
-  void midiRequestRigDateTime();
   void midiApplyRigDateTime(const QString &rigDateTime);
   // RigComment
-  void midiRequestRigComment();
   void midiApplyRigComment(const QString &rigComment);
   // AmpName
-  void midiRequestAmpName();
   void midiApplyAmpName(const QString &ampName);
   // AmpAuthor
-  void midiRequestAmpAuthor();
   void midiApplyAmpAuthor(const QString &ampAuthor);
   // AmpDate
-  void midiRequestAmpDate();
   void midiApplyAmpDate(const QString &ampDate);
   // AmpTime
-  void midiRequestAmpTime();
   void midiApplyAmpTime(const QString &ampTime);
   // CabName
-  void midiRequestCabName();
   void midiApplyCabName(const QString &cabName);
 
   // commands

@@ -35,7 +35,6 @@ protected:
 
   // parameter
   // browser view
-  void midiRequestBrowserView();
   void midiApplyBrowserView(unsigned int rawVal);
 
   // receive callbacks for derived class

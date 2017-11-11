@@ -28,11 +28,11 @@ public:
   static Cab &get();
 
   void requestAllValues();
-  void requestOnOff() { midiRequestOnOff(); }
-  void requestVolume() { midiRequestVolume(); }
-  void requestHighShift() { midiRequestHighShift(); }
-  void requestLowShift() { midiRequestLowShift(); }
-  void requestCharacter() { midiRequestCharacter(); }
+  void requestOnOff() {  }
+  void requestVolume() {  }
+  void requestHighShift() {  }
+  void requestLowShift() {  }
+  void requestCharacter() {  }
 
 signals:
   void onOffReceived(bool onOff);

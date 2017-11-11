@@ -29,16 +29,16 @@ public:
   static Amp &get();
 
   void requestAllValues();
-  void requestOnOff() { midiRequestOnOff(); }
-  void requestGain() { midiRequestGain(); }
-  void requestDefinition() { midiRequestDefinition(); }
-  void requestClarity() { midiRequestClarity(); }
-  void requestPowerSagging() { midiRequestPowerSagging(); }
-  void requestPick() { midiRequestPick(); }
-  void requestCompressor() { midiRequestCompressor(); }
-  void requestTubeShape() { midiRequestTubeShape(); }
-  void requestTubeBias() { midiRequestTubeBias(); }
-  void requestDirectMix() { midiRequestDirectMix(); }
+  void requestOnOff() {  }
+  void requestGain() {  }
+  void requestDefinition() {  }
+  void requestClarity() {  }
+  void requestPowerSagging() {  }
+  void requestPick() {  }
+  void requestCompressor() {  }
+  void requestTubeShape() {  }
+  void requestTubeBias() {  }
+  void requestDirectMix() {  }
 
 signals:
   void onOffReceived(bool onOff);

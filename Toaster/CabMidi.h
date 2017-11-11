@@ -42,19 +42,14 @@ public:
 protected:
   // parameter
   // OnOff
-  void midiRequestOnOff();
   void midiApplyOnOff(unsigned short rawVal);
   // Volume
-  void midiRequestVolume();
   void midiApplyVolume(unsigned short rawVal);
   // HighShift
-  void midiRequestHighShift();
   void midiApplyHighShift(unsigned short rawVal);
   // LowShift
-  void midiRequestLowShift();
   void midiApplyLowShift(unsigned short rawVal);
   // Character
-  void midiRequestCharacter();
   void midiApplyCharacter(unsigned short rawVal);
 
   // receive callbacks for derived class

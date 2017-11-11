@@ -29,15 +29,15 @@ public:
   static Profile &get();
 
   void requestAllValues();
-  void requestRigName() { midiRequestRigName(); }
-  void requestRigAuthor() { midiRequestRigAuthor(); }
-  void requestRigDateTime() { midiRequestRigDateTime(); }
-  void requestRigComment() { midiRequestRigComment(); }
-  void requestAmpName() { midiRequestAmpName(); }
-  void requestAmpAuthor() { midiRequestAmpAuthor(); }
-  void requestAmpDate() { midiRequestAmpDate(); }
-  void requestAmpTime() { midiRequestAmpTime(); }
-  void requestCabName() { midiRequestCabName(); }
+  void requestRigName() {  }
+  void requestRigAuthor() {  }
+  void requestRigDateTime() {  }
+  void requestRigComment() {  }
+  void requestAmpName() {  }
+  void requestAmpAuthor() {  }
+  void requestAmpDate() {  }
+  void requestAmpTime() {  }
+  void requestCabName() {  }
 
 signals:
   void rigNameReceived(const QString &rigName);

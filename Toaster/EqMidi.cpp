@@ -35,12 +35,7 @@ EqMidi::~EqMidi() {
 }
 
 unsigned char EqMidi::getId() {
-  unsigned char ret = 0x00;
-  ByteArray addressPage = getAddressPage();
-  if (addressPage.size() > 0)
-    ret = addressPage[0];
-
-  return ret;
+  return 0x0B;
 }
 
 void EqMidi::consumeSysExMsg(unsigned char param, uint16_t rawVal) {
@@ -56,25 +51,13 @@ void EqMidi::consumeSysExMsg(unsigned char param, uint16_t rawVal) {
       midiPresenceReceived(rawVal);
 }
 
-void EqMidi::midiRequestOnOff() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sOnOff));
-}
-
 void EqMidi::midiApplyOnOff(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sOnOff, rawVal));
 }
 
-void EqMidi::midiRequestBass() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sBass));
-}
-
 void EqMidi::midiApplyBass(unsigned short rawVal) {
   Midi::get().sendCmd(createSingleParamSetCmd(getAddressPage(), sBass, rawVal));
-}
-
-void EqMidi::midiRequestMiddle() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sMiddle));
 }
 
 void EqMidi::midiApplyMiddle(unsigned short rawVal) {
@@ -82,17 +65,9 @@ void EqMidi::midiApplyMiddle(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sMiddle, rawVal));
 }
 
-void EqMidi::midiRequestTreble() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sTreble));
-}
-
 void EqMidi::midiApplyTreble(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sTreble, rawVal));
-}
-
-void EqMidi::midiRequestPresence() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sPresence));
 }
 
 void EqMidi::midiApplyPresence(unsigned short rawVal) {

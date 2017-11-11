@@ -50,46 +50,32 @@ public:
 protected:
   // parameter
   // Type
-  void midiRequestType();
   void midiApplyType(unsigned short rawVal);
   // OnOffCutsTail
-  void midiRequestOnOffCutsTail();
   void midiApplyOnOffCutsTail(unsigned short rawVal);
   // Mix
-  void midiRequestMix();
   void midiApplyMix(unsigned short rawVal);
   // Volume
-  void midiRequestVolume();
   void midiApplyVolume(unsigned short rawVal);
   // Time
-  void midiRequestTime();
   void midiApplyTime(unsigned short rawVal);
   // Ratio
-  void midiRequestRatio();
   void midiApplyRatio(unsigned short rawVal);
   // ClockLeft
-  void midiRequestClockLeft();
   void midiApplyClockLeft(unsigned short rawVal);
   // ClockRight
-  void midiRequestClockRight();
   void midiApplyClockRight(unsigned short rawVal);
   // Feedback
-  void midiRequestFeedback();
   void midiApplyFeedback(unsigned short rawVal);
   // Bandwidth
-  void midiRequestBandwidth();
   void midiApplyBandwidth(unsigned short rawVal);
   // CenterFrequency
-  void midiRequestCenterFrequency();
   void midiApplyCenterFrequency(unsigned short rawVal);
   // Modulation
-  void midiRequestModulation();
   void midiApplyModulation(unsigned short rawVal);
   // OnOffKeepsTail
-  void midiRequestOnOffKeepsTail();
   void midiApplyOnOffKeepsTail(unsigned short rawVal);
   // Ducking
-  void midiRequestDucking();
   void midiApplyDucking(unsigned short rawVal);
 
   // receive callbacks for derived class

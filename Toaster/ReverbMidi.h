@@ -46,40 +46,28 @@ protected:
   void consumeSysExMsg(unsigned char param, uint16_t rawVal) override final;
   // parameter
   // Type
-  void midiRequestType();
   void midiApplyType(unsigned short rawVal);
   // OnOffCutsTail
-  void midiRequestOnOffCutsTail();
   void midiApplyOnOffCutsTail(unsigned short rawVal);
   // Mix
-  void midiRequestMix();
   void midiApplyMix(unsigned short rawVal);
   // Volume
-  void midiRequestVolume();
   void midiApplyVolume(unsigned short rawVal);
   // DelRevBalance
-  void midiRequestDelRevBalance();
   void midiApplyDelRevBalance(unsigned short rawVal);
   // Time
-  void midiRequestTime();
   void midiApplyTime(unsigned short rawVal);
   // Damping
-  void midiRequestDamping();
   void midiApplyDamping(unsigned short rawVal);
   // Bandwidth
-  void midiRequestBandwidth();
   void midiApplyBandwidth(unsigned short rawVal);
   // CenterFrequency
-  void midiRequestCenterFrequency();
   void midiApplyCenterFrequency(unsigned short rawVal);
   // PreDelay
-  void midiRequestPreDelay();
   void midiApplyPreDelay(unsigned short rawVal);
   // OnOffKeepsTail
-  void midiRequestOnOffKeepsTail();
   void midiApplyOnOffKeepsTail(unsigned short rawVal);
   // Ducking
-  void midiRequestDucking();
   void midiApplyDucking(unsigned short rawVal);
 
   // receive callbacks for derived class

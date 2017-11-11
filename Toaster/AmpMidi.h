@@ -45,34 +45,24 @@ protected:
 
   // parameter
   // OnOff
-  void midiRequestOnOff();
   void midiApplyOnOff(unsigned short rawVal);
   // Gain
-  void midiRequestGain();
   void midiApplyGain(unsigned short rawVal);
   // Definition
-  void midiRequestDefinition();
   void midiApplyDefinition(unsigned short rawVal);
   // Clarity
-  void midiRequestClarity();
   void midiApplyClarity(unsigned short rawVal);
   // PowerSagging
-  void midiRequestPowerSagging();
   void midiApplyPowerSagging(unsigned short rawVal);
   // Pick
-  void midiRequestPick();
   void midiApplyPick(unsigned short rawVal);
   // Compressor
-  void midiRequestCompressor();
   void midiApplyCompressor(unsigned short rawVal);
   // TubeShape
-  void midiRequestTubeShape();
   void midiApplyTubeShape(unsigned short rawVal);
   // TubeBias
-  void midiRequestTubeBias();
   void midiApplyTubeBias(unsigned short rawVal);
   // DirectMix
-  void midiRequestDirectMix();
   void midiApplyDirectMix(unsigned short rawVal);
 
   // receive callbacks for derived class

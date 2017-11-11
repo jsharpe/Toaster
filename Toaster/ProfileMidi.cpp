@@ -76,17 +76,9 @@ unsigned char ProfileMidi::getId() {
   return ret;
 }
 
-void ProfileMidi::midiRequestRigName() {
-  Midi::get().sendCmd(createStringParamGetCmd(getAddressPage(), sRigName));
-}
-
 void ProfileMidi::midiApplyRigName(const QString &rigName) {
   Midi::get().sendCmd(
       createStringParamSetCmd(getAddressPage(), sRigName, rigName));
-}
-
-void ProfileMidi::midiRequestRigAuthor() {
-  Midi::get().sendCmd(createStringParamGetCmd(getAddressPage(), sRigAuthor));
 }
 
 void ProfileMidi::midiApplyRigAuthor(const QString &rigAuthor) {
@@ -94,17 +86,9 @@ void ProfileMidi::midiApplyRigAuthor(const QString &rigAuthor) {
       createStringParamSetCmd(getAddressPage(), sRigAuthor, rigAuthor));
 }
 
-void ProfileMidi::midiRequestRigDateTime() {
-  Midi::get().sendCmd(createStringParamGetCmd(getAddressPage(), sRigDateTime));
-}
-
 void ProfileMidi::midiApplyRigDateTime(const QString &rigDateTime) {
   Midi::get().sendCmd(
       createStringParamSetCmd(getAddressPage(), sRigDateTime, rigDateTime));
-}
-
-void ProfileMidi::midiRequestRigComment() {
-  Midi::get().sendCmd(createStringParamGetCmd(getAddressPage(), sRigComment));
 }
 
 void ProfileMidi::midiApplyRigComment(const QString &rigComment) {
@@ -112,17 +96,9 @@ void ProfileMidi::midiApplyRigComment(const QString &rigComment) {
       createStringParamSetCmd(getAddressPage(), sRigComment, rigComment));
 }
 
-void ProfileMidi::midiRequestAmpName() {
-  Midi::get().sendCmd(createStringParamGetCmd(getAddressPage(), sAmpName));
-}
-
 void ProfileMidi::midiApplyAmpName(const QString &ampName) {
   Midi::get().sendCmd(
       createStringParamSetCmd(getAddressPage(), sAmpName, ampName));
-}
-
-void ProfileMidi::midiRequestAmpAuthor() {
-  Midi::get().sendCmd(createStringParamGetCmd(getAddressPage(), sAmpAuthor));
 }
 
 void ProfileMidi::midiApplyAmpAuthor(const QString &ampAuthor) {
@@ -130,26 +106,14 @@ void ProfileMidi::midiApplyAmpAuthor(const QString &ampAuthor) {
       createStringParamSetCmd(getAddressPage(), sAmpAuthor, ampAuthor));
 }
 
-void ProfileMidi::midiRequestAmpDate() {
-  Midi::get().sendCmd(createStringParamGetCmd(getAddressPage(), sAmpDate));
-}
-
 void ProfileMidi::midiApplyAmpDate(const QString &ampDate) {
   Midi::get().sendCmd(
       createStringParamSetCmd(getAddressPage(), sAmpDate, ampDate));
 }
 
-void ProfileMidi::midiRequestAmpTime() {
-  Midi::get().sendCmd(createStringParamGetCmd(getAddressPage(), sAmpTime));
-}
-
 void ProfileMidi::midiApplyAmpTime(const QString &ampTime) {
   Midi::get().sendCmd(
       createStringParamSetCmd(getAddressPage(), sAmpTime, ampTime));
-}
-
-void ProfileMidi::midiRequestCabName() {
-  Midi::get().sendCmd(createStringParamGetCmd(getAddressPage(), sCabName));
 }
 
 void ProfileMidi::midiApplyCabName(const QString &cabName) {

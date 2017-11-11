@@ -27,11 +27,11 @@ Cab &Cab::get() {
 }
 
 void Cab::requestAllValues() {
-  midiRequestOnOff();
-  midiRequestVolume();
-  midiRequestHighShift();
-  midiRequestLowShift();
-  midiRequestCharacter();
+
+
+
+
+
 }
 
 // slots

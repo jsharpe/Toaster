@@ -32,7 +32,6 @@ protected:
   TunerMidi();
   ~TunerMidi();
 
-  void midiRequestMuteSignal();
   void midiApplyMuteSignal(unsigned short rawVal);
 
   // ISysExConsumer

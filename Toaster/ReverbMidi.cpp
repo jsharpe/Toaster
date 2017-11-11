@@ -76,17 +76,8 @@ void ReverbMidi::consumeSysExMsg(unsigned char param, uint16_t rawVal) {
       midiDuckingReceived(rawVal);
 }
 
-void ReverbMidi::midiRequestType() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sType));
-}
-
 void ReverbMidi::midiApplyType(unsigned short rawVal) {
   Midi::get().sendCmd(createSingleParamSetCmd(getAddressPage(), sType, rawVal));
-}
-
-void ReverbMidi::midiRequestOnOffCutsTail() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sOnOffCutsTail));
 }
 
 void ReverbMidi::midiApplyOnOffCutsTail(unsigned short rawVal) {
@@ -94,16 +85,8 @@ void ReverbMidi::midiApplyOnOffCutsTail(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sOnOffCutsTail, rawVal));
 }
 
-void ReverbMidi::midiRequestMix() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sMix));
-}
-
 void ReverbMidi::midiApplyMix(unsigned short rawVal) {
   Midi::get().sendCmd(createSingleParamSetCmd(getAddressPage(), sMix, rawVal));
-}
-
-void ReverbMidi::midiRequestVolume() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sVolume));
 }
 
 void ReverbMidi::midiApplyVolume(unsigned short rawVal) {
@@ -111,26 +94,14 @@ void ReverbMidi::midiApplyVolume(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sVolume, rawVal));
 }
 
-void ReverbMidi::midiRequestDelRevBalance() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sDelRevBalance));
-}
 
 void ReverbMidi::midiApplyDelRevBalance(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sDelRevBalance, rawVal));
 }
 
-void ReverbMidi::midiRequestTime() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sTime));
-}
-
 void ReverbMidi::midiApplyTime(unsigned short rawVal) {
   Midi::get().sendCmd(createSingleParamSetCmd(getAddressPage(), sTime, rawVal));
-}
-
-void ReverbMidi::midiRequestDamping() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sDamping));
 }
 
 void ReverbMidi::midiApplyDamping(unsigned short rawVal) {
@@ -138,27 +109,15 @@ void ReverbMidi::midiApplyDamping(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sDamping, rawVal));
 }
 
-void ReverbMidi::midiRequestBandwidth() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sBandwidth));
-}
-
 void ReverbMidi::midiApplyBandwidth(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sBandwidth, rawVal));
 }
 
-void ReverbMidi::midiRequestCenterFrequency() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sCenterFrequency));
-}
 
 void ReverbMidi::midiApplyCenterFrequency(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sCenterFrequency, rawVal));
-}
-
-void ReverbMidi::midiRequestPreDelay() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sPreDelay));
 }
 
 void ReverbMidi::midiApplyPreDelay(unsigned short rawVal) {
@@ -166,18 +125,10 @@ void ReverbMidi::midiApplyPreDelay(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sPreDelay, rawVal));
 }
 
-void ReverbMidi::midiRequestOnOffKeepsTail() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sOnOffKeepsTail));
-}
 
 void ReverbMidi::midiApplyOnOffKeepsTail(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sOnOffKeepsTail, rawVal));
-}
-
-void ReverbMidi::midiRequestDucking() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sDucking));
 }
 
 void ReverbMidi::midiApplyDucking(unsigned short rawVal) {

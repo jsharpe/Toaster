@@ -86,17 +86,8 @@ void DelayMidi::consumeSysExMsg(const ByteArray &msg) {
   }
 }
 
-void DelayMidi::midiRequestType() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sType));
-}
-
 void DelayMidi::midiApplyType(unsigned short rawVal) {
   Midi::get().sendCmd(createSingleParamSetCmd(getAddressPage(), sType, rawVal));
-}
-
-void DelayMidi::midiRequestOnOffCutsTail() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sOnOffCutsTail));
 }
 
 void DelayMidi::midiApplyOnOffCutsTail(unsigned short rawVal) {
@@ -104,16 +95,8 @@ void DelayMidi::midiApplyOnOffCutsTail(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sOnOffCutsTail, rawVal));
 }
 
-void DelayMidi::midiRequestMix() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sMix));
-}
-
 void DelayMidi::midiApplyMix(unsigned short rawVal) {
   Midi::get().sendCmd(createSingleParamSetCmd(getAddressPage(), sMix, rawVal));
-}
-
-void DelayMidi::midiRequestVolume() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sVolume));
 }
 
 void DelayMidi::midiApplyVolume(unsigned short rawVal) {
@@ -121,16 +104,8 @@ void DelayMidi::midiApplyVolume(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sVolume, rawVal));
 }
 
-void DelayMidi::midiRequestTime() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sTime));
-}
-
 void DelayMidi::midiApplyTime(unsigned short rawVal) {
   Midi::get().sendCmd(createSingleParamSetCmd(getAddressPage(), sTime, rawVal));
-}
-
-void DelayMidi::midiRequestRatio() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sRatio));
 }
 
 void DelayMidi::midiApplyRatio(unsigned short rawVal) {
@@ -138,17 +113,9 @@ void DelayMidi::midiApplyRatio(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sRatio, rawVal));
 }
 
-void DelayMidi::midiRequestClockLeft() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sClockLeft));
-}
-
 void DelayMidi::midiApplyClockLeft(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sClockLeft, rawVal));
-}
-
-void DelayMidi::midiRequestClockRight() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sClockRight));
 }
 
 void DelayMidi::midiApplyClockRight(unsigned short rawVal) {
@@ -156,17 +123,9 @@ void DelayMidi::midiApplyClockRight(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sClockRight, rawVal));
 }
 
-void DelayMidi::midiRequestFeedback() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sFeedback));
-}
-
 void DelayMidi::midiApplyFeedback(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sFeedback, rawVal));
-}
-
-void DelayMidi::midiRequestBandwidth() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sBandwidth));
 }
 
 void DelayMidi::midiApplyBandwidth(unsigned short rawVal) {
@@ -174,18 +133,9 @@ void DelayMidi::midiApplyBandwidth(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sBandwidth, rawVal));
 }
 
-void DelayMidi::midiRequestCenterFrequency() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sCenterFrequency));
-}
-
 void DelayMidi::midiApplyCenterFrequency(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sCenterFrequency, rawVal));
-}
-
-void DelayMidi::midiRequestModulation() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sModulation));
 }
 
 void DelayMidi::midiApplyModulation(unsigned short rawVal) {
@@ -193,18 +143,9 @@ void DelayMidi::midiApplyModulation(unsigned short rawVal) {
       createSingleParamSetCmd(getAddressPage(), sModulation, rawVal));
 }
 
-void DelayMidi::midiRequestOnOffKeepsTail() {
-  Midi::get().sendCmd(
-      createSingleParamGetCmd(getAddressPage(), sOnOffKeepsTail));
-}
-
 void DelayMidi::midiApplyOnOffKeepsTail(unsigned short rawVal) {
   Midi::get().sendCmd(
       createSingleParamSetCmd(getAddressPage(), sOnOffKeepsTail, rawVal));
-}
-
-void DelayMidi::midiRequestDucking() {
-  Midi::get().sendCmd(createSingleParamGetCmd(getAddressPage(), sDucking));
 }
 
 void DelayMidi::midiApplyDucking(unsigned short rawVal) {

@@ -39,10 +39,6 @@ void ExtParamMidi::consumeSysExMsg(const ByteArray &msg) {
   }
 }
 
-void ExtParamMidi::midiRequestBrowserView() {
-  Midi::get().sendCmd(createExtStringParamGetCmd(sBrowserView));
-}
-
 void ExtParamMidi::midiApplyBrowserView(unsigned int rawVal) {
   Midi::get().sendCmd(createExtParamSetCmd(sBrowserView, rawVal));
 }

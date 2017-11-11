@@ -26,7 +26,7 @@ class Tuner : public QObject, public TunerMidi {
 public:
   static Tuner &get();
 
-  void requestMuteSignal() { midiRequestMuteSignal(); }
+  void requestMuteSignal() {  }
 
 signals:
   void noteReceived(QString note, QString octave);
