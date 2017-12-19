@@ -16,9 +16,9 @@ endif()
 
 project(RtMidi LANGUAGES CXX)
 
-add_library(rtmidi rtmidi/RtMidi.cpp)
-target_include_directories(rtmidi PUBLIC RtMidi)
-target_link_libraries(rtmidi "-framework CoreFoundation" "-framework CoreAUDIO" "-framework CoreMIDI")
+add_library(RtMidi RtMidi/RtMidi.cpp)
+target_include_directories(RtMidi PUBLIC RtMidi)
+target_link_libraries(RtMidi "-framework CoreFoundation" "-framework CoreAUDIO" "-framework CoreMIDI")
 
 project(VirtualKPA LANGUAGES CXX)
 
@@ -268,5 +268,5 @@ add_executable(Toaster
 )
 
 qt5_use_modules(Toaster Core)
-target_link_libraries(Toaster ToasterWidgets VirtualKPA rtmidi)
+target_link_libraries(Toaster ToasterWidgets VirtualKPA RtMidi)
 target_include_directories(Toaster PUBLIC Toaster)
