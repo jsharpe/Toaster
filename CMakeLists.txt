@@ -16,9 +16,13 @@ endif()
 
 project(RtMidi LANGUAGES CXX)
 
-add_library(rtmidi rtmidi/RtMidi.cpp)
-target_include_directories(rtmidi PUBLIC RtMidi)
-target_link_libraries(rtmidi "-framework CoreFoundation" "-framework CoreAUDIO" "-framework CoreMIDI")
+add_library(RtMidi RtMidi/RtMidi.cpp)
+target_include_directories(RtMidi PUBLIC RtMidi)
+if(APPLE)
+    target_link_libraries(RtMidi "-framework CoreFoundation" "-framework CoreAUDIO" "-framework CoreMIDI")
+else()
+    target_link_libraries(RtMidi)
+endif()
 
 project(VirtualKPA LANGUAGES CXX)
 
@@ -37,7 +41,7 @@ add_library(VirtualKPA
     VirtualKPA/VirtualUnknownParam.cpp)
 
 target_link_libraries(VirtualKPA Qt5::Core)
-target_include_directories(VirtualKPA PUBLIC VirtualKPA shared)
+target_include_directories(VirtualKPA PUBLIC VirtualKPA Shared)
 
 project(ToasterWidgets LANGUAGES CXX)
 
@@ -85,7 +89,7 @@ add_library(ToasterWidgets SHARED
     ToasterWidgets/qtoasterwidgets.cpp
 )
 
-target_include_directories(ToasterWidgets PUBLIC ToasterWidgets shared)
+target_include_directories(ToasterWidgets PUBLIC ToasterWidgets Shared)
 
 qt5_use_modules(ToasterWidgets
     Core
@@ -94,7 +98,7 @@ qt5_use_modules(ToasterWidgets
     Gui
 )
 
-project(Toaster LANGUAGES CXX)
+project(Toaster.exe LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
@@ -103,7 +107,7 @@ add_definitions(-DAPP_VERSION=\"0.0.1\" -DAPP_STAGE=\"beta\")
 
 find_package(Qt5 COMPONENTS Core Widgets UiPlugin Gui REQUIRED)
 
-add_executable(Toaster
+add_executable(Toaster.exe
     Toaster/AboutDialog.cpp
     Toaster/AboutDialog.ui
     Toaster/AirChorusFrame.cpp
@@ -267,6 +271,6 @@ add_executable(Toaster
     Toaster/WahWahFrame.ui
 )
 
-qt5_use_modules(Toaster Core)
-target_link_libraries(Toaster ToasterWidgets VirtualKPA rtmidi)
-target_include_directories(Toaster PUBLIC Toaster)
+qt5_use_modules(Toaster.exe Core)
+target_link_libraries(Toaster.exe ToasterWidgets VirtualKPA RtMidi)
+target_include_directories(Toaster.exe PUBLIC Toaster)

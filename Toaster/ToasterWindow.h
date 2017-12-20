@@ -23,6 +23,7 @@
 #include <QLabel>
 #include <QMainWindow>
 #include <atomic>
+#include <memory>
 
 namespace Ui {
 class ToasterWindow;
