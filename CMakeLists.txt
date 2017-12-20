@@ -98,7 +98,7 @@ qt5_use_modules(ToasterWidgets
     Gui
 )
 
-project(Toaster LANGUAGES CXX)
+project(Toaster.exe LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
@@ -107,7 +107,7 @@ add_definitions(-DAPP_VERSION=\"0.0.1\" -DAPP_STAGE=\"beta\")
 
 find_package(Qt5 COMPONENTS Core Widgets UiPlugin Gui REQUIRED)
 
-add_executable(Toaster
+add_executable(Toaster.exe
     Toaster/AboutDialog.cpp
     Toaster/AboutDialog.ui
     Toaster/AirChorusFrame.cpp
@@ -271,6 +271,6 @@ add_executable(Toaster
     Toaster/WahWahFrame.ui
 )
 
-qt5_use_modules(Toaster Core)
-target_link_libraries(Toaster ToasterWidgets VirtualKPA RtMidi)
-target_include_directories(Toaster PUBLIC Toaster)
+qt5_use_modules(Toaster.exe Core)
+target_link_libraries(Toaster.exe ToasterWidgets VirtualKPA RtMidi)
+target_include_directories(Toaster.exe PUBLIC Toaster)
