@@ -18,7 +18,11 @@ project(RtMidi LANGUAGES CXX)
 
 add_library(RtMidi RtMidi/RtMidi.cpp)
 target_include_directories(RtMidi PUBLIC RtMidi)
-target_link_libraries(RtMidi "-framework CoreFoundation" "-framework CoreAUDIO" "-framework CoreMIDI")
+if(APPLE)
+    target_link_libraries(RtMidi "-framework CoreFoundation" "-framework CoreAUDIO" "-framework CoreMIDI")
+else()
+    target_link_libraries(RtMidi)
+endif()
 
 project(VirtualKPA LANGUAGES CXX)
 
