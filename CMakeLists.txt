@@ -37,7 +37,7 @@ add_library(VirtualKPA
     VirtualKPA/VirtualUnknownParam.cpp)
 
 target_link_libraries(VirtualKPA Qt5::Core)
-target_include_directories(VirtualKPA PUBLIC VirtualKPA shared)
+target_include_directories(VirtualKPA PUBLIC VirtualKPA Shared)
 
 project(ToasterWidgets LANGUAGES CXX)
 
@@ -85,7 +85,7 @@ add_library(ToasterWidgets SHARED
     ToasterWidgets/qtoasterwidgets.cpp
 )
 
-target_include_directories(ToasterWidgets PUBLIC ToasterWidgets shared)
+target_include_directories(ToasterWidgets PUBLIC ToasterWidgets Shared)
 
 qt5_use_modules(ToasterWidgets
     Core
