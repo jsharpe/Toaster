@@ -707,7 +707,26 @@ void MainFrame::setStompLedColor(::FXType type, QMultiColorLed *ledWidget) {
     break;
   case Space:
   case LegacyDelay:
+  case SingleDelay:
+  case DualDelay:
+  case TwoTapDelay:
+  case SerialTwoTapDelay:
+  case RhythmDelay:
+  case QuadDelay:
     ledWidget->setColor(QMultiColorLed::Green);
+    break;
+  case CrystalDelay:
+  case LoopPitchDelay:
+  case FrequencyShifterDelay:
+  case DualChromaticDelay:
+  case DualHarmonicDelay:
+  case DualCrystalDelay:
+  case DualLoopPitchDelay:
+  case MelodyDelay:
+  case QuadChromaticDelay:
+  case QuadHarmonicDelay:
+  case DualCrystal:
+    ledWidget->setColor(QMultiColorLed::LightGreen);
     break;
   case Transpose:
   case PedalPitch:
@@ -720,7 +739,7 @@ void MainFrame::setStompLedColor(::FXType type, QMultiColorLed *ledWidget) {
   case LoopDistortion:
     ledWidget->setColor(QMultiColorLed::White);
     break;
-  default:
+  case None:
     ledWidget->setColor(QMultiColorLed::Off);
     break;
   }

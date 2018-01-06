@@ -38,6 +38,7 @@ public:
     Purple = 6,
     White = 7,
     Green = 8,
+    LightGreen = 8, // For now map to green as need to update the pixmap
     NoOfColors = 9 // must be always last
   };
 
