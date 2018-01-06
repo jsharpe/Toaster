@@ -84,10 +84,6 @@ void Stomp::applyDistortionShaperDrive(double distortionShaperDrive) {
 }
 
 void Stomp::applyDistortionBoosterTone(double distortionBoosterTone) {
-  if (Settings::get().getKPAOSVersion() < 0x04000000)
-    midiApplyDistortionBoosterTone(
-        Utils::phys2Raw(distortionBoosterTone, 10, -5));
-  else
     midiApplyDistortionBoosterTone(
         Utils::phys2Raw(distortionBoosterTone, 10, 0));
 }
@@ -379,9 +375,6 @@ void Stomp::midiDistortionShaperDriveReceived(unsigned short rawVal) {
 }
 
 void Stomp::midiDistortionBoosterToneReceived(unsigned short rawVal) {
-  if (Settings::get().getKPAOSVersion() < 0x04000000)
-    emit distortionBoosterToneReceived(Utils::raw2Phys(rawVal, 10, -5));
-  else
     emit distortionBoosterToneReceived(Utils::raw2Phys(rawVal, 10, 0));
 }
 
