@@ -339,6 +339,7 @@ void StompEditorFrame::onActiveStompType(FXType fxType) {
     case DualCrystal:
     case None:
       ui.dummyStompFrame->show();
+      ui.dummyStompFrame->activate(*pActiveStomp);
       break;
     }
 
@@ -378,6 +379,7 @@ void StompEditorFrame::onReverbType(::ReverbType reverbType) {
       break;
     default:
       ui.dummyStompFrame->show();
+      ui.dummyStompFrame->activate(*pActiveReverb);
       break;
     }
 
