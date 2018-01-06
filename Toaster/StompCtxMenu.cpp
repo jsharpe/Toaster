@@ -188,7 +188,7 @@ void StompCtxMenu::createEQMenu() {
   action = mEQMenu.addAction("Metal Equalizer");
   action->setData(QVariant((unsigned int)MetalEqualizer));
 
-  action = mEQMenu.addAction("Stereo Weidener");
+  action = mEQMenu.addAction("Stereo Widener");
   action->setData(QVariant((unsigned int)StereoWidener));
 }
 
