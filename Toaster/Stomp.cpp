@@ -28,6 +28,10 @@ void Stomp::requestAllValues() {
 
 // slots
 void Stomp::applyOnOff(bool onOff) {
+  if (mFXType == None) {
+      emit onOffReceived(false);
+      return;
+  }
   midiApplyOnOff(Utils::bool2Raw(onOff));
   emit onOffReceived(onOff);
 }
