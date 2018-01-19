@@ -816,4 +816,9 @@ void MainFrame::onRigNameReveived(const QString &rigName) {
   if (mCurrRigName != rigName) {
     mCurrRigName = rigName;
   }
+  //We've changed rigs as we have received a new rigName
+  //so request new values
+  // Note this isn't inside the if as we could have two rigs
+  // with the same name but differing values
+  this->requestValues();
 }
