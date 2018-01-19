@@ -34,6 +34,8 @@ void DummyStompFrame::activate(QObject &stomp) {
         LookUpTables::stompInstanceName(mpStomp->getInstance()));
     ui.lcdDisplay->setStompName(
         LookUpTables::stompFXName(mpStomp->getFXType()));
+  } else {
+    ui.lcdDisplay->setStompName("Unknown");
   }
 }
 
